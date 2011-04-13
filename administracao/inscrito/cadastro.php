@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-    <title>Processo Seletivo para Professor Substituto - 2011</title>
-    <link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
-    <script language="JavaScript" type="text/JavaScript">
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Processo Seletivo para Professor Substituto - 2011</title>
+	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
+	<script language="JavaScript" type="text/JavaScript">
 
             function Onlynumber(e){
 
@@ -291,20 +291,8 @@
             }
 
 			$(document).ready(function() {
-				$("#nis").attr("disabled", true);
 				$("#especial_prova_descricao").attr("disabled", true);
 				//$("#especial_descricao").attr("disabled", true);
-
-				$("#isencao").change(function() {
-					$("#isencao option:selected").each(function() {
-						if (this.value == "SIM") {
-							$("#nis").removeAttr("disabled");
-						} else if(this.value == "NAO") {
-							$("#nis").val("");
-							$("#nis").attr("disabled", true);
-						}
-					});
-				});
 
 				$("#especial_prova").change(function() {
 					$("#especial_prova option:selected").each(function() {
@@ -340,45 +328,39 @@
 
 	</script>
 </head>
-    <?php
-        //header("Content-Type: text/html; charset=ISO-8859-1", true);
-    ?>
 <body>
+	<div align='center'>
+		<img src="../../imgs/topo2/topo_formulario.png" alt="Instituto Federal Baiano" />
+		<h2>Ficha de Inscri&ccedil;&atilde;o</h2>
+		<p><span class="textoDestaque">OBSERVA&Ccedil;&Atilde;O: Os campos marcados com asterisco (*) s&atilde;o de preenchimento obrigat&oacute;rio.</span></p>
+	</div>
 
-    <div align='center'>
-        <img src="../../imgs/topo2/topo_formulario.png" alt="Instituto Federal Baiano" />
-            <h2>Ficha de Inscri&ccedil;&atilde;o</h2>
-            <p><span class="textoDestaque">OBSERVA&Ccedil;&Atilde;O: Os campos marcados com asterisco (*) s&atilde;o de preenchimento obrigat&oacute;rio.</span></p>
-    </div>
+	<div id="formularioInscricao">
+		<form id='forminscricao' name='frmaincricao' action='cadastrar_inscrito.php' method='post' onsubmit='return validar()' >
+			<table width="760" border="0" align='center'>
+				<tr>
+					<td align="right"><label for=nome>Nome:</label></td>
+					<td colspan='2'>
+						<input style="text-transform:uppercase" name="nome" id="nome" type="text" tabindex=1 size='65' maxlength="65" alt="Nome Completo" />
+						<span class="textoSobrescrito">*</span>
+					</td>
+				</tr>
 
-    <div id="formularioInscricao">
+				<tr>
+					<td align='right'><label for=cpf >CPF:</label></td>
+					<td>
+						<input name="cpf" type="text" id="cpf" tabindex=2 onkeypress="javascript:return Onlynumber(event);" value="" size="15" maxlength="11" alt="CPF" />
+						<span class="textoSobrescrito">* ATEN&Ccedil;&Atilde;O: N&atilde;o ser&aacute; poss&iacute;vel alterar o CPF posteriormente.</span>
+					</td>
+				</tr>
 
-        <form id='forminscricao' name='frmaincricao' action='cadastrar_inscrito.php' method='post' onsubmit='return validar()' >
-            <table width="760" border="0" align='center'>
-
-                <tr>
-                    <td align='right'><label for=nome>Nome:</label></td>
-                    <td colspan='2'>
-                        <input style="text-transform:uppercase" name="nome" id="nome" type="text" tabindex=1 size='65' maxlength="65" alt="Nome Completo" />
-                        <span class="textoSobrescrito">*</span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td align='right'><label for=cpf >CPF:</label></td>
-                    <td>
-                        <input name="cpf" type="text" id="cpf" tabindex=2 OnKeyPress="javascript:return Onlynumber(event);" value="" size="15" maxlength="11" alt="CPF" />
-                        <span class="textoSobrescrito">* ATEN&Ccedil;&Atilde;O: N&atilde;o ser&aacute; poss&iacute;vel alterar o CPF posteriormente.</span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td height="27" align='right'><label for="senha">Senha:</label></td>
-                    <td>
-                        <input name="senha" id="senha" type="password" tabindex=4 size="15" maxlength="15" alt="Senha" />
-                        <span class="textoSobrescrito">*</span>
-                    </td>
-                </tr>
+				<tr>
+					<td height="27" align='right'><label for="senha">Senha:</label></td>
+					<td>
+						<input name="senha" id="senha" type="password" tabindex=4 size="15" maxlength="15" alt="Senha" />
+						<span class="textoSobrescrito">*</span>
+					</td>
+				</tr>
 
                 <tr>
                     <td height="27" align='right'><label for="senha">Confirmar Senha:</label></td>
@@ -391,7 +373,7 @@
                 <tr>
                     <td height="27" align='right'><label for=rg>RG:</label></td>
                     <td>
-                        <input name="rg" type="text" id="rg" tabindex=5 OnKeyPress="javascript:return Onlynumber(event);" value="" size="15" maxlength="11" alt="RG" />
+                        <input name="rg" type="text" id="rg" tabindex=5 onkeypress="javascript:return Onlynumber(event);" value="" size="15" maxlength="11" alt="RG" />
                         <span class="textoSobrescrito">*</span>
                     </td>
                 </tr>
@@ -531,25 +513,30 @@
                     <td align='right'><label for=estadocivil>Estado Civil:</label></td>
                     <td>
                         <select name="estadocivil" id="estadocivil" tabindex=21>
-                             <option value="SOLTEIRO(A)" selected />SOLTEIRO(A)
-                             <option value="CASADO(A)" />CASADO(A)
-                             <option value="VIÚVO(A)" />VI&Uacute;VO(A)
-                             <option value="SEPARADO(A)" />SEPARADO(A)
-                             <option value="DIVORCIADO(A)" />DIVORCIADO(A)
+                             <option value="SOLTEIRO(A)" selected="selected">SOLTEIRO(A)</option>
+                             <option value="CASADO(A)">CASADO(A)</option>
+                             <option value="VIÚVO(A)">VI&Uacute;VO(A)</option>
+                             <option value="SEPARADO(A)">SEPARADO(A)</option>
+                             <option value="DIVORCIADO(A)">DIVORCIADO(A)</option>
                          </select>
                     </td>
                 </tr>
-
+				<tr>
+					<td width="139" align='right'><label for=responsavel>Respons&aacute;vel:</label></td>
+					<td width="412" colspan='2'>
+						<input style="text-transform:uppercase" name="responsavel" id="responsavel" type="text" tabindex=22 size='65' maxlength="65" alt="Nome do Responsável" />
+					</td>
+				</tr>
                 <tr>
                     <td height="28" align='right'><label for=especial>Necessidade Especial:</label></td>
                     <td>
                         <select name="especial" id="especial" tabindex=23 onchange="javascript:necessidadeEspecial()">
-                            <option value="N&Atilde;O" selected />N&Atilde;O
-                            <option value="VISUAL" />VISUAL
-                            <option value="MOTORA" />MOTORA
-                            <option value="AUDITIVA" />AUDITIVA
-                            <option value="M&Uacute;LTIPLAS" />M&Uacute;LTIPLAS
-                            <option value="OUTRA" />OUTRA
+                            <option value="N&Atilde;O" selected="selected">N&Atilde;O</option>
+                            <option value="VISUAL">VISUAL</option>
+                            <option value="MOTORA">MOTORA</option>
+                            <option value="AUDITIVA">AUDITIVA</option>
+                            <option value="M&Uacute;LTIPLAS">M&Uacute;LTIPLAS</option>
+                            <option value="OUTRA">OUTRA</option>
                         </select>
                         <span class="textoSobrescrito">*</span>
 
@@ -637,16 +624,7 @@
                     </td>
                 </tr>
 
-
-
-				<tr id="cadastro_unico">
-                    <td height="28" align='right'><label for=nis>Cadastro &Uacute;nico (NIS):</label></td>
-                    <td>
-                        <input name="nis" id="nis" tabindex="28" type="text" size="15" maxlength="11" OnKeyPress="javascript:return Onlynumber(event);" alt="Cadastro &Uacute;nico (NIS)" />
-                    </td>
-                </tr>
-
-                <tr>
+				<tr>
                     <td height="28" align='right'><label for=especial_prova>Condi&ccedil;&otilde;es especiais para realiza&ccedil;&atilde;o da prova:</label></td>
                     <td>
                         <select name="especial_prova" id="especial_prova" tabindex=29 onchange="javascript:especialProva()">
@@ -661,7 +639,7 @@
                 </tr>
 
                 <tr>
-                    <td height="28" align='right'><label for=vaga_especial>Concorre &agrave;s vagas destinadas a candidatos com Necessidades Especiais:</label></td>
+                    <td height="28" align='left'><label for=vaga_especial>Concorrer &agrave;s vagas reservadas para alunos com Necessidades Especiais:</label></td>
                     <td>
                         <select name="vaga_especial" id="vaga_especial" tabindex=31>
                              <option value="NAO" selected />N&Atilde;O
@@ -674,49 +652,70 @@
                 </tr>
 
                 <tr>
-                    <td colspan="2" align="justify">
-                        <hr />
-                            <p>
-                                Declaro, que estou ciente
-                                e de acordo com todas as regras que norteiam a presente sele&ccedil;&atilde;o e que a declara&ccedil;&atilde;o
-                                de informa&ccedil;&otilde;es falsas sujeita-me &agrave;s san&ccedil;&otilde;es administrativa, c&iacute;vel e criminal.
-                            </p>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td colspan="2" align="center">
-                        Confirma?
-                        <select name="declaracao" id="declaracao" tabindex=40>
-                            <option value="NAO" selected />N&Atilde;O
-                            <option value="SIM" />SIM
-                        </select>
-
-                        <br />
-                        <br />
-                    </td>
-                </tr>
-
-                <tr>
+                    <td height="28" align='left'><label for=vaga_rede_publica>Concorrer &agrave;s vagas reservadas para alunos oriundos da Rede P&uacute;blica:</label></td>
                     <td>
-<!--                        <input type="text" name="localprova" id="localprova" style="display: none" value="null" />-->
-                        <input type="text" name="numinscricao" id="numinscricao" style="display: none" />
-
+                        <select name="vaga_rede_publica" id="vaga_especial" tabindex=32>
+                             <option value="NAO" selected />N&Atilde;O
+                             <option value="SIM" />SIM
+                        </select>
+                        <span class="textoSobrescrito">
+                            *
+                        </span>
                     </td>
-
                 </tr>
 
                 <tr>
-                    <td colspan='3' align='center'>
-                        <input name="Gravar" type="submit" id="Gravar" tabindex=41 value="Gravar Dados" />
-                        <input type="button" value="Cancelar" onclick="javascript:redireciona();" />
-
+                    <td height="28" align='left'><label for=vaga_rural>Concorrer &agrave;s vagas reservadas para alunos filhos de Pequenos Produtores Rurais, Assentados, Lavradores e Trabalhadores Rurais:</label></td>
+                    <td>
+                        <select name="vaga_rural" id="vaga_especial" tabindex=33>
+                             <option value="NAO" selected />N&Atilde;O
+                             <option value="SIM" />SIM
+                        </select>
+                        <span class="textoSobrescrito">
+                            *
+                        </span>
                     </td>
                 </tr>
 
-            </table>
-        </form>
-    </div>
+				<tr>
+					<td colspan="2" align="left">
+						<hr />
+						<p>
+							Declaro, que estou ciente
+							e de acordo com todas as regras que norteiam a presente sele&ccedil;&atilde;o e que a declara&ccedil;&atilde;o
+							de informa&ccedil;&otilde;es falsas sujeita-me &agrave;s san&ccedil;&otilde;es administrativa, c&iacute;vel e criminal.
+						</p>
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan="2" align="left">
+						Confirma?
+						<select name="declaracao" id="declaracao" tabindex=40>
+							<option value="NAO" selected="selected">N&Atilde;O</option>
+							<option value="SIM">SIM</option>
+						</select>
+						<br />
+						<br />
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<!--<input type="text" name="localprova" id="localprova" style="display: none" value="null" />-->
+						<input type="text" name="numinscricao" id="numinscricao" style="display: none" />
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan='3' align='left'>
+						<input name="Gravar" type="submit" id="Gravar" tabindex=41 value="Gravar Dados" />
+						<input type="button" value="Cancelar" onclick="javascript:redireciona();" />
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
 </body>
 </html>
 

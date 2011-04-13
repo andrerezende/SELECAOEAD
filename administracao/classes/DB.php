@@ -1,6 +1,6 @@
 <?php
 class DB {
-	private static $instance =  null;
+	private static $instance = null;
 	private $dbHost          = "";
 	private $dbDatabase      = "";
 	private $dbUser          = "";

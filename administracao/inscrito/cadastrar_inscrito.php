@@ -4,9 +4,9 @@
 	<title>Processo Seletivo para Professor Substituto - 2011</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
-
+</head>
+<body>
 <?php
-header("Content-Type: text/html; charset=ISO-8859-1", true);
 include("../classes/DB.php");
 include("../classes/Inscrito.php");
 include("../classes/Inscrito_Curso.php");
@@ -100,4 +100,5 @@ if ($existe) {
 $banco->DesconectarDB($conexao);
 
 ?>
-</head>
+</body>
+</html>

@@ -624,6 +624,19 @@
                     </td>
                 </tr>
 
+               	<tr>
+					<td></td>
+					<td>
+						<span class="textoSobrescrito">
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;
+								* Caso a modalidade do curso seja PROEJA, ignore este campo
+						</span>
+					</td>
+				</tr>
+
 				<tr>
                     <td height="28" align='right'><label for=especial_prova>Condi&ccedil;&otilde;es especiais para realiza&ccedil;&atilde;o da prova:</label></td>
                     <td>

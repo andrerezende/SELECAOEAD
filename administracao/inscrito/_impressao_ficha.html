@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//PT-BR" >
+<HTML lang="pt-br">
+<HEAD>
+<title>Processo Seletivo para Professor Substituto - 2011</title>
+<script language="JavaScript" type="text/JavaScript">
+
+function validar() {
+
+    var cpf    = document.getElementById("cpf");
+ 
+    resultado = true;
+    if (cpf.value == ""){
+	  
+      alert('Informe o CPF!');
+	  cpf.focus();
+      resultado = false;
+	}
+    return resultado;
+}
+
+function Onlynumber(e){
+
+    var tecla=new Number();
+
+    if(window.event) {
+        tecla = e.keyCode;
+    }
+    else if(e.which) {
+        tecla = e.which;
+    }
+    else {
+        return true;
+    }
+
+    if(((tecla < 48) || (tecla > 57)) && (tecla!=8)){
+        return false;
+    }
+}
+
+</script>
+
+<body>
+<div align='center'> <H2>Impress�o da Ficha de Inscri��o</H2>
+</div>
+<form id='frmconsulta' name='frmconsulta' action='ficha.php' method='post' onsubmit='return validar()' >
+<table width="324" height="81" border='0' align='center'summary=" ">
+<tr>
+	<td colspan='3'>
+</td>
+</tr>
+
+<tr>
+	<TD width="36" align='right'><LABEL for=cpf>CPF:</LABEL></TD>
+	<td width="221"><input name="cpf" id="cpf" type="text" tabindex=11 size="20" maxlength="11" alt="CPF" onKeyPress="javascript:return Onlynumber(event);" >
+	  <input name="consultar" type="submit" id="consultar" tabindex=5 value="Consultar"></td>
+</tr>
+<tr>
+</tr>
+<tr>
+</tr>
+<tr>
+</tr>
+<tr>
+</tr>
+
+<tr>
+  <td height="41" colspan='3' align='center'><strong>Digite o CPF e clique no bot&atilde;o &quot;Consultar&quot;&nbsp;&nbsp;</strong></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

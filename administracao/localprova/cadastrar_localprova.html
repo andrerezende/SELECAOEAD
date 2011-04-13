@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//PT-BR" >
+<HTML lang="pt-br">
+<HEAD>
+<title>Cadastro de Localidade de provas</title>
+<script language="JavaScript" type="text/JavaScript">
+
+function validar() {
+
+    var nome    = document.getElementById("nome");
+
+    resultado = true;
+    if (nome.value == ""){
+
+      alert('Informe o nome da localidade.');
+	  nome.focus();
+      resultado = false;
+	}
+    return resultado;
+}
+
+</script>
+</head>
+<body>
+<div align='center'> <H2>Cadastro das Localidades de Prova</H2>
+</div>
+<form id='formlocalprova' name='formlocalprova' action='cadastrar_localprova.php' method='post' onsubmit='return validar()' >
+<table border='0' align='center' summary=" ">
+<tr>
+	<td colspan='3'>
+</td>
+</tr>
+
+<tr>
+	<td align='right'><label for="nome">Nome:</label></td>
+	<td colspan='2'><input name="nome" id="nome" type="text" tabindex=1 size='70' maxlength="70" ALT="Nome da localidade"></td>
+</tr>
+
+
+<tr><td colspan='3' align='center'>
+<input name="Enviar" type="submit" id="Enviar" tabindex=5 value="Enviar">&nbsp;&nbsp;</td>
+</tr>
+</table>
+</form>
+</body>
+</html>

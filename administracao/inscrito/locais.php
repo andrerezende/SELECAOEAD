@@ -1,9 +1,9 @@
 <?php
-
-header("Content-Type: text/html; charset=ISO-8859-1", true);
+include ("../classes/DB.php");
+include ("../classes/Campus.php");
 /* Acesso ao banco de dados */
 $banco   = DB::getInstance();
-$conexao = $banco->ConectarDB()
+$conexao = $banco->ConectarDB();
 
 $campus = $_POST['campus'];
 
@@ -17,4 +17,3 @@ if (mysql_num_rows($qr) == 0) {
 		echo '<option value="'.$ln['id'].'">'.$ln['nome'].'</option>';
 	}
 }
-?>

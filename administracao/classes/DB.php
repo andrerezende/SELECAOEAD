@@ -1,49 +1,40 @@
-<?php 
+<?php
+class DB {
+	private static $instance =  null;
+	private $dbHost          = "";
+	private $dbDatabase      = "";
+	private $dbUser          = "";
+	private $dbPassword      = "";
 
-class DB { 
-    
-    private static $instance =  null;
-    private $dbHost          = "";
-    private $dbDatabase      = "";
-    private $dbUser          = "";
-    private $dbPassword      = "";
+	public static function getInstance(){
+		if (DB::$instance == null) {
+			DB::$instance = new DB();
+		}
+		return DB::$instance;
+	}
 
-    public static function getInstance(){
+	private function DB(){
+	}
 
-        if (DB::$instance == null) { 
-            DB::$instance = new DB(); 
-        } 
-        return DB::$instance;
-    } 
-    
-    private function DB (){
-    
-    }
+	public function getdbHost(){
+		return $this->dbHost;
+	}
 
-    public function getdbHost(){
+	public function setdbHost($newdbHost){
+		$this->dbHost = $newdbHost;
+	}
 
-        return $this->dbHost;
-    }
+	public function getdbDatabase(){
+		return $this->dbDatabase;
+	}
 
-    public function setdbHost($newdbHost){
+	public function setdbDatabase($newdbDatabase){
+		$this->dbDatabase = $newdbDatabase;
+	}
 
-        $this->dbHost = $newdbHost;
-    }
-
-    public function getdbDatabase(){
-
-        return $this->dbDatabase;
-    }
-
-    public function setdbDatabase($newdbDatabase){
-
-        $this->dbDatabase = $newdbDatabase;
-    }
-
-    public function getdbUser(){
-
-        return $this->dbUser;
-    }
+	public function getdbUser(){
+		return $this->dbUser;
+	}
 
     public function setdbUser($newdbUser){
 
@@ -70,40 +61,28 @@ class DB {
         $this->dbConnection = $newdbConnection;
     }
 
-    public function ConectarDB() {
+	public function ConectarDB() {
+		if ($sock = mysql_connect($this->getdbHost(), $this->getdbUser(), $this->getdbPassword())) {
+			if (mysql_select_db($this->getdbDatabase(), $sock)){
+				$this->setdbConnection($sock);
+				return($sock);
+			} else {
+				echo("ERRO : mysql_select_db = ".mysql_error()."<BR>\n");
+			}
+		}
+	}
 
-       if ($sock = mysql_connect($this->getdbHost(), $this->getdbUser(), $this->getdbPassword())) {
+	public function DesconectarDB($sock){
+		if (! mysql_close($sock)) {
+			die("ERRO : mysql_close = ".mysql_error()."<BR>\n");
+		} else {
+			$valor = "true";
+			return($valor);
+		}
+	}
 
-           //echo($this->getdbHost());
-           //echo($this->getdbUser());
-           //echo($this->getdbPassword());
-
-           if (mysql_select_db($this->getdbDatabase(), $sock)){
-              $this->setdbConnection($sock);
-              return($sock);
-           }
-           else {
-              echo("ERRO : mysql_select_db = ".mysql_error()."<BR>\n");
-           }
-       }
-   }
-   
-   public function DesconectarDB($sock){
-
-      if (! mysql_close($sock)) {
-
-           die("ERRO : mysql_close = ".mysql_error()."<BR>\n");
-      }
-      else{
-           $valor = "true";
-           return($valor);
-      }
-   }
-   
-   public function ExecutaQueryGenerica($sql) {
+	public function ExecutaQueryGenerica($sql) {
 		$result = mysql_query($sql);
 		return $result;
-   }
-} 
-
-?>
+	}
+}

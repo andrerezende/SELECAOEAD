@@ -132,7 +132,7 @@
                     var s = new String(campo.value);
 
                     // Remove todos os caracteres a seguir: ( ) / - . e espaço, para tratar a string denovo.
-                    
+
                     s = s.replace(/(\.|\(|\)|\/|\-| )+/g,'');
 
                     tam = s.length + 1;
@@ -179,7 +179,7 @@
                                     if (tam > 5 && tam < 7)
                                             campo.value = s.substr(0,5) + '-' + s.substr(5, tam);
                             break;
-                            
+
                             }
                     }
             }
@@ -320,11 +320,19 @@
 				$("select[name=campus]").change(function(){
 					$("select[name=curso]").html('<option value="0">Carregando...</option>');
 					$.post("cursos.php",
-						{
-							campus:$(this).val()
-						},
+						{campus:$(this).val()},
 						function(valor){
 							$("select[name=curso]").html(valor);
+						}
+					)
+				})
+
+				$("select[name=campus]").change(function(){
+					$("select[name=localprova]").html('<option value="0">Carregando...</option>');
+					$.post("locais.php",
+						{campus:$(this).val()},
+						function(valor){
+							$("select[name=localprova]").html(valor);
 						}
 					)
 				})
@@ -394,24 +402,24 @@
                             <input style="text-transform:uppercase" name="orgaoexpedidor" id="orgaoexpedidor"  type="text" tabindex=6 size="8" maxlength="8" alt="Órgão Expedidor" />
                                 &nbsp;&nbsp;UF:&nbsp;&nbsp;
                                  <select name="uf" id="uf" tabindex=7>
-                                     <option value="BA" selected />BA
-                                     <option value="SE" />SE
-                                     <option value="RJ" />RJ
-                                     <option value="MA" />MA
-                                     <option value="MT" />MT
-                                     <option value="ES" />ES
-                                     <option value="MG" />MG
-                                     <option value="SP" />SP
-                                     <option value="AC" />AC
-                                     <option value="RR" />RR
-                                     <option value="RS" />RS
-                                     <option value="AL" />AL
-                                     <option value="PE" />PE
-                                     <option value="MS" />MS
-                                     <option value="PI" />PI
-                                     <option value="CE" />CE
-                                     <option value="PR" />PR
-                                     <option value="DF" />DF
+                                     <option value="BA" selected="selected">BA</option>
+                                     <option value="SE">SE</option>
+                                     <option value="RJ">RJ</option>
+                                     <option value="MA">MA</option>
+                                     <option value="MT">MT</option>
+                                     <option value="ES">ES</option>
+                                     <option value="MG">MG</option>
+                                     <option value="SP">SP</option>
+                                     <option value="AC">AC</option>
+                                     <option value="RR">RR</option>
+                                     <option value="RS">RS</option>
+                                     <option value="AL">AL</option>
+                                     <option value="PE">PE</option>
+                                     <option value="MS">MS</option>
+                                     <option value="PI">PI</option>
+                                     <option value="CE">CE</option>
+                                     <option value="PR">PR</option>
+                                     <option value="DF">DF</option>
                                  </select>
                         </td>
                 </tr>
@@ -441,8 +449,8 @@
                     <td align='right'><label for=sexo>Sexo:</label></td>
                     <td>
                         <select name="sexo" id="sexo" tabindex=11>
-                             <option value="MASCULINO" selected />MASCULINO
-                             <option value="FEMININO" />FEMININO
+                             <option value="MASCULINO" selected="selected">MASCULINO</option>
+                             <option value="FEMININO">FEMININO</option>
                          </select>
                         <span class="textoSobrescrito">*</span>
                     </td>
@@ -473,24 +481,24 @@
                         <span class="textoSobrescrito">*</span>
                             &nbsp;&nbsp;Estado:&nbsp;&nbsp;
                          <select name="estado" id="estado" tabindex=16 >
-                             <option value="BA" selected />BA
-                                 <option value="SE" />SE
-                                 <option value="RJ" />RJ
-                                 <option value="MA" />MA
-                                 <option value="MT" />MT
-                                 <option value="ES" />ES
-                                 <option value="MG" />MG
-                                 <option value="SP" />SP
-                                 <option value="AC" />AC
-                                 <option value="RR" />RR
-                                 <option value="RS" />RS
-                                 <option value="AL" />AL
-                                 <option value="PE" />PE
-                                 <option value="MS" />MS
-                                 <option value="PI" />PI
-                                 <option value="CE" />CE
-                                 <option value="PR" />PR
-                                 <option value="DF" />DF
+                             <option value="BA" selected="selected">BA</option>
+                                 <option value="SE">SE</option>
+                                 <option value="RJ">RJ</option>
+                                 <option value="MA">MA</option>
+                                 <option value="MT">MT</option>
+                                 <option value="ES">ES</option>
+                                 <option value="MG">MG</option>
+                                 <option value="SP">SP</option>
+                                 <option value="AC">AC</option>
+                                 <option value="RR">RR</option>
+                                 <option value="RS">RS</option>
+                                 <option value="AL">AL</option>
+                                 <option value="PE">PE</option>
+                                 <option value="MS">MS</option>
+                                 <option value="PI">PI</option>
+                                 <option value="CE">CE</option>
+                                 <option value="PR">PR</option>
+                                 <option value="DF">DF</option>
                          </select>
                          <span class="textoSobrescrito">*</span>
 
@@ -557,8 +565,8 @@
 
                     <td colspan='2'>
 
-                        <select id="campus" name="campus" tabindex="25">
-                               <option value="0" selected="selected">Escolha um Campus</option>
+                        <select name="campus" tabindex="25">
+                               <option value="0" selected>Escolha um Campus</option>
                                 <?php
                                     include ("../classes/DB.php");
                                     include ("../classes/Campus.php");
@@ -588,11 +596,25 @@
                 </tr>
                 <tr>
                     <td align='right' width="200px">
-                        <label for=curso>&Aacute;rea:</label>
+                        <label for=curso>Curso:</label>
                     </td>
 
                     <td>
-                        <select id="curso" name="curso" tabindex="26">
+                        <select name="curso" tabindex="26">
+                            <option value="0" disabled="disabled">Escolha um Campus Primeiro</option>
+                        </select>
+                        <span class="textoSobrescrito">
+                        *
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align='right' width="200px">
+                        <label for=localprova>Local de realiza&ccedil;&atilde;o prova:</label>
+                    </td>
+
+                    <td>
+                        <select name="localprova" tabindex="27">
                             <option value="0" disabled="disabled">Escolha um Campus Primeiro</option>
                         </select>
                         <span class="textoSobrescrito">

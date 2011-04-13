@@ -11,34 +11,9 @@ include("../classes/DB.php");
 include("../classes/Inscrito.php");
 include("../classes/Inscrito_Curso.php");
 
-$nome                 = addslashes(strtoupper($_POST['nome']));
-$endereco             = addslashes(strtoupper($_POST['endereco']));
-$bairro               = addslashes(strtoupper($_POST['bairro']));
-$cep                  = addslashes($_POST['cep']);
-$cidade               = addslashes(strtoupper($_POST['cidade']));
-$estado               = addslashes($_POST['estado']);
-$email                = addslashes(strtoupper($_POST['email']));
-$cpf                  = addslashes($_POST['cpf']);
-$rg                   = addslashes($_POST['rg']);
-$especial             = addslashes($_POST['especial']);
-$senha                = addslashes($_POST['senha']);
-$nacionalidade        = addslashes(strtoupper($_POST['nacionalidade']));
-$telefone             = addslashes($_POST['telefone']);
-$celular              = addslashes($_POST['celular']);
-$datanascimento       = addslashes(strtoupper($_POST['datanascimento']));
-$sexo                 = addslashes($_POST['sexo']);
-$estadocivil          = addslashes($_POST['estadocivil']);
-$orgaoexpedidor       = addslashes(strtoupper($_POST['orgaoexpedidor']));
-$uf                   = addslashes($_POST['uf']);
-$dataexpedicao        = addslashes($_POST['dataexpedicao']);
-$especial_descricao   = addslashes(strtoupper($_POST['especial_descricao']));
-$isencao              = addslashes($_POST['isencao']);
-$declaracao           = addslashes($_POST['declaracao']);
-$curso                = addslashes($_POST['curso']);
-$especial_prova       = addslashes($_POST['especial_prova']);
-$especial_prova_descricao = addslashes($_POST['especial_prova_descricao']);
-$vaga_especial        = addslashes($_POST['vaga_especial']);
-$campus               = addslashes($_POST['campus']);
+foreach ($_POST as $key => $valor) {
+	$$key = addslashes(strtoupper($valor));
+}
 
 /*Acesso ao banco de dados */
 $banco    = DB::getInstance();

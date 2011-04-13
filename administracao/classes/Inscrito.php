@@ -1,5 +1,4 @@
 <?php
-
 class Inscrito {
 	protected $id;
 	protected $nome;

@@ -326,36 +326,6 @@ ul.menu {
 	padding-left:10px;
 
 }
-
-.relatorio {
-	margin-top: 25px;
-	margin-left: 100px;
-	padding: 0px;
-	font-size: 12px;
-	padding: 4px;
-	width: 800px;
-	text-align: center;
-}
-
-.relatorio table {
-	table-layout: fixed;
-	text-align: left;
-	border-collapse: collapse;
-}
-.relatorio table th, td {
-	overflow: hidden;
-	white-space: nowrap;
-	padding-bottom: 7px;
-}
-.relatorio table th {
-	border-bottom: 2px solid #000;
-}
-
-.relatorio table td {
-	border-left: 1px solid #000;
-	border-right: 1px solid #000;
-	border-bottom: 1px solid #000;
-}
 .menu_admin {
 	clear: both;
 	text-align: left;

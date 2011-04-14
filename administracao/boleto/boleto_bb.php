@@ -30,15 +30,18 @@
 // ------------------------- DADOS DINÂMICOS DO SEU CLIENTE PARA A GERAÇÃO DO BOLETO (FIXO OU VIA GET) -------------------- //
 // Os valores abaixo podem ser colocados manualmente ou ajustados p/ formulário c/ POST, GET ou de BD (MySql,Postgre,etc)	//
 
+session_start();
 
 include("../classes/DB.php");
 include("../classes/Inscrito.php");
+include("../classes/Localprova.php");
 
 
 $banco   = DB::getInstance();
 $conexao = $banco->ConectarDB();
 
 $inscrito = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);//36 null
+$local_prova = new Localprova(null, null, null);
 
 if (isset($_POST['id']) && !empty($_POST['id'])) {
 	$id = addslashes($_POST['id']);
@@ -48,12 +51,16 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
 	$objinscrito = $inscrito->SelectByCpf($conexao, $cpf);
 }
 
+if (empty($objinscrito)) {
+	$_SESSION['flashMensagem'] = 'CPF n&atilde;o encontrado na nossa base de dados.';
+	header("Location:" . $_SERVER['HTTP_REFERER']);
+}
 
 
 // DADOS DO BOLETO PARA O SEU CLIENTE
 $dias_de_prazo_para_pagamento = 1;
 $taxa_boleto = 0.0;
-$data_venc = date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
+$data_venc = date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006";
 $valor_cobrado = "20,00"; // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
 $valor_cobrado = str_replace(",", ".",$valor_cobrado);
 $valor_boleto=number_format($valor_cobrado+$taxa_boleto, 2, ',', '');
@@ -73,10 +80,12 @@ $dadosboleto["endereco1"] = $objinscrito[0]->getendereco()." - ".$objinscrito[0]
 $dadosboleto["endereco2"] = $objinscrito[0]->getcidade()." - ".$objinscrito[0]->getestado()." - ".$objinscrito[0]->getcep();
 
 // INFORMACOES PARA O CLIENTE
-$dadosboleto["demonstrativo1"] = "Pagamento de Taxa de Inscri&ccedil;&atilde;o - Concurso P&uacute;blico para Docentes 2011 - IF Baiano";
+$local_prova = $local_prova->SelectByPrimaryKey($conexao, $objinscrito[0]->getlocalprova());
+$dadosboleto["demonstrativo1"] = "Pagamento de Taxa de Inscri&ccedil;&atilde;o - Sele&ccedil;&atilde;o de alunos 2011.2 - IF Baiano";
 $dadosboleto["demonstrativo2"] = " CPF do Candidato: ".$objinscrito[0]->getcpf();
+$dadosboleto["demonstrativo3"] = " Local de prova: " . $local_prova[0]->getnome();
 //$dadosboleto["demonstrativo2"] = "Taxa bancária - R$ ".number_format($taxa_boleto, 2, ',', '');
-$dadosboleto["demonstrativo3"] = "N&uacute;mero de Inscri&ccedil;&atilde;o: ".$objinscrito[0]->getnuminscricao();
+$dadosboleto["demonstrativo4"] = "N&uacute;mero de Inscri&ccedil;&atilde;o: ".$objinscrito[0]->getnuminscricao();
 
 // INSTRUÇÕES PARA O CAIXA
 $dadosboleto["instrucoes1"] = " - ";
@@ -87,7 +96,7 @@ $dadosboleto["instrucoes4"] = "";
 // DADOS OPCIONAIS DE ACORDO COM O BANCO OU CLIENTE
 $dadosboleto["quantidade"] = "";
 $dadosboleto["valor_unitario"] = "";
-$dadosboleto["aceite"] = "N";		
+$dadosboleto["aceite"] = "N";
 $dadosboleto["especie"] = "R$";
 $dadosboleto["especie_doc"] = "RC";
 

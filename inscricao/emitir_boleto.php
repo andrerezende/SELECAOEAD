@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -34,12 +35,18 @@
 </head>
 
 <body>
-  <form id='frmrecupera_senha' name='frmrecupera_senha' action='administracao/boleto/boleto_bb.php' method='post' onsubmit='return validar()'>
-    <p><strong>Emitir Boleto</strong></p>
-    <label for="cpf">CPF:</label>
-    <input name="cpf" id="cpf" type="text" tabindex=1 size="15" maxlength="11" alt="RG" onkeypress="javascript:return Onlynumber(event);" />
-    <input name="Gerar" type="submit" id="Gerar" tabindex=2 value="Gerar" />
-    <p>Informe o CPF e clique no bot&atilde;o "Gerar".</p>
-</form>
+	<form id='frmrecupera_senha' name='frmrecupera_senha' action='administracao/boleto/boleto_bb.php' method='post' onsubmit='return validar()'>
+		<p><strong>Emitir Boleto</strong></p>
+		<?php if (isset($_SESSION['flashMensagem']) && $_SESSION['flashMensagem'] != null) :?>
+			<p class="textoDestaque"><?php echo $_SESSION['flashMensagem']?></p>
+		<?php
+			unset($_SESSION['flashMensagem']);
+		endif;
+		?>
+		<label for="cpf">CPF:</label>
+		<input name="cpf" id="cpf" type="text" tabindex=1 size="15" maxlength="11" alt="CPF" onkeypress="javascript:return Onlynumber(event);" />
+		<input name="Gerar" type="submit" id="Gerar" tabindex=2 value="Gerar" />
+		<p>Informe o CPF e clique no bot&atilde;o "Gerar".</p>
+	</form>
 </body>
 </html>

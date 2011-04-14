@@ -1,3 +1,4 @@
+<?php session_start()?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -8,22 +9,27 @@
 
 <?php
 header("Content-Type: text/html; charset=ISO-8859-1", true);
-        
+
 include("../classes/DB.php");
 include("../classes/Inscrito.php");
 include("../classes/Inscrito_Curso.php");
 include("../classes/Campus.php");
 include("../classes/Localprova.php");
 
-$cpf        = addslashes($_POST['cpf']);
-$senha     = addslashes($_POST['pwd']);
+$cpf = addslashes($_POST['cpf']);
+$senha = addslashes($_POST['pwd']);
 
 /* Acesso ao banco de dados */
-$banco   = DB::getInstance();
+$banco = DB::getInstance();
 $conexao = $banco->ConectarDB();
 
 $inscrito    = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null); //36
 $objinscrito = $inscrito->SelectByPrimaryKey($conexao, $cpf, $senha);
+
+if (empty($objinscrito)) {
+	$_SESSION['flashMensagem'] = 'CPF n&atilde;o encontrado na nossa base de dados.';
+	header("Location:" . $_SERVER['HTTP_REFERER']);
+}
 
 if (count($objinscrito)==0){
 	echo("<div align=".'"'."center".'"'.">");

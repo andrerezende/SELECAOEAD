@@ -9,7 +9,7 @@ $senha    = addslashes($_POST['senha']);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Concurso p&uacute;blico para Docentes - 2011</title>
+	<title>Concurso P&uacute;blico para Discente - 2011.2</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript">
@@ -27,7 +27,7 @@ $conexao  = $banco->ConectarDB();
 $usuario = new Usuario($usuario,$senha);
 $resultado = $usuario->Autenticar($conexao);
 
-if ($resultado) {  
+if ($resultado) {
 	$_SESSION['validacao'] = true;
 	$urlOK = 'menu.php';
 	header("Location:".$urlOK);

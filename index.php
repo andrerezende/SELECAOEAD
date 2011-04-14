@@ -7,25 +7,25 @@
 ?>
 
 <head>
-	<title>Concurso P&uacute;blico para Docente - 2011</title>
+	<title>Concurso P&uacute;blico para Discente - 2011.2</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
         <link href="estilo_selecao.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body> 
+<body>
 
 <div id="tudo">
-	
+
 	<div id="conteudoGeral">
 		<div id="topo1">
         	<div class="topo1_imagem1">
                     <img src="imgs/topo1/ministerio_educacao.jpg" alt="Minist&eacute;rio de Educa&ccedil;&a&atilde;o" />
             </div>
-            
+
 <!--            <div class="topo1_imagem2">
             	<img src="imgs/topo1/brasil_um_pais_para_todos.jpg" alt="Brasil, um País para Todos" />
             </div>-->
-            
+
             <div id="topo1_destaqueGoveno">
             	<form action="">
  				    <select name="destaque_governo" id="destaque_governo" onchange="if( this.value != '0' )window.open(this.value);">
@@ -38,11 +38,11 @@
                 </form>
 			</div>
 		</div>
-		
+
 		<div id="topo2">
 			<img src="imgs/topo2/topo2.png" alt="Instituto Federal Baiano" />
      	</div>
-	
+
 		<div id="meioGeral">
            	<div id="colunaEsquerda">
             	<div class="conteudoColunaEsquerda">
@@ -59,12 +59,12 @@
                     </div>
                 </div>
             </div>
-			
+
             <div id="colunaMeio">
 				<div id="tituloPrincipal"><?php  echo $scTitulo ?></div>
-			
+
 			<div class="conteudoColunaMeio">
-                	
+
 					<?php
 						if( (isset($sc)) and (file_exists($sc)) ) {
 							include($sc);
@@ -74,7 +74,7 @@
 					?>
                 </div>
             </div>
-            
+
             <div id="rodape">
             	<div id="conteudoRodape">
                     <p><b>Instituto Federal de Educa&ccedil;&atilde;o, Ci&ecirc;ncia e Tecnologia Baiano</b><br />
@@ -83,12 +83,12 @@
 					</p>
           		</div>
           </div>
-        
-        </div>	
-			
-		
+
+        </div>
+
+
 	</div>
-	
+
 </div>
 
 

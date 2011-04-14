@@ -5,7 +5,7 @@ session_start();
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Concurso p&uacute;blico para Docentes - 2011</title>
+	<title>Concurso P&uacute;blico para Discente - 2011.2</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
@@ -34,7 +34,7 @@ session_start();
 			return true;
 		} else {
 			Recaptcha.reload();
-			$("#captchaStatus").html("O código de segurança digitado não corresponde ao exibido. Por favor tente novamente.");
+			$("#captchaStatus").html("O cï¿½digo de seguranï¿½a digitado nï¿½o corresponde ao exibido. Por favor tente novamente.");
 			return false;
 		}
 	}
@@ -44,13 +44,13 @@ session_start();
 		theme : 'clean'
 	};
 
-	// validaçã formulário
+	// validaï¿½ï¿½ formulï¿½rio
 	function validar() {
 		var usuario = document.getElementById("usuario");
 		var senha = document.getElementById("senha");
 		resultado = true;
 		if (usuario.value == "") {
-			alert('Informe o nome do usuário.');
+			alert('Informe o nome do usuï¿½rio.');
 			usuario.focus();
 			resultado = false;
 		} else if (senha.value == "") {
@@ -77,7 +77,7 @@ if (isset($_SESSION['validacao']) && $_SESSION['validacao']) {
 <div id="conteudoGeral">
 		<div id="topo1">
         	<div class="topo1_imagem1">
-                    <img src="../../imgs/topo1/ministerio_educacao.jpg" alt="Ministério de Educação" />
+                    <img src="../../imgs/topo1/ministerio_educacao.jpg" alt="Ministï¿½rio de Educaï¿½ï¿½o" />
             </div>
             <div id="topo1_destaqueGoveno">
             	<form action="">

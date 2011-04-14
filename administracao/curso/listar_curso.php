@@ -7,7 +7,7 @@ if (!$_SESSION['validacao']) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Concurso p&uacute;blico para Docentes - 2011</title>
+	<title>Concurso P&uacute;blico para Discente - 2011.2</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 </head>
@@ -16,7 +16,7 @@ if (!$_SESSION['validacao']) {
 <div id="conteudoGeral">
 		<div id="topo1">
         	<div class="topo1_imagem1">
-                    <img src="../../imgs/topo1/ministerio_educacao.jpg" alt="Ministério de Educação" />
+                    <img src="../../imgs/topo1/ministerio_educacao.jpg" alt="Ministï¿½rio de Educaï¿½ï¿½o" />
             </div>
             <div id="topo1_destaqueGoveno">
             	<form action="">
@@ -36,7 +36,7 @@ if (!$_SESSION['validacao']) {
 	<div align="right" class="admin_logout">
 		<p><a href="logout.php" target="_self">Logout</a> </p>
 	</div>
-	<div align="center"><h2>Área Administrativa - Cursos</h2></div>
+	<div align="center"><h2>ï¿½rea Administrativa - Cursos</h2></div>
 <?php
   include("../classes/DB.php");
   include("../classes/Curso.php");
@@ -57,7 +57,7 @@ if (!$_SESSION['validacao']) {
   echo('    <td width="50%"><strong>Nome do Curso</strong></td>');
   echo('    <td width="35%"><strong>Excluir</strong></td>');
   echo('  </tr>');
-  
+
 
 
   while ($total > $i) {

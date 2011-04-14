@@ -5,7 +5,7 @@ session_start();
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Concurso p&uacute;blico para Docentes - 2011</title>
+	<title>Concurso P&uacute;blico para Discente - 2011.2</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript">
@@ -35,7 +35,7 @@ else :
 <div id="conteudoGeral">
 		<div id="topo1">
         	<div class="topo1_imagem1">
-                    <img src="../../imgs/topo1/ministerio_educacao.jpg" alt="Ministério de Educação" />
+                    <img src="../../imgs/topo1/ministerio_educacao.jpg" alt="Ministï¿½rio de Educaï¿½ï¿½o" />
             </div>
             <div id="topo1_destaqueGoveno">
             	<form action="">
@@ -56,7 +56,7 @@ else :
 		<p><a href="logout.php" target="_self">Logout</a> </p>
 	</div>
 	<div align='center'>
-		<h2>Área Administrativa - Cadastro de Curso</h2>
+		<h2>ï¿½rea Administrativa - Cadastro de Curso</h2>
 	</div>
 <form id='formcurso' name='formcurso' action='cadastrar.php' method='post' onsubmit='return validar()' >
 <table border='0' align='center' summary=" ">

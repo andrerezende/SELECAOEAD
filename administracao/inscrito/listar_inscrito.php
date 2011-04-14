@@ -2,7 +2,7 @@
   session_start();
   include("../classes/DB.php");
   include("../classes/Inscrito.php");
-  
+
   if (!$_SESSION['validacao']) :
 	header("Location: ../login/login.php");
   else :
@@ -10,7 +10,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Concurso p&uacute;blico para Docentes - 2011</title>
+	<title>Concurso P&uacute;blico para Discente - 2011.2</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 </head>
@@ -19,7 +19,7 @@
 <div id="conteudoGeral">
 		<div id="topo1">
         	<div class="topo1_imagem1">
-                    <img src="../../imgs/topo1/ministerio_educacao.jpg" alt="Ministério de Educação" />
+                    <img src="../../imgs/topo1/ministerio_educacao.jpg" alt="Ministï¿½rio de Educaï¿½ï¿½o" />
             </div>
             <div id="topo1_destaqueGoveno">
             	<form action="">
@@ -40,7 +40,7 @@
 		<p><a href="logout.php" target="_self">Logout</a> </p>
 	</div>
 	<div align='center'>
-		<h2>Área Administrativa - Inscritos</h2>
+		<h2>ï¿½rea Administrativa - Inscritos</h2>
 	</div>
 <?php
   /* Acesso ao banco de dados */
@@ -52,8 +52,8 @@
 
   /* Varaveis auxiliares */
   $i =0;
-  $total = count($vetorinscrito); 
-  
+  $total = count($vetorinscrito);
+
   echo("<form id='frmexcluir' name='frmexcluir' action='' method='post'>");
   echo('<body>');
   echo('  <table width="100%" border="1">');
@@ -72,10 +72,10 @@
       $cpf    = $vetorinscrito[$i]->getcpf();
       $rg     = $vetorinscrito[$i]->getrg();
       $id     = $vetorinscrito[$i]->getid();
- 
+
       if ($cpf == ""){
 	  $cpf = 'N&atilde;o informado';
-      }	   	 
+      }
 
       $i= $i + 1;
 
@@ -85,16 +85,16 @@
       echo('       <td>' . $rg. '</td>');
       echo("       <td><a href='#' onclick='editar()'>Editar</a></td>");
       echo("       <td><a href='#' onclick='excluir(".$id.")'>Excluir</a></td>");
-      echo('  </tr>');  
+      echo('  </tr>');
 }
 
   echo('  </table>');
   echo('  </body>');
   echo("</form");
-  
+
   echo(" <form id='frmeditar' name='frmeditar' action='editar.php' method='post'>");
   echo(" <input type='hidden' name='id' value=".$id.">");
-  echo(" </form>"); 
+  echo(" </form>");
 
 ?>
 <script type="text/javascript">
@@ -102,7 +102,7 @@
         document.forms["frmexcluir"].action = "excluir.php?id="+id;
         document.forms["frmexcluir"].submit();
     }
-	function editar(){   
+	function editar(){
 		document.forms["frmeditar"].submit();
     }
 </script>

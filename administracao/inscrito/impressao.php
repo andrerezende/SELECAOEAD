@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Processo Seletivo para Professor Substituto - 2011</title>
+	<title>Concurso P&uacute;blico para Discente - 2011.2</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 </head>
 
 <?
     header("Content-Type: text/html; charset=ISO-8859-1", true);
-    
+
     include("../classes/DB.php");
     include("../classes/Inscrito.php");
     include("../classes/Inscrito_Curso.php");
@@ -23,7 +23,7 @@
 
   $inscrito    = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);//36
   $objinscrito = $inscrito->SelectByCpf($conexao, $cpf);
-  
+
   if (count($objinscrito)==0){
     echo("<table width='90%' border='0'>");
     echo("  <tr>");
@@ -38,7 +38,7 @@
 
 <div align='center'>
 	<p><img src="../../imgs/logo.gif" width="178" height="100" alt="logotipo do Ifbaiano"></p>
-        <p><h2>Concurso P&uacute;blico para Docente - 2011</h2>
+        <p><h2>Concurso P&uacute;blico para Discente - 2011.2</h2>
 	<p><h3>Edital N&#176; 01/2011</h3>
 	<p><h3>Ficha de Inscri&ccedil;&atilde;o</h3>
 </div>
@@ -201,11 +201,11 @@
 				<?php
 				$inscrito_curso       = new Inscrito_Curso(null,null,null);
 				$vetor_inscrito_curso = $inscrito_curso->ListarCurso($conexao, $objinscrito[0]->getid());
-	
+
 				/* Varaveis auxiliares */
 				$i =0;
 				$total = count($vetor_inscrito_curso);
-	
+
 				while ($total > $i) {
 					$curso    = $vetor_inscrito_curso[$i]->getnome();
 					$codigoSelecionado  = $vetor_inscrito_curso[$i]->getcodcurso();
@@ -214,37 +214,44 @@
 				}
 				//$banco->DesconectarDB($conexao);
 				?>
-				<input name="curso" disabled="true" id="curso" tabindex=25 size="80" value="<?echo($curso)?>" />
+				<input name="curso" disabled="disabled" id="curso" tabindex=25 size="80" value="<?echo($curso)?>" />
             </td>
         </tr>
 
         <tr>
             <td height="28" align='right'><label for=isencao>Solicita Isen&ccedil;&atilde;o de Taxa?</label></td>
             <td>
-                <input name="isencao" id="isencao" disabled="true" tabindex=26 size="3" value="<?echo($objinscrito[0]->getisencao()); ?>" />
-            </td>
-        </tr>
-        
-        <tr>
-            <td height="28" align='right'><label for=nis>Cadastro &Uacute;nico (NIS):</label></td>
-            <td>
-                <input name="nis" id="nis" disabled="true" tabindex=26 size="15" value="<?php echo($objinscrito[0]->getcadastro_unico()); ?>"/>
+                <input name="isencao" id="isencao" disabled="disabled" id="curso" tabindex=26 size="3" value="<?echo($objinscrito[0]->getisencao()); ?>" />
             </td>
         </tr>
 
         <tr>
             <td height="28" align='right'><label for=especial_prova>Condi&ccedil;&otilde;es especiais para realiza&ccedil;&atilde;o da prova:</label></td>
             <td>
-                <input style="text-transform:uppercase" name="especial_prova" id="especial_prova" disabled="true" id="especial_prova" tabindex=27 size="3" value="<?echo($objinscrito[0]->getespecialprova()); ?>" />
+                <input style="text-transform:uppercase" name="especial_prova" id="especial_prova" disabled="disabled" id="especial_prova" tabindex=27 size="3" value="<?echo($objinscrito[0]->getespecialprova()); ?>" />
                 <label for=especial_prova>Qual:</label>
-                <input style="text-transform:uppercase" name="especial_prova_descricao" disabled="true" id="especial_prova_descricao" tabindex=28 size='40' value="<?echo($objinscrito[0]->getespecialprovadescricao()); ?>" />
+                <input style="text-transform:uppercase" name="especial_prova_descricao" disabled="disabled" id="especial_prova_descricao" tabindex=28 size='40' value="<?echo($objinscrito[0]->getespecialprovadescricao()); ?>" />
             </td>
         </tr>
 
         <tr>
-            <td height="28" align='right'><label for=vaga_especial>Concorre &agrave;s vagas destinadas a candidatos com Necessidades Especiais:</label></td>
+            <td height="28" align='right'><label for=vaga_especial>Concorrer &agrave;s vagas reservadas para alunos com Necessidades Especiais:</label></td>
             <td>
-                <input style="text-transform:uppercase" name="vaga_especial" id="especial_prova" disabled="true" tabindex=29 size="3" value="<?echo($objinscrito[0]->getvagaespecial()); ?>" />
+                <input style="text-transform:uppercase" name="vaga_especial" id="especial_prova" disabled="disabled" tabindex=29 size="3" value="<?echo($objinscrito[0]->getvagaespecial()); ?>" />
+            </td>
+        </tr>
+
+        <tr>
+            <td height="28" align='right'><label for=vaga_rede_publica>Concorrer &agrave;s vagas reservadas para alunos oriundos da Rede P&uacute;blica:</label></td>
+            <td>
+                <input style="text-transform:uppercase" name="vaga_rede_publica" id="vaga_rede_publica" disabled="disabled" tabindex=30 size="3" value="<?echo($objinscrito[0]->getvagaredepublica()); ?>" />
+            </td>
+        </tr>
+
+        <tr>
+            <td height="28" align='right'><label for=vaga_rural>Concorrer &agrave;s vagas reservadas para alunos filhos de Pequenos Produtores Rurais, Assentados, Lavradores e Trabalhadores Rurais:</label></td>
+            <td>
+                <input style="text-transform:uppercase" name="vaga_rural" id="vaga_rural" disabled="disabled" tabindex=30 size="3" value="<?echo($objinscrito[0]->getvagarural()); ?>" />
             </td>
         </tr>
 
@@ -261,10 +268,10 @@
 
         <tr>
             <td colspan="2">
-                <a href="#" onclick="window.print();"><img src="../../imgs/icone_impressao.gif" alt="Imprimir" /> Imprimir</a> / 
+                <a href="#" onclick="window.print();"><img src="../../imgs/icone_impressao.gif" alt="Imprimir" /> Imprimir</a> /
                 <a href="../../index.php">P&aacute;gina Inicial</a>
             </td>
-                
+
         </tr>
     </table>
 <?}?>

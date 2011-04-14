@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Processo Seletivo para Professor Substituto - 2011</title>
+	<title>Concurso P&uacute;blico para Discente - 2011.2</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 </head>
@@ -29,7 +29,7 @@ $inscrito = new Inscrito($nome, $endereco, $bairro, $cep, $cidade, $estado,
 			$email, $cpf, $rg, $especial, $senha, $nacionalidade, $telefone, null, $celular, $datanascimento,
 			$sexo, $estadocivil, $orgaoexpedidor, $uf, $dataexpedicao, $especial_descricao, null,
 			$isencao, $declaracao, $localprova, $numinscricao, $especial_prova, $especial_prova_descricao,
-			$vaga_especial, null, null, $campus);
+			$vaga_especial, $vaga_rede_publica, $vaga_rural, $campus);
 $existe = $inscrito->Existe($conexao);
 
 if ($existe) {

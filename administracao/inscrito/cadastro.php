@@ -2,124 +2,119 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Processo Seletivo para Professor Substituto - 2011</title>
+	<title>Concurso P&uacute;blico para Discente - 2011.2</title>
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
 	<script language="JavaScript" type="text/JavaScript">
+	function Onlynumber(e){
+		var tecla=new Number();
 
-            function Onlynumber(e){
+		if (window.event) {
+			tecla = e.keyCode;
+		} else if (e.which) {
+			tecla = e.which;
+		} else {
+			return true;
+		}
+		if (((tecla < 48) || (tecla > 57)) && (tecla!=8)) {
+			return false;
+		}
+	}
 
-                    var tecla=new Number();
+	function validar() {
+		var nome            = document.getElementById("nome");
+		var endereco        = document.getElementById("endereco");
+		var bairro          = document.getElementById("bairro");
+		//var cep             = document.getElementById("cep");
+		var cidade          = document.getElementById("cidade");
+		var estado          = document.getElementById("estado");
+		var rg              = document.getElementById("rg");
+		var cpf             = document.getElementById("cpf");
+		var especial        = document.getElementById("especial");
+		var senha           = document.getElementById("senha");
+		var senhaConfirm    = document.getElementById("senhaConfirm");
+		var declaracao      = document.getElementById("declaracao");
+		var nacionalidade   = document.getElementById("nacionalidade");
+		var dataNascimento  = document.getElementById("datanascimento");
+		var sexo            = document.getElementById("sexo");
+		var email            = document.getElementById("email");
+		var campus            = document.getElementById("campus");
+		var curso            = document.getElementById("curso");
 
-                    if(window.event) {
-                            tecla = e.keyCode;
-                    }
-                    else if(e.which) {
-                            tecla = e.which;
-                    }
-                    else {
-                            return true;
-                    }
-
-                    if(((tecla < 48) || (tecla > 57)) && (tecla!=8)){
-                            return false;
-                    }
-            }
-
-            function validar() {
-				var nome            = document.getElementById("nome");
-				var endereco        = document.getElementById("endereco");
-				var bairro          = document.getElementById("bairro");
-				//var cep             = document.getElementById("cep");
-				var cidade          = document.getElementById("cidade");
-				var estado          = document.getElementById("estado");
-				var rg              = document.getElementById("rg");
-				var cpf             = document.getElementById("cpf");
-				var especial        = document.getElementById("especial");
-				var senha           = document.getElementById("senha");
-				var senhaConfirm    = document.getElementById("senhaConfirm");
-				var declaracao      = document.getElementById("declaracao");
-				var nacionalidade   = document.getElementById("nacionalidade");
-				var dataNascimento  = document.getElementById("datanascimento");
-				var sexo            = document.getElementById("sexo");
-				var email            = document.getElementById("email");
-				var campus            = document.getElementById("campus");
-				var curso            = document.getElementById("curso");
-
-				resultado = true;
-				if (nome.value == "") {
-					alert('Informe o nome!');
-					nome.focus();
-					resultado = false;
-				} else if(cpf.value== "") {
-					alert('Informe o CPF!');
-					cpf.focus();
-					resultado = false;
-				} else if(senha.value== "") {
-					alert('Informe a senha!');
-					senha.focus();
-					resultado = false;
-				} else if(senhaConfirm.value == "") {
-					alert('Informe a confirmacao de senha!');
-					senhaConfirm.focus();
-					resultado = false;
-				} else if(senhaConfirm.value != senha.value) {
-					alert('Confirmacao de senha deve ser igual a senha!');
-					senhaConfirm.focus();
-					resultado = false;
-				} else if (rg.value == "") {
-					alert('Informe o RG!');
-					rg.focus();
-					resultado = false;
-				} else if (email.value == "") {
-					alert('Informe o email!');
-					email.focus();
-					resultado = false;
-				} else if(nacionalidade.value == "") {
-					alert('Informe a nacionalidade!');
-					nacionalidade.focus();
-					resultado = false;
-				} else if(dataNascimento.value == "") {
-					alert('Informe a data de nascimento!');
-					dataNascimento.focus();
-					resultado = false;
-				} else if(sexo.value == "") {
-					alert('Informe sexo!');
-					sexo.focus();
-					resultado = false;
-				} else if (endereco.value == "") {
-					alert('Informe o endereco!');
-					endereco.focus();
-					resultado = false;
-				} else if (bairro.value == "") {
-					alert('Informe o bairro!');
-					bairro.focus();
-					resultado = false;
-				} else if (cidade.value == "") {
-					alert('Informe a cidade!');
-					cidade.focus();
-					resultado = false;
-				} else if (estado.value == "") {
-					alert('Informe o estado!');
-					estado.focus();
-					resultado = false;
-				} else if (campus.value <= 0) {
-					alert('Favor preencher o Campus e Area!');
-					campus.focus();
-					resultado = false;
-				} else if (especial.value == "") {
-					alert('Informe se possui necessidades especiais!');
-					especial.focus();
-					resultado = false;
-				} else if (declaracao.value == "NAO") {
-					alert('Voce precisa aceitar a declaracao!');
-					declaracao.focus();
-					resultado = false;
-				} else if (!ValidaCPF(cpf)) {
-					resultado = false;
- 				}
-				return resultado;
-			}
+		resultado = true;
+		if (nome.value == "") {
+			alert('Informe o nome!');
+			nome.focus();
+			resultado = false;
+		} else if(cpf.value== "") {
+			alert('Informe o CPF!');
+			cpf.focus();
+			resultado = false;
+		} else if(senha.value== "") {
+			alert('Informe a senha!');
+			senha.focus();
+			resultado = false;
+		} else if(senhaConfirm.value == "") {
+			alert('Informe a confirmacao de senha!');
+			senhaConfirm.focus();
+			resultado = false;
+		} else if(senhaConfirm.value != senha.value) {
+			alert('Confirmacao de senha deve ser igual a senha!');
+			senhaConfirm.focus();
+			resultado = false;
+		} else if (rg.value == "") {
+			alert('Informe o RG!');
+			rg.focus();
+			resultado = false;
+		} else if (email.value == "") {
+			alert('Informe o email!');
+			email.focus();
+			resultado = false;
+		} else if(nacionalidade.value == "") {
+			alert('Informe a nacionalidade!');
+			nacionalidade.focus();
+			resultado = false;
+		} else if(dataNascimento.value == "") {
+			alert('Informe a data de nascimento!');
+			dataNascimento.focus();
+			resultado = false;
+		} else if(sexo.value == "") {
+			alert('Informe sexo!');
+			sexo.focus();
+			resultado = false;
+		} else if (endereco.value == "") {
+			alert('Informe o endereco!');
+			endereco.focus();
+			resultado = false;
+		} else if (bairro.value == "") {
+			alert('Informe o bairro!');
+			bairro.focus();
+			resultado = false;
+		} else if (cidade.value == "") {
+			alert('Informe a cidade!');
+			cidade.focus();
+			resultado = false;
+		} else if (estado.value == "") {
+			alert('Informe o estado!');
+			estado.focus();
+			resultado = false;
+		} else if (campus.value <= 0) {
+			alert('Favor preencher o Campus e Area!');
+			campus.focus();
+			resultado = false;
+		} else if (especial.value == "") {
+			alert('Informe se possui necessidades especiais!');
+			especial.focus();
+			resultado = false;
+		} else if (declaracao.value == "NAO") {
+			alert('Voce precisa aceitar a declaracao!');
+			declaracao.focus();
+			resultado = false;
+		} else if (!ValidaCPF(cpf)) {
+			resultado = false;
+		}
+		return resultado;
+	}
 
             function Mascara(tipo, campo, teclaPress) {
                     if (window.event)
@@ -409,7 +404,7 @@
                 <tr>
                     <td align='right'><label for=dataexpedicao>Data de Expedi&ccedil;&atilde;o:</label></td>
                     <td>
-                        <input name="dataexpedicao" id="dataexpedicao" type="text" tabindex=8 size="10" maxlength="10" alt="Data de Expedi&ccedil;&atilde;o (RG)" onKeyPress="Mascara('DATA',this,event); return Onlynumber(event);" />
+                        <input name="dataexpedicao" id="dataexpedicao" type="text" tabindex=8 size="10" maxlength="10" alt="Data de Expedi&ccedil;&atilde;o (RG)" onkeypress="Mascara('DATA',this,event); return Onlynumber(event);" />
                     </td>
                 </tr>
 
@@ -423,7 +418,7 @@
 
                 <tr>
                     <td align='right'><label for=datanascimento>Data de Nascimento:</label></td>
-                    <td><input name="datanascimento" id="datanascimento" type="text" tabindex=10 size="10" maxlength="10" alt="Data de Nascimento" onKeyPress="Mascara('DATA',this,event); return Onlynumber(event);" />
+                    <td><input name="datanascimento" id="datanascimento" type="text" tabindex=10 size="10" maxlength="10" alt="Data de Nascimento" onkeypress="Mascara('DATA',this,event); return Onlynumber(event);" />
                     <span class="textoSobrescrito">*</span></td>
                 </tr>
 
@@ -452,7 +447,7 @@
                         <input style="text-transform:uppercase" name="bairro" id="bairro" type="text" tabindex=13 size="30" maxlength="30" alt="Bairro" />
                         <span class="textoSobrescrito">*</span>
                         &nbsp;&nbsp;CEP:&nbsp;&nbsp;
-                        <input name="cep" type="text" id="cep" tabindex=14 onKeyPress="Mascara('CEP',this,event); return Onlynumber(event);" size='09' maxlength="09" alt="CEP" />
+                        <input name="cep" type="text" id="cep" tabindex=14 onkeypress="Mascara('CEP',this,event); return Onlynumber(event);" size='09' maxlength="09" alt="CEP" />
                     </td>
                 </tr>
 
@@ -490,14 +485,14 @@
                 <tr>
                     <td align='right'><label for=telefone>Telefone:</label></td>
                     <td>
-                        <input name="telefone" id="telefone" type="text" tabindex=17 size="17" maxlength="14" alt="Telefone"  onKeyPress="Mascara('TEL',this,event); return Onlynumber(event);" />
+                        <input name="telefone" id="telefone" type="text" tabindex=17 size="17" maxlength="14" alt="Telefone"  onkeypress="Mascara('TEL',this,event); return Onlynumber(event);" />
                     </td>
                 </tr>
 
                 <tr>
                     <td align='right'><label for=celular >Celular:</label></td>
                     <td>
-                        <input name="celular" id="celular" type="text" tabindex=19 size="17" maxlength="14" alt="Celular" onKeyPress="Mascara('TEL',this,event); return Onlynumber(event);" />
+                        <input name="celular" id="celular" type="text" tabindex=19 size="17" maxlength="14" alt="Celular" onkeypress="Mascara('TEL',this,event); return Onlynumber(event);" />
                     </td>
                 </tr>
 
@@ -553,7 +548,7 @@
                     <td colspan='2'>
 
                         <select name="campus" tabindex="25">
-                               <option value="0" selected>Escolha um Campus</option>
+                               <option value="0" selected="selected">Escolha um Campus</option>
                                 <?php
                                     include ("../classes/DB.php");
                                     include ("../classes/Campus.php");
@@ -576,9 +571,7 @@
                                     }
                               ?>
                             </select>
-                            <span class="textoSobrescrito">
-                            *
-                            </span>
+                            <span class="textoSobrescrito">*</span>
                     </td>
                 </tr>
                 <tr>
@@ -604,9 +597,7 @@
                         <select name="localprova" tabindex="27">
                             <option value="0" disabled="disabled">Escolha um Campus Primeiro</option>
                         </select>
-                        <span class="textoSobrescrito">
-                        *
-                        </span>
+                        <span class="textoSobrescrito">*</span>
                     </td>
                 </tr>
 
@@ -641,8 +632,8 @@
                     <td height="28" align='right'><label for=especial_prova>Condi&ccedil;&otilde;es especiais para realiza&ccedil;&atilde;o da prova:</label></td>
                     <td>
                         <select name="especial_prova" id="especial_prova" tabindex=29 onchange="javascript:especialProva()">
-                            <option value="N&Atilde;O" selected />N&Atilde;O
-                            <option value="SIM" /> SIM
+                            <option value="N&Atilde;O" selected="selected">N&Atilde;O</option>
+                            <option value="SIM">SIM</option>
                         </select>
                         <span class="textoSobrescrito">*</span>
 
@@ -655,38 +646,32 @@
                     <td height="28" align='left'><label for=vaga_especial>Concorrer &agrave;s vagas reservadas para alunos com Necessidades Especiais:</label></td>
                     <td>
                         <select name="vaga_especial" id="vaga_especial" tabindex=31>
-                             <option value="NAO" selected />N&Atilde;O
-                             <option value="SIM" />SIM
+                             <option value="NAO" selected="selected">N&Atilde;O</option>
+                             <option value="SIM" >SIM</option>
                         </select>
-                        <span class="textoSobrescrito">
-                            *
-                        </span>
+                        <span class="textoSobrescrito">*</span>
                     </td>
                 </tr>
 
                 <tr>
                     <td height="28" align='left'><label for=vaga_rede_publica>Concorrer &agrave;s vagas reservadas para alunos oriundos da Rede P&uacute;blica:</label></td>
                     <td>
-                        <select name="vaga_rede_publica" id="vaga_especial" tabindex=32>
-                             <option value="NAO" selected />N&Atilde;O
-                             <option value="SIM" />SIM
+                        <select name="vaga_rede_publica" id="vaga_rede_publica" tabindex=32>
+                             <option value="NAO" selected="selected" >N&Atilde;O</option>
+                             <option value="SIM">SIM</option>
                         </select>
-                        <span class="textoSobrescrito">
-                            *
-                        </span>
+                        <span class="textoSobrescrito">*</span>
                     </td>
                 </tr>
 
                 <tr>
                     <td height="28" align='left'><label for=vaga_rural>Concorrer &agrave;s vagas reservadas para alunos filhos de Pequenos Produtores Rurais, Assentados, Lavradores e Trabalhadores Rurais:</label></td>
                     <td>
-                        <select name="vaga_rural" id="vaga_especial" tabindex=33>
-                             <option value="NAO" selected />N&Atilde;O
-                             <option value="SIM" />SIM
+                        <select name="vaga_rural" id="vaga_rural" tabindex=33>
+                             <option value="NAO" selected="selected">N&Atilde;O</option>
+                             <option value="SIM">SIM</option>
                         </select>
-                        <span class="textoSobrescrito">
-                            *
-                        </span>
+                        <span class="textoSobrescrito">*</span>
                     </td>
                 </tr>
 

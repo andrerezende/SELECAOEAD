@@ -148,7 +148,10 @@ $dadosboleto["cedente"] = "Instituto Federal de Educa&ccedil;&atilde;o, Ci&ecirc
 // NÃO ALTERAR!
 include("include/funcoes_bb.php");
 include("include/layout_bb.php");
-
-
-
 ?>
+
+<div class="voltar">
+<form>
+	<input type="button" value=" Voltar " onclick="history.go(-1)" />
+</form>
+</div>

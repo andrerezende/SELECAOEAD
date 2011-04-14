@@ -286,7 +286,11 @@ if (count($objinscrito) == 0) {
         </tr>
     </table>
 <?}?>
-
 </form>
+<div class="voltar">
+<form>
+	<input type="button" value=" Voltar " onclick="history.go(-1)" />
+</form>
+</div>
 </body>
 </html>

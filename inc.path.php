@@ -46,7 +46,7 @@
 
 	} elseif ($sc == "Recuperar") {
 		$scTitulo = "Recuperar Senha";
-		$sc = "inscricao/recuperar_senha.html";
+		$sc = "inscricao/recuperar_senha.php";
 
 	} elseif ($sc == "Boleto") {
 		$scTitulo = "Emiss&atilde;o de Boleto";

@@ -28,7 +28,7 @@ $numinscricao = substr($cpf, 0,4).$id;
 $inscrito = new Inscrito($nome, $endereco, $bairro, $cep, $cidade, $estado,
 			$email, $cpf, $rg, $especial, $senha, $nacionalidade, $telefone, null, $celular, $datanascimento,
 			$sexo, $estadocivil, $orgaoexpedidor, $uf, $dataexpedicao, $especial_descricao, null,
-			$isencao, $declaracao, null, $numinscricao, $especial_prova, $especial_prova_descricao,
+			$isencao, $declaracao, $localprova, $numinscricao, $especial_prova, $especial_prova_descricao,
 			$vaga_especial, null, null, $campus);
 $existe = $inscrito->Existe($conexao);
 

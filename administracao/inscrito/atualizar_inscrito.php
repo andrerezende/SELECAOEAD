@@ -25,8 +25,8 @@ $conexao  = $banco->ConectarDB();
 $inscrito = new Inscrito($nome, $endereco, $bairro, $cep, $cidade, $estado,
 			$email, $cpf, $rg, $especial, $senha, $nacionalidade, $telefone, null, $celular, $datanascimento,
 			$sexo, $estadocivil, $orgaoexpedidor, $uf, $dataexpedicao, $especial_descricao, null,
-			$isencao, $declaracao, null, $numinscricao, $especial_prova, $especial_prova_descricao,
-			$vaga_especial, null, null, $campus, $nis, null, null, $id); //37
+			$isencao, $declaracao, $localprova, $numinscricao, $especial_prova, $especial_prova_descricao,
+			$vaga_especial, null, null, $campus, $id); //37
 $resultado = $inscrito->atualizar($conexao);
 
 if ($resultado) {

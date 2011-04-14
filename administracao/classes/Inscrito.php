@@ -394,8 +394,8 @@ class Inscrito {
 		$ssql .= "declaracao = '" . $this->declaracao . "', localprova = '" . $this->localprova . "', numinscricao = '" . $this->numinscricao . "',";
 		$ssql .= "especial_prova = '" . $this->especial_prova . "', especial_prova_descricao = '" . $this->especial_prova_descricao . "',";
 		$ssql .= "vaga_especial = '" . $this->vaga_especial . "', vaga_rede_publica = '" . $this->vaga_rede_publica . "',";
-		$ssql .= "vaga_rural = '".$this->vaga_rural."',";
-		$ssql .= "campus = '".$this->campus . "'";
+		$ssql .= "vaga_rural = '" . $this->vaga_rural . "',";
+		$ssql .= "campus = '" . $this->campus . "'";
 
 		$ssql .= " WHERE id = " . $this->id;
 
@@ -448,7 +448,7 @@ class Inscrito {
 		$ar = array();
 
 		while ($linha = mysql_fetch_row($rs)) {
-			$obj = new Inscrito($linha[0],$linha[1],$linha[2],$linha[3],$linha[4],$linha[5],$linha[6],$linha[7],$linha[8],$linha[9],$linha[10],$linha[11],$linha[12],$linha[13],$linha[14],$linha[15],$linha[16],$linha[17],$linha[18],$linha[19],$linha[20],$linha[21],$linha[22],$linha[23],$linha[24],$linha[25],$linha[26],$linha[27],$linha[28],$linha[29],$linha[30],$linha[31],$linha[32],$linha[33],$linha[34],$linha[35],$linha[36],$linha[37]);
+			$obj = new Inscrito($linha[0],$linha[1],$linha[2],$linha[3],$linha[4],$linha[5],$linha[6],$linha[7],$linha[8],$linha[9],$linha[10],$linha[11],$linha[12],$linha[13],$linha[14],$linha[15],$linha[16],$linha[17],$linha[18],$linha[19],$linha[20],$linha[21],$linha[22],$linha[23],$linha[24],$linha[25],$linha[26],$linha[27],$linha[28],$linha[29],$linha[30],$linha[31],$linha[32],$linha[33]);
 			$ar[] = $obj;
 		}
 		return $ar;
@@ -463,7 +463,7 @@ class Inscrito {
 		$ar = array();
 
 		while ($linha = mysql_fetch_row($rs)) {
-			$obj = new Inscrito($linha[0],$linha[1],$linha[2],$linha[3],$linha[4],$linha[5],$linha[6],$linha[7],$linha[8],$linha[9],$linha[10],$linha[11],$linha[12],$linha[13],$linha[14],$linha[15],$linha[16],$linha[17],$linha[18],$linha[19],$linha[20],$linha[21],$linha[22],$linha[23],$linha[24],$linha[25],$linha[26],$linha[27],$linha[28],$linha[29],$linha[30],$linha[31],$linha[32],$linha[33],$linha[34],$linha[35],$linha[36],$linha[37]);
+			$obj = new Inscrito($linha[0],$linha[1],$linha[2],$linha[3],$linha[4],$linha[5],$linha[6],$linha[7],$linha[8],$linha[9],$linha[10],$linha[11],$linha[12],$linha[13],$linha[14],$linha[15],$linha[16],$linha[17],$linha[18],$linha[19],$linha[20],$linha[21],$linha[22],$linha[23],$linha[24],$linha[25],$linha[26],$linha[27],$linha[28],$linha[29],$linha[30],$linha[31],$linha[32],$linha[33]);
 			$ar[] = $obj;
 		}
 		return $ar;
@@ -478,7 +478,7 @@ class Inscrito {
 		$ar = array();
 
 		while ($linha = mysql_fetch_row($rs)) {
-			$obj = new Inscrito($linha[0],$linha[1],$linha[2],$linha[3],$linha[4],$linha[5],$linha[6],$linha[7],$linha[8],$linha[9],$linha[10],$linha[11],$linha[12],$linha[13],$linha[14],$linha[15],$linha[16],$linha[17],$linha[18],$linha[19],$linha[20],$linha[21],$linha[22],$linha[23],$linha[24],$linha[25],$linha[26],$linha[27],$linha[28],$linha[29],$linha[30],$linha[31],$linha[32],$linha[33],$linha[34],$linha[35],$linha[36],$linha[37]);
+			$obj = new Inscrito($linha[0],$linha[1],$linha[2],$linha[3],$linha[4],$linha[5],$linha[6],$linha[7],$linha[8],$linha[9],$linha[10],$linha[11],$linha[12],$linha[13],$linha[14],$linha[15],$linha[16],$linha[17],$linha[18],$linha[19],$linha[20],$linha[21],$linha[22],$linha[23],$linha[24],$linha[25],$linha[26],$linha[27],$linha[28],$linha[29],$linha[30],$linha[31],$linha[32],$linha[33]);
 			$ar[] = $obj;
 		}
 		return $ar;
@@ -486,14 +486,14 @@ class Inscrito {
 
 	public function SelectById($sock,$id) {
 		$ssql = "SELECT nome, endereco, bairro, cep, cidade, estado, email, cpf, rg, especial, senha, nacionalidade, telefone, telefone2, celular, datanascimento, sexo, estadocivil, orgaoexpedidor, uf, dataexpedicao, especial_descricao, responsavel, isencao, declaracao, localprova, numinscricao, especial_prova, especial_prova_descricao, vaga_especial, vaga_rede_publica, vaga_rural, campus, id FROM inscrito A " ;
-		$ssql = $ssql . " WHERE id='" .$id ."'";
+		$ssql .= " WHERE id='" .$id ."'";
 
 		$rs = mysql_query($ssql, $sock);
 
         $ar = array();
 
         while ($linha = mysql_fetch_row($rs)) {
-			$obj = new Inscrito($linha[0],$linha[1],$linha[2],$linha[3],$linha[4],$linha[5],$linha[6],$linha[7],$linha[8],$linha[9],$linha[10],$linha[11],$linha[12],$linha[13],$linha[14],$linha[15],$linha[16],$linha[17],$linha[18],$linha[19],$linha[20],$linha[21],$linha[22],$linha[23],$linha[24],$linha[25],$linha[26],$linha[27],$linha[28],$linha[29],$linha[30],$linha[31],$linha[32],$linha[33],$linha[34],$linha[35],$linha[36],$linha[37]);
+			$obj = new Inscrito($linha[0],$linha[1],$linha[2],$linha[3],$linha[4],$linha[5],$linha[6],$linha[7],$linha[8],$linha[9],$linha[10],$linha[11],$linha[12],$linha[13],$linha[14],$linha[15],$linha[16],$linha[17],$linha[18],$linha[19],$linha[20],$linha[21],$linha[22],$linha[23],$linha[24],$linha[25],$linha[26],$linha[27],$linha[28],$linha[29],$linha[30],$linha[31],$linha[32],$linha[33]);
 			$ar[] = $obj;
 		}
 		return $ar;

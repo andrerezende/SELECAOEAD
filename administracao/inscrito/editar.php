@@ -189,16 +189,19 @@
 		}
 
 		$(document).ready(function() {
-			$("#isencao").change(function() {
-				$("#isencao option:selected").each(function() {
-					if (this.value == "SIM") {
-						$("#nis").removeAttr("disabled");
-					} else if(this.value == "NAO") {
-						$("#nis").val("");
-						$("#nis").attr("disabled", true);
-					}
-				});
-			});
+			if ($("#especial option:selected").val() == 'OUTRA') {
+				$("#especial_descricao").removeAttr("disabled");
+			} else {
+				$("#especial_descricao").val("");
+				$("#especial_descricao").attr("disabled", true);
+			}
+
+			if ($("#especial_prova option:selected").val() == 'SIM') {
+				$("#especial_prova_descricao").removeAttr("disabled");
+			} else {
+				$("#especial_prova_descricao").val("");
+				$("#especial_prova_descricao").attr("disabled", true);
+			}
 
 			$("#especial_prova").change(function() {
 				$("#especial_prova option:selected").each(function() {
@@ -207,6 +210,17 @@
 					} else {
 						$("#especial_prova_descricao").val("");
 						$("#especial_prova_descricao").attr("disabled", true);
+					}
+				});
+			});
+
+			$("#especial").change(function() {
+				$("#especial option:selected").each(function() {
+					if (this.value == "OUTRA") {
+						$("#especial_descricao").removeAttr("disabled");
+					} else {
+						$("#especial_descricao").val("");
+						$("#especial_descricao").attr("disabled", true);
 					}
 				});
 			});
@@ -248,10 +262,11 @@ $id = $_POST['id'];
 $banco = DB::getInstance();
 $conexao = $banco->ConectarDB();
 
-$inscrito = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);//36 null
+$inscrito = new Inscrito(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+			null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 $objinscrito = $inscrito->SelectById($conexao, $id);
 
-if (count($objinscrito)==0){
+if (count($objinscrito) == 0){
 	echo("<div align=".'"'."center".'"'.">");
 		echo("<img src=".'"'."../../imgs/topo2/topo_formulario.png".'"'." alt=".'"'."Instituto Federal Baiano".'"'." />");
 		echo("<h2>Formul&aacute;rio de Inscri&ccedil;&atilde;o</h2>");
@@ -483,7 +498,7 @@ if (count($objinscrito)==0){
                 <tr>
                     <td height="28" align='right'><label for=especial>Necessidade Especial:</label></td>
                     <td>
-                        <select name="especial" id="especial" tabindex=23 onchange="javascript:necessidadeEspecial()">
+                        <select name="especial" id="especial" tabindex=23 >
                             <?php
                                 $especial = array("N&Atilde;O","VISUAL","MOTORA","AUDITIVA","M&Uacute;LTIPLAS","OUTRA");
                                 $total = count($especial);

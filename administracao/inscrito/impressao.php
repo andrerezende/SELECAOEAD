@@ -1,3 +1,19 @@
+<?php
+include("../classes/DB.php");
+include("../classes/Inscrito.php");
+include("../classes/Inscrito_Curso.php");
+include("../classes/Campus.php");
+include("../classes/Localprova.php");
+
+$cpf = addslashes($_POST['cpf']);
+
+/* Acesso ao banco de dados */
+$banco   = DB::getInstance();
+$conexao = $banco->ConectarDB();
+
+$inscrito    = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);//36
+$objinscrito = $inscrito->SelectByCpf($conexao, $cpf);
+?>
 <!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -6,32 +22,14 @@
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 </head>
 
-<?
-    header("Content-Type: text/html; charset=ISO-8859-1", true);
-
-    include("../classes/DB.php");
-    include("../classes/Inscrito.php");
-    include("../classes/Inscrito_Curso.php");
-    include("../classes/Campus.php");
-    include("../classes/Localprova.php");
-
-  $cpf       = addslashes($_POST['cpf']);
-
-  /* Acesso ao banco de dados */
-  $banco   = DB::getInstance();
-  $conexao = $banco->ConectarDB();
-
-  $inscrito    = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);//36
-  $objinscrito = $inscrito->SelectByCpf($conexao, $cpf);
-
-  if (count($objinscrito)==0){
-    echo("<table width='90%' border='0'>");
-    echo("  <tr>");
-    echo("    <td height='280'><div align='center'><font size='5'>Inscri&ccedil;&atilde;o n&atilde;o encontrada na base de dados.</font><font size='5'></font></div></td>");
-    echo("  </tr>");
-    echo("</table>");
-  }
-  else{
+<?php
+if (count($objinscrito) == 0) {
+	echo("<table width='90%' border='0'>");
+	echo("  <tr>");
+	echo("    <td height='280'><div align='center'><font size='5'>Inscri&ccedil;&atilde;o n&atilde;o encontrada na base de dados.</font><font size='5'></font></div></td>");
+	echo("  </tr>");
+	echo("</table>");
+} else{
 ?>
 
 <body class="formImpressao">
@@ -217,6 +215,19 @@
 				<input name="curso" disabled="disabled" id="curso" tabindex=25 size="80" value="<?echo($curso)?>" />
             </td>
         </tr>
+
+		<tr>
+			<td height="28" align='right'><label for=localprova>Local de realiza&ccedil;&atilde;o da prova:</label></td>
+			<td>
+				<?php
+				$localprova = new Localprova(null, null, null);
+				$localprovaInscrito = $objinscrito[0]->getlocalprova();
+				$vetorLocalprovaIncrito = $localprova->SelectNomeLocalProva($conexao, $localprovaInscrito);
+				$nomeLocalprova = $vetorLocalprovaIncrito[0]->getNome();
+				?>
+				<input style="text-transform:uppercase" name="campus" id="campus" disabled="true" type="text" tabindex=23 value="<?echo($nomeLocalprova); ?>" />
+			</td>
+		</tr>
 
         <tr>
             <td height="28" align='right'><label for=isencao>Solicita Isen&ccedil;&atilde;o de Taxa?</label></td>

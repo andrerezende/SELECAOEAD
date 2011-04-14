@@ -1,4 +1,21 @@
-<?php session_start()?>
+<?php
+session_start();
+require_once '../classes/DB.php';
+require_once '../classes/Inscrito.php';
+require_once '../classes/swift-mailer/lib/swift_required.php';
+
+$cpf = addslashes($_POST['cpf']);
+/*Acesso ao banco de dados */
+$banco = DB::getInstance();
+$conexao  = $banco->ConectarDB();
+
+$inscrito = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);//36
+$objinscrito = $inscrito->SelectByCpf($conexao, $cpf);
+if (empty($objinscrito)) {
+	$_SESSION['flashMensagem'] = 'CPF n&atilde;o encontrado na nossa base de dados.';
+	header("Location:" . $_SERVER['HTTP_REFERER']);
+}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -16,24 +33,6 @@
 		});
 	});
 	</script>
-
-<?php
-require_once '../classes/DB.php';
-require_once '../classes/Inscrito.php';
-require_once '../classes/swift-mailer/lib/swift_required.php';
-
-$cpf = addslashes($_POST['cpf']);
-/*Acesso ao banco de dados */
-$banco = DB::getInstance();
-$conexao  = $banco->ConectarDB();
-
-$inscrito = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);//36
-$objinscrito = $inscrito->SelectByCpf($conexao, $cpf);
-if (empty($objinscrito)) {
-	$_SESSION['flashMensagem'] = 'CPF n&atilde;o encontrado na nossa base de dados.';
-	header("Location:" . $_SERVER['HTTP_REFERER']);
-}
-?>
 </head>
 
 <body>

@@ -39,7 +39,7 @@ else :
 	<div align="right" class="admin_logout">
 		<p><a href="logout.php" target="_self">Logout</a> </p>
 	</div>
-	<div align="center"><h2>�rea Administrativa - Menu</h2></div>
+	<div align="center"><h2>&Aacute;rea Administrativa - Menu</h2></div>
 	<ul class="menu_admin">
 		<li><a href="../curso/cadastrar_curso.php">Cadastrar Curso</a></li>
 		<li><a href="../curso/listar_curso.php" target="_self">Listar Curso</a></li>

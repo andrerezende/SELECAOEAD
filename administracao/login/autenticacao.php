@@ -3,8 +3,9 @@ include("../classes/DB.php");
 include("../classes/Usuario.php");
 require_once('../classes/recaptcha/recaptchalib.php');
 session_start();
-$usuario  = addslashes($_POST['usuario']);
-$senha    = addslashes($_POST['senha']);
+
+$usuario  = $_POST['usuario'];
+$senha    = $_POST['senha'];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">

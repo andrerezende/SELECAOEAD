@@ -34,7 +34,7 @@ session_start();
 			return true;
 		} else {
 			Recaptcha.reload();
-			$("#captchaStatus").html("O c�digo de seguran�a digitado n�o corresponde ao exibido. Por favor tente novamente.");
+			$("#captchaStatus").html("O c&oacute;digo de seguran&ccedil;a digitado n&atilde;o corresponde ao exibido. Por favor tente novamente.");
 			return false;
 		}
 	}
@@ -50,7 +50,7 @@ session_start();
 		var senha = document.getElementById("senha");
 		resultado = true;
 		if (usuario.value == "") {
-			alert('Informe o nome do usu�rio.');
+			alert('Informe o nome do usu&aacute;rio.');
 			usuario.focus();
 			resultado = false;
 		} else if (senha.value == "") {

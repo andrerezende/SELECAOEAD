@@ -1,143 +1,118 @@
-<?php 
+<?php
+class Curso {
+	protected $cod_curso;
+	protected $nome;
 
-Class Curso {
+	public function Curso ($a, $b) {
+		$this->cod_curso = $a;
+		$this->nome = $b;
+	}
 
-    protected $cod_curso;
-    protected $nome;
+	public function getcodcurso() {
+		return $this->cod_curso;
+	}
 
-    public function Curso ($a, $b){
+	public function setCodcurso($a) {
+		$this->cod_curso = $a;
+	}
 
-       $this->cod_curso = $a;
-       $this->nome      = $b;
-    }
+	public function getnome() {
+		return $this->nome;
+	}
 
-    public function getcodcurso(){
+	public function setnome($a) {
+		$this->nome = $a;
+	}
 
-        return $this->cod_curso;
-    }
+	public function Inserir($sock) {
+		$ssql = "insert into curso (nome) values ";
+		$ssql = $ssql. " ('".$this->nome."')";
 
-    public function setCodcurso($a){
+		$rs = mysql_query($ssql, $sock);
 
-        $this->cod_curso = $a;
-    }
+		$linha = mysql_affected_rows();
 
-    public function getnome(){
+		if ($linha >0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public function apagar($sock,$id) {
+		$ssql = "delete from curso";
+		$ssql = $ssql. " WHERE cod_curso = ".$id;
 
-        return $this->nome;
-    }
+		$rs = mysql_query($ssql, $sock);
 
-    public function setnome($a){
+		$linha = mysql_affected_rows();
 
-        $this->nome = $a;
-    }
-
-    public function Inserir ($sock){
-
-        $ssql = "insert into curso (nome) values ";
-        $ssql = $ssql. " ('".$this->nome."')";
-
-        $rs = mysql_query($ssql, $sock);
-
-        $linha = mysql_affected_rows();
-        
-        if ($linha >0){
-           return true;
-        }
-        else{
-           return false;
-        }
-    }
-    public function apagar ($sock,$id){
-
-        $ssql = "delete from curso";
-        $ssql = $ssql. " WHERE cod_curso = ".$id;
-
-
-        $rs = mysql_query($ssql, $sock);
-
-        $linha = mysql_affected_rows();
-
-        if ($linha >0){
-           return true;
-        }
-        else{
-           return false;
-        }
-    }
+		if ($linha >0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 
-    public function existeCursoAssociadoAcandidato ($sock,$id){
-        
-        $ssql = "select * from inscrito_curso";
-        $ssql = $ssql. " WHERE cod_curso = ".$id;
+	public function existeCursoAssociadoAcandidato($sock,$id) {
+		$ssql = "select * from inscrito_curso";
+		$ssql .= " WHERE cod_curso = ".$id;
 
+		$rs = mysql_query($ssql, $sock);
 
-        $rs = mysql_query($ssql, $sock);
-        
+		$linha = mysql_affected_rows();
 
-        $linha = mysql_affected_rows();
-        
-        if ($linha >0){
-           return true;
-        }
-        else{
-           return false;
-        }
-    }
+		if ($linha >0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-    public function inativar ($sock,$id){
+	public function inativar ($sock,$id) {
+		$ssql = "update curso set";
+		$ssql .= " ativo = 'N'";
+		$ssql .= " WHERE cod_curso = ".$id;
 
-        $ssql = "update curso set";
+		$rs = mysql_query($ssql, $sock);
 
-        $ssql = $ssql. " ativo = 'N'";
-        $ssql = $ssql. " WHERE cod_curso = ".$id;
+		$linha = mysql_affected_rows();
 
+		if ($linha >0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-        $rs = mysql_query($ssql, $sock);
-         
-        $linha = mysql_affected_rows();
+	public function SelectByAll($sock) {
+		$ssql = "SELECT cod_curso, nome FROM curso A " ;
+		$ssql .= " WHERE ativo is null";
+		$ssql .= " ORDER BY cod_curso ASC";
+		$rs = mysql_query($ssql, $sock);
 
-        if ($linha >0){
-           return true;
-        }
-        else{
-           return false;
-        }
-    }
+		$ar = array();
 
-    public function SelectByAll($sock){
+		while ($linha = mysql_fetch_row($rs)) {
+			$obj = new Curso($linha[0], $linha[1]);
+			$ar[] = $obj;
+		}
+		return ($ar);
+	}
 
-        $ssql = "SELECT cod_curso, nome FROM curso A " ;
-        $ssql = $ssql . " WHERE ativo is null";
-   	$ssql = $ssql . " ORDER BY cod_curso ASC";
-		//$ssql = $ssql . " ORDER BY nome DESC";
-        $rs = mysql_query($ssql, $sock);
+	public function SelectByPrimaryKey($sock,$codigo) {
+		$ssql = "SELECT cod_curso, nome FROM curso A " ;
+		$ssql .= " WHERE cod_curso  =" .$codigo;
+		$ssql .= " ORDER BY cod_curso ASC";
 
-        $ar = array();
+		$rs = mysql_query($ssql, $sock);
 
-        while ($linha = mysql_fetch_row($rs)){
-           $obj = new Curso($linha[0], $linha[1]);
-	       $ar[] = $obj;
-        }
-        return ($ar);
-    }
-    
-    public function SelectByPrimaryKey($sock,$codigo){
+		unset($ar);
 
-        $ssql = "SELECT cod_curso, nome FROM curso A " ;
-   	    $ssql = $ssql . " WHERE cod_curso  =" .$codigo;
-   	    $ssql = $ssql . " ORDER BY cod_curso ASC";
-
-        $rs = mysql_query($ssql, $sock);
-
-        unset($ar);
-
-        while ($linha = mysql_fetch_row($rs)){
-           $obj = new Curso($linha[0], $linha[1]);
-	       $ar[] = $obj;
-        }
-        return ($ar);
-    }
-} 
-
-?>
+		while ($linha = mysql_fetch_row($rs)) {
+			$obj = new Curso($linha[0], $linha[1]);
+			$ar[] = $obj;
+		}
+		return ($ar);
+	}
+}

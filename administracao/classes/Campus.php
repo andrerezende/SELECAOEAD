@@ -1,66 +1,56 @@
 <?php
-
 class Campus {
+	protected $idCampus;
+	protected $nome;
 
-    protected $idCampus;
-    protected $nome;
+	public function Campus ($pidCampus, $pnome) {
+		$this->idCampus = $pidCampus;
+		$this->nome = $pnome;
+	}
 
-    public function Campus ($pidCampus, $pnome){
-       $this->idCampus  = $pidCampus;
-       $this->nome      = $pnome;
-    }
+	public function getIdCampus() {
+		return $this->idCampus;
+	}
 
-    public function getIdCampus(){
+	public function setIdCampus($pidcampus) {
+		$this->idCampus = $pidcampus;
+	}
 
-        return $this->idCampus;
-    }
+	public function getNome() {
+		return $this->nome;
+	}
 
-    public function setIdCampus($pidcampus){
+	public function setNome($pnome) {
+		$this->nome = $pnome;
+	}
 
-        $this->idCampus = $pidcampus;
-    }
+	public function SelectByAll($sock) {
+		$ssql = "SELECT id, nome FROM campus A " ;
+		$ssql .= " WHERE ativo is null";
+		$ssql .= " ORDER BY nome ASC";
+		$rs = mysql_query($ssql, $sock);
 
-    public function getNome(){
+		$ar = array();
 
-        return $this->nome;
-    }
+		while ($linha = mysql_fetch_row($rs)){
+			$obj = new Campus($linha[0], $linha[1]);
+			$ar[] = $obj;
+		}
+		return ($ar);
+	}
 
-    public function setNome($pnome){
+	public function SelectNomeCampus($sock, $pidCampus) {
+		$ssql = "SELECT id, nome FROM campus A " ;
+		$ssql .= " WHERE id = '$pidCampus' ";
+		$rs = mysql_query($ssql, $sock);
 
-        $this->nome = $pnome;
-    }
+		$ar = array();
 
-    public function SelectByAll($sock){
+		$linha = mysql_fetch_row($rs);
+		$obj = new Campus($linha[0], $linha[1]);
+		$ar[] = $obj;
 
-        $ssql = "SELECT id, nome FROM campus A " ;
-        $ssql = $ssql . " WHERE ativo is null";
-        $ssql = $ssql . " ORDER BY nome ASC";
-        $rs = mysql_query($ssql, $sock);
+		return $ar;
+	}
 
-        $ar = array();
-
-        while ($linha = mysql_fetch_row($rs)){
-           $obj = new Campus($linha[0], $linha[1]);
-	       $ar[] = $obj;
-        }
-        return ($ar);
-    }
-
-    public function SelectNomeCampus($sock, $pidCampus) {
-        $ssql = "SELECT id, nome FROM campus A " ;
-        $ssql = $ssql . " WHERE id = '$pidCampus' ";
-        $rs = mysql_query($ssql, $sock);
-
-        $ar = array();
-
-        $linha = mysql_fetch_row($rs);
-        $obj = new Campus($linha[0], $linha[1]);
-        $ar[] = $obj;
-
-        return $ar;
-    }
-
-      
-    
 }
-?>

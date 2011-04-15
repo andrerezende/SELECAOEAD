@@ -97,7 +97,7 @@ class Localprova {
 
 	public function apagar ($sock,$id){
 		$ssql = "delete from localprova";
-        $ssql .= " WHERE id = ".$id;
+		$ssql .= " WHERE id = ".$id;
 
 		$rs = mysql_query($ssql, $sock);
 
@@ -120,7 +120,7 @@ class Localprova {
 
 		if ($linha >0) {
 			return true;
-        } else {
+		} else {
 			return false;
 		}
 	}
@@ -136,7 +136,7 @@ class Localprova {
 
 		if ($linha >0) {
 			return true;
-        } else {
+		} else {
 			return false;
 		}
 	}

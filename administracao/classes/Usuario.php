@@ -1,62 +1,50 @@
-<?php 
+<?php
+class Usuario{
+	protected $usuario;
+	protected $senha;
 
-Class Usuario{
+	public function Usuario ($a, $b){
+		$this->usuario = $a;
+		$this->senha = $b;
+	}
 
-    protected $usuario;
-    protected $senha;
-    
-    public function Usuario ($a, $b){
+	public function getUsuario() {
+		return $this->usuario;
+	}
 
-       $this->usuario = $a;
-       $this->senha   = $b;
-    }
+	public function setUsuario($a) {
+		$this->usuario = $a;
+	}
 
-    public function getUsuario(){
+	public function getSenha() {
+		return $this->senha;
+	}
 
-        return $this->usuario;
-    }
+	public function setSenha($a) {
+		$this->senha = $a;
+	}
 
-    public function setUsuario($a){
+	public function Autenticar($sock) {
+		$ssql = "SELECT usuario, senha FROM usuario A " ;
+		$ssql .= " WHERE usuario  ='" .$this->usuario ."'";
+		$ssql .= " AND   senha    ='" .$this->senha ."'";
 
-        $this->usuario = $a;
-    }
+		$rs = mysql_query($ssql, $sock);
 
-    public function getSenha(){
+		unset($ar);
 
-        return $this->senha;
-    }
+		while ($linha = mysql_fetch_row($rs)){
+			$obj = new Usuario(null, null);
+			$obj->setUsuario($linha[0]);
+			$obj->setSenha($linha[1]);
+			$ar[] = $obj;
+		}
 
-    public function setSenha($a){
+		if (count($ar)>0) {
+			return (true);
+		} else {
+			return (false);
+		}
 
-        $this->senha = $a;
-    }
-
-    public function Autenticar($sock){
-
-        $ssql = "SELECT usuario, senha FROM usuario A " ;
-        $ssql = $ssql . " WHERE usuario  ='" .$this->usuario ."'";
-        $ssql = $ssql . " AND   senha    ='" .$this->senha ."'";
-        
-        $rs = mysql_query($ssql, $sock);
-
-        unset($ar);
-
-        while ($linha = mysql_fetch_row($rs)){
-           $obj = new Usuario(null, null);
-	       $obj->setUsuario($linha[0]);
-	       $obj->setSenha($linha[1]);
-	       $ar[] = $obj;
-        }
-
-        if (count($ar)>0){
-           return (true);
-        }
-        else{
-           return (false);
-        }
-        
-    }
-
-} 
-
-?>
+	}
+}

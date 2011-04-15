@@ -13,7 +13,7 @@ $senha = addslashes($_POST['pwd']);
 $banco = DB::getInstance();
 $conexao = $banco->ConectarDB();
 
-$inscrito    = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null); //36
+$inscrito = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null); //36
 $objinscrito = $inscrito->SelectByPrimaryKey($conexao, $cpf, $senha);
 
 if (empty($objinscrito)) {

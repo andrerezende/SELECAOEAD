@@ -280,17 +280,12 @@ if (count($objinscrito) == 0) {
         <tr>
             <td colspan="2">
                 <a href="#" onclick="window.print();"><img src="../../imgs/icone_impressao.gif" alt="Imprimir" /> Imprimir</a> /
-                <a href="../../index.php">P&aacute;gina Inicial</a>
+                <a href="../../index.php">P&aacute;gina Inicial</a> /
             </td>
-
+			<td><a href="javascript:history.go(-1)">Voltar</a></td>
         </tr>
     </table>
 <?}?>
 </form>
-<div class="voltar">
-<form>
-	<input type="button" value=" Voltar " onclick="history.go(-1)" />
-</form>
-</div>
 </body>
 </html>

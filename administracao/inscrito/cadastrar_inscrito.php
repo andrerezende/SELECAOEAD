@@ -27,9 +27,10 @@ $numinscricao = substr($cpf, 0,4).$id;
 /*Verificar se possui cadastrado na base*/
 $inscrito = new Inscrito($nome, $endereco, $bairro, $cep, $cidade, $estado,
 			$email, $cpf, $rg, $especial, $senha, $nacionalidade, $telefone, null, $celular, $datanascimento,
-			$sexo, $estadocivil, $orgaoexpedidor, $uf, $dataexpedicao, $especial_descricao, null,
+			$sexo, $estadocivil, $orgaoexpedidor, $uf, $dataexpedicao, $especial_descricao, $responsavel,
 			$isencao, $declaracao, $localprova, $numinscricao, $especial_prova, $especial_prova_descricao,
 			$vaga_especial, $vaga_rede_publica, $vaga_rural, $campus);
+			$resultado = $inscrito->Inserir($conexao);
 $existe = $inscrito->Existe($conexao);
 
 if ($existe) {

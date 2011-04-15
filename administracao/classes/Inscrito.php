@@ -34,12 +34,14 @@ class Inscrito {
 	protected $vaga_rede_publica;
 	protected $vaga_rural;
 	protected $campus;
+	protected $data_cadastro;
+	protected $ultima_alteracao;
 
 	public function Inscrito($pnome, $pendereco, $pbairro, $pcep, $pcidade, $pestado,
 	$pemail, $pcpf, $prg, $pespecial, $psenha, $pnacionalidade, $ptelefone, $ptelefone2, $pcelular, $pdatanascimento,
 	$psexo, $pestadocivil, $porgaoexpedidor, $puf, $pdataexpedicao, $pespecial_descricao, $presponsavel,
 	$pisencao, $pdeclaracao, $plocalprova, $pnuminscricao, $pespecial_prova, $pespecial_prova_descricao,
-	$pvaga_especial, $pvaga_rede_publica, $pvaga_rural, $pcampus, $pid = null) {
+	$pvaga_especial, $pvaga_rede_publica, $pvaga_rural, $pcampus, $pid = null, $pdata_cadastro = null, $pultima_alteracao = null) {
 
 		$this->id = $pid;
 		$this->nome = $pnome;
@@ -75,6 +77,8 @@ class Inscrito {
 		$this->vaga_rede_publica = $pvaga_rede_publica;
 		$this->vaga_rural = $pvaga_rural;
 		$this->campus = $pcampus;
+		$this->data_cadastro = $pdata_cadastro;
+		$this->ultima_alteracao = $pultima_alteracao;
 	}
 
 	public function getid() {
@@ -345,9 +349,24 @@ class Inscrito {
 		$this->campus = $pcampus;
 	}
 
+	public function getdatacadastro() {
+		return $this->data_cadastro;
+	}
+
+	public function setdatacadastro($pdata_cadastro) {
+		$this->data_cadastro = $pdata_cadastro;
+	}
+
+	public function getultimaalteracao() {
+		return $this->ultima_alteracao;
+	}
+	public function setultimaalteracao($pultima_alteracao) {
+		$this->ultima_alteracao = $pultima_alteracao;
+	}
+
 	public function Inserir($sock) {
-		$dataAtual = date('Y-m-d H:i:s');
-		$ssql = "INSERT INTO inscrito (nome, endereco, bairro, cep, cidade, estado, email, cpf, rg, especial, senha, nacionalidade, telefone, telefone2, celular, datanascimento, sexo, estadocivil, orgaoexpedidor, uf, dataexpedicao, especial_descricao, responsavel, isencao, declaracao, localprova, numinscricao, especial_prova, especial_prova_descricao, vaga_especial, vaga_rede_publica, vaga_rural, campus) VALUES ";
+		$this->data_cadastro = date('Y-m-d');
+		$ssql = "INSERT INTO inscrito (nome, endereco, bairro, cep, cidade, estado, email, cpf, rg, especial, senha, nacionalidade, telefone, telefone2, celular, datanascimento, sexo, estadocivil, orgaoexpedidor, uf, dataexpedicao, especial_descricao, responsavel, isencao, declaracao, localprova, numinscricao, especial_prova, especial_prova_descricao, vaga_especial, vaga_rede_publica, vaga_rural, campus, data_cadastro) VALUES ";
 
 		$ssql .= "('" . $this->nome . "','" . $this->endereco . "',";
 		$ssql .= "'" . $this->bairro . "','" . $this->cep . "',";
@@ -364,7 +383,7 @@ class Inscrito {
 		$ssql .= "'" . $this->especial_prova . "','" . $this->especial_prova_descricao . "',";
 		$ssql .= "'" . $this->vaga_especial . "','" . $this->vaga_rede_publica . "',";
 		$ssql .= "'" . $this->vaga_rural . "',";
-		$ssql .= "'" . $this->campus . "')";
+		$ssql .= "'" . $this->campus . "','" . $this->data_cadastro . "')";
 
 		$rs = mysql_query($ssql, $sock);
 
@@ -378,7 +397,7 @@ class Inscrito {
 	}
 
 	public function atualizar($sock) {
-		$dataAtual = date('Y-m-d H:i:s');
+		$this->ultima_alteracao = date('Y-m-d H:i:s');
 		$ssql = "UPDATE inscrito SET";
 
 		$ssql .= " nome = '" . $this->nome . "', endereco = '" . $this->endereco . "',";
@@ -395,10 +414,11 @@ class Inscrito {
 		$ssql .= "especial_prova = '" . $this->especial_prova . "', especial_prova_descricao = '" . $this->especial_prova_descricao . "',";
 		$ssql .= "vaga_especial = '" . $this->vaga_especial . "', vaga_rede_publica = '" . $this->vaga_rede_publica . "',";
 		$ssql .= "vaga_rural = '" . $this->vaga_rural . "',";
+		$ssql .= "ultima_alteracao = '" . $this->ultima_alteracao . "',";
 		$ssql .= "campus = '" . $this->campus . "'";
 
 		$ssql .= " WHERE id = " . $this->id;
-
+var_dump($ssql);exit;
 		$rs = mysql_query($ssql, $sock) or die(mysql_error());
 
 		$linha = mysql_affected_rows();

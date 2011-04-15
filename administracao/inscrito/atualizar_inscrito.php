@@ -24,9 +24,9 @@ $conexao  = $banco->ConectarDB();
 /*Verificar se possui cadastrado na base*/
 $inscrito = new Inscrito($nome, $endereco, $bairro, $cep, $cidade, $estado,
 			$email, $cpf, $rg, $especial, $senha, $nacionalidade, $telefone, null, $celular, $datanascimento,
-			$sexo, $estadocivil, $orgaoexpedidor, $uf, $dataexpedicao, $especial_descricao, null,
+			$sexo, $estadocivil, $orgaoexpedidor, $uf, $dataexpedicao, $especial_descricao, $responsavel,
 			$isencao, $declaracao, $localprova, $numinscricao, $especial_prova, $especial_prova_descricao,
-			$vaga_especial, null, null, $campus, $id); //37
+			$vaga_especial, $vaga_rede_publica, $vaga_rural, $campus, $id);
 $resultado = $inscrito->atualizar($conexao);
 
 if ($resultado) {

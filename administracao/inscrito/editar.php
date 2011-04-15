@@ -494,7 +494,12 @@ if (count($objinscrito) == 0){
                          </select>
                     </td>
                 </tr>
-
+				<tr>
+					<td width="139" align='right'><label for=responsavel>Respons&aacute;vel:</label></td>
+					<td width="412" colspan='2'>
+						<input style="text-transform:uppercase" name="responsavel" id="responsavel" type="text" tabindex=22 size='65' maxlength="65" alt="Nome do Responsável" value="<?echo($objinscrito[0]->getresponsavel()); ?>"/>
+					</td>
+				</tr>
                 <tr>
                     <td height="28" align='right'><label for=especial>Necessidade Especial:</label></td>
                     <td>

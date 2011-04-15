@@ -77,7 +77,7 @@ if (isset($_SESSION['validacao']) && $_SESSION['validacao']) {
 <div id="conteudoGeral">
 		<div id="topo1">
         	<div class="topo1_imagem1">
-                    <img src="../../imgs/topo1/ministerio_educacao.jpg" alt="Minist�rio de Educa��o" />
+                    <img src="../../imgs/topo1/ministerio_educacao.jpg" alt="Minist&eacute;rio de Educa&ccedil;&atilde;o" />
             </div>
             <div id="topo1_destaqueGoveno">
             	<form action="">

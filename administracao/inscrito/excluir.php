@@ -1,20 +1,19 @@
 <?php
-  include("../classes/DB.php");
-  include("../classes/Inscrito.php");
-  include("../classes/Inscrito_Curso.php");
+include("../classes/DB.php");
+include("../classes/Inscrito.php");
+include("../classes/Inscrito_Curso.php");
 
-  $id       = addslashes($_GET['id']);
+$id = addslashes($_POST['id']);
 
-  /*Acesso ao banco de dados */
-  $banco    = DB::getInstance();
-  $conexao  = $banco->ConectarDB();
+/*Acesso ao banco de dados */
+$banco = DB::getInstance();
+$conexao = $banco->ConectarDB();
 
+$inscrito = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+$inscrito_curso = new Inscrito_Curso(null,null,null);
 
-  $inscrito = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null);
-  $inscrito_curso = new Inscrito_Curso(null,null,null);
-
-  $inscrito_eliminado   = $inscrito->apagar($conexao, $id);
-  $inscritoCurso_eliminado   = $inscrito_curso->apagar($conexao, $id);
+$inscrito_eliminado = $inscrito->apagar($conexao, $id);
+$inscritoCurso_eliminado = $inscrito_curso->apagar($conexao, $id);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">

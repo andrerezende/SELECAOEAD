@@ -3,7 +3,7 @@ class Usuario{
 	protected $usuario;
 	protected $senha;
 
-	public function Usuario ($a, $b){
+	public function Usuario($a, $b){
 		$this->usuario = $a;
 		$this->senha = $b;
 	}

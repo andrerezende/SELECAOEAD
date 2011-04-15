@@ -418,7 +418,7 @@ class Inscrito {
 		$ssql .= "campus = '" . $this->campus . "'";
 
 		$ssql .= " WHERE id = " . $this->id;
-var_dump($ssql);exit;
+
 		$rs = mysql_query($ssql, $sock) or die(mysql_error());
 
 		$linha = mysql_affected_rows();
@@ -430,7 +430,7 @@ var_dump($ssql);exit;
 		}
 	}
 
-	public function apagar ($sock,$id) {
+	public function apagar($sock,$id) {
 		$ssql = "delete from inscrito";
 		$ssql = $ssql. " WHERE id = ".$id;
 
@@ -446,14 +446,20 @@ var_dump($ssql);exit;
 	}
 
 	public function SelectByAll($sock) {
-		$ssql = "SELECT nome, endereco, bairro, cep, cidade, estado, email, telefone, celular, cpf, rg, localprova, especial, senha, id FROM inscrito A " ;
+		$ssql = "SELECT
+			nome, endereco, bairro,
+			cep, cidade, estado,
+			email, cpf, rg,
+			especial, senha, telefone,
+			celular, localprova, id
+		FROM inscrito A " ;
 		$ssql = $ssql . " ORDER BY trim(nome)";
 		$rs = mysql_query($ssql, $sock);
 
 		$ar= array();
 
 		while ($linha = mysql_fetch_row($rs)) {
-			$obj = new Inscrito($linha[0],$linha[1],$linha[2],$linha[3],$linha[4],$linha[5],$linha[6],$linha[7],$linha[8],$linha[9],$linha[10],$linha[11],$linha[12],$linha[13],$linha[14],$linha[15],$linha[16],$linha[17],$linha[18],$linha[19],$linha[20],$linha[21],$linha[22],$linha[23],$linha[24],$linha[25],$linha[26],$linha[27],$linha[28],$linha[29],$linha[30],$linha[31],$linha[32],$linha[33]);
+			$obj = new Inscrito($linha[0], $linha[1], $linha[2], $linha[3], $linha[4], $linha[5],$linha[6], $linha[7], $linha[8], $linha[9], $linha[10], null, $linha[11], null, $linha[12], null,null, null, null, null, null, null, null,null, null, $linha[13], null, null, null,null, null, null, null, $linha[14]);
 			$ar[] = $obj;
 		}
 		return ($ar);

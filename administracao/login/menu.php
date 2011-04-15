@@ -19,7 +19,7 @@ else :
 <div id="conteudoGeral">
 		<div id="topo1">
         	<div class="topo1_imagem1">
-                    <img src="../../imgs/topo1/ministerio_educacao.jpg" alt="Minist�rio de Educa��o" />
+                    <img src="../../imgs/topo1/ministerio_educacao.jpg" alt="Minist&eacute;rio de Educa&ccedil;&atilde;o" />
             </div>
             <div id="topo1_destaqueGoveno">
             	<form action="">
@@ -40,6 +40,12 @@ else :
 		<p><a href="logout.php" target="_self">Logout</a> </p>
 	</div>
 	<div align="center"><h2>&Aacute;rea Administrativa - Menu</h2></div>
+	<?php if (isset($_SESSION['flashMensagem']) && $_SESSION['flashMensagem'] != null) :?>
+		<p class="textoDestaque2"><?php echo $_SESSION['flashMensagem']?></p>
+	<?php
+		unset($_SESSION['flashMensagem']);
+	endif;
+	?>
 	<ul class="menu_admin">
 		<li><a href="../curso/cadastrar_curso.php">Cadastrar Curso</a></li>
 		<li><a href="../curso/listar_curso.php" target="_self">Listar Curso</a></li>

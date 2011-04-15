@@ -1,15 +1,23 @@
 <?php
-  include("../classes/DB.php");
-  include("../classes/Curso.php");
+session_start();
+include("../classes/DB.php");
+include("../classes/Curso.php");
 
-  $nome    = addslashes($_POST['nome']);
+$nome = addslashes($_POST['nome']);
 
-  /* Acesso ao banco de dados */
-  $banco   = DB::getInstance();
-  $conexao = $banco->ConectarDB();
+/* Acesso ao banco de dados */
+$banco = DB::getInstance();
+$conexao = $banco->ConectarDB();
 
-  $curso = new Curso(null,$nome);
-  $resultado = $curso->Inserir($conexao);
+$curso = new Curso(null,$nome);
+$resultado = $curso->Inserir($conexao);
+
+if ($resutado = true) {
+	$_SESSION['flashMensagem'] = 'Curso cadastrado com sucesso.';
+} else {
+	$_SESSION['flashMensagem'] = 'Problemas ao efetuar o transa&ccedil;&atilde;o.';
+}
+header('Location: /administracao/login/menu.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">

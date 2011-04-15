@@ -11,7 +11,7 @@ session_start();
 	<script type="text/javascript">
 	function validar() {
 
-	var nome    = document.getElementById("nome");
+	var nome = document.getElementById("nome");
 
 	resultado = true;
 	if (nome.value == ""){
@@ -56,7 +56,7 @@ else :
 		<p><a href="logout.php" target="_self">Logout</a> </p>
 	</div>
 	<div align='center'>
-		<h2>�rea Administrativa - Cadastro de Curso</h2>
+		<h2>&Aacute;rea Administrativa - Cadastro de Curso</h2>
 	</div>
 <form id='formcurso' name='formcurso' action='cadastrar.php' method='post' onsubmit='return validar()' >
 <table border='0' align='center' summary=" ">

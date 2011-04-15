@@ -6,10 +6,10 @@ include_once '../classes/PHPExcel/PHPExcel.php';
 include_once '../classes/PHPExcel/PHPExcel/Writer/Excel5.php';
 
 
-	$banco    = DB::getInstance();
-	$conexao  = $banco->ConectarDB();
+$banco    = DB::getInstance();
+$conexao  = $banco->ConectarDB();
 
-	$sql = <<<SQL
+$sql = <<<SQL
 SELECT
 	campus.id AS campus_id,
 	campus.nome AS campus_nome,
@@ -35,10 +35,9 @@ SELECT
 	inscrito.especial AS inscrito_especial,
 	inscrito.especial_descricao AS inscrito_descricao_especial,
 	inscrito.isencao AS inscrito_isencao,
-	inscrito.cadastro_unico AS inscrito_nis,
 	inscrito.especial_prova AS inscrito_especial_prova,
 	inscrito.especial_prova_descricao AS inscrito_especial_prova_descricao,
-	inscrito.vaga_especial AS inscrito_vaga_especial 
+	inscrito.vaga_especial AS inscrito_vaga_especial
 
 SQL;
 if ($_POST['tipo'] == 'candidatos_por_necessidade') {
@@ -50,7 +49,7 @@ if ($_POST['tipo'] == 'candidatos_por_necessidade') {
 				INNER JOIN campus ON campus.id = inscrito.campus
 				INNER JOIN inscrito_curso ON inscrito_curso.id_inscrito = inscrito.id
 				INNER JOIN curso ON curso.cod_curso = inscrito_curso.cod_curso
-		WHERE especial <> 'NÃO' 
+		WHERE especial <> 'NÃO'
 SQL;
 	} else {
 		$sql .= <<<SQL
@@ -59,7 +58,7 @@ SQL;
 				INNER JOIN campus ON campus.id = inscrito.campus
 				INNER JOIN inscrito_curso ON inscrito_curso.id_inscrito = inscrito.id
 				INNER JOIN curso ON curso.cod_curso = inscrito_curso.cod_curso
-		WHERE especial = 'NÃO' 
+		WHERE especial = 'NÃO'
 SQL;
 	}
 } elseif ($_POST['tipo'] == 'relacao_cadidatos2') {
@@ -71,7 +70,7 @@ SQL;
 				INNER JOIN campus ON campus.id = inscrito.campus
 				INNER JOIN inscrito_curso ON inscrito_curso.id_inscrito = inscrito.id
 				INNER JOIN curso ON curso.cod_curso = inscrito_curso.cod_curso
-				INNER JOIN pagamentos ON pagamentos.id_inscrito = inscrito.id 
+				INNER JOIN pagamentos ON pagamentos.id_inscrito = inscrito.id
 SQL;
 	} elseif ($_POST['filtro_pagamento'] === 0) {
 		$sql .= <<<SQL
@@ -81,7 +80,7 @@ SQL;
 				INNER JOIN inscrito_curso ON inscrito_curso.id_inscrito = inscrito.id
 				INNER JOIN curso ON curso.cod_curso = inscrito_curso.cod_curso
 				LEFT JOIN pagamentos ON pagamentos.id_inscrito = inscrito.id
-		WHERE pagamentos.id IS NULL 
+		WHERE pagamentos.id IS NULL
 SQL;
 	} else {
 		$sql .= <<<SQL
@@ -119,22 +118,11 @@ $sql .= <<<SQL
 	inscrito.especial,
 	inscrito.especial_descricao,
 	inscrito.isencao,
-	inscrito.cadastro_unico,
 	inscrito.especial_prova,
 	inscrito.especial_prova_descricao,
 	inscrito.vaga_especial
 ORDER BY campus.id, inscrito.id
 SQL;
-
-$objPHPExcel = new PHPExcel();
-
-function setCabecalho($objPHPExcel, $colunas) {
-	foreach ($colunas as $coluna => $valor) {
-		$objPHPExcel->getActiveSheet()->SetCellValue($coluna.'1', $valor);
-		$objPHPExcel->getActiveSheet()->getColumnDimension($coluna)->setAutoSize(true);
-		$objPHPExcel->getActiveSheet()->getStyle($coluna.'1')->getFont()->setBold(true);
-	}
-}
 
 $colunas = array(
 	'A' => 'CAMPUS',
@@ -160,12 +148,20 @@ $colunas = array(
 	'U' => utf8_encode('NECESSIDADE ESPECIAL?'),
 	'V' => utf8_encode('DESCRIÇÃO NECESSIDADE ESPECIAL'),
 	'W' => utf8_encode('ISENÇÃO DE TAXA'),
-	'X' => utf8_encode('CADASTRO ÚNICO (NIS)'),
-	'Y' => utf8_encode('CONDIÇÕES ESPECIAIS PARA REALIZAÇÃO DA PROVA'),
-	'Z' => utf8_encode('DESCRIÇÃO CONDIÇÕES ESPECIAIS PARA REALIZAÇÃO DA PROVA'),
-	'AA' => utf8_encode('CONCORRE AS VAGAS DESTINADAS A CANDIDATOS COM NECESSIDADES ESPECIAIS'),
+	'X' => utf8_encode('CONDIÇÕES ESPECIAIS PARA REALIZAÇÃO DA PROVA'),
+	'Y' => utf8_encode('DESCRIÇÃO CONDIÇÕES ESPECIAIS PARA REALIZAÇÃO DA PROVA'),
+	'Z' => utf8_encode('CONCORRE AS VAGAS DESTINADAS A CANDIDATOS COM NECESSIDADES ESPECIAIS'),
 );
 
+$objPHPExcel = new PHPExcel();
+
+function setCabecalho($objPHPExcel, $colunas) {
+	foreach ($colunas as $coluna => $valor) {
+		$objPHPExcel->getActiveSheet()->SetCellValue($coluna.'1', $valor);
+		$objPHPExcel->getActiveSheet()->getColumnDimension($coluna)->setAutoSize(true);
+		$objPHPExcel->getActiveSheet()->getStyle($coluna.'1')->getFont()->setBold(true);
+	}
+}
 
 $query = $banco->ExecutaQueryGenerica($sql);
 $linha = 2;
@@ -174,13 +170,13 @@ while ($row = mysql_fetch_assoc($query)) {
 	$val = array_values($row);
 	if ($campus_id != $val[0]) {
 		$campus_id = $val[0];
-			if ($campus_id > 1) {
-				$objPHPExcel->createSheet();
-				$objPHPExcel->setActiveSheetIndex($objPHPExcel->getActiveSheetIndex() + 1);
-			}
-			$objPHPExcel->getActiveSheet()->setTitle($val[1]);
-			setCabecalho($objPHPExcel, $colunas);
-			$linha = 2;
+		if ($campus_id > 1) {
+			$objPHPExcel->createSheet();
+			$objPHPExcel->setActiveSheetIndex($objPHPExcel->getActiveSheetIndex() + 1);
+		}
+		$objPHPExcel->getActiveSheet()->setTitle($val[1]);
+		setCabecalho($objPHPExcel, $colunas);
+		$linha = 2;
 	}
 	$col = 1;
 	foreach ($colunas as $coluna => $valor) {

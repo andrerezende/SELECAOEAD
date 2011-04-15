@@ -6,10 +6,10 @@ include_once '../classes/PHPExcel/PHPExcel.php';
 include_once '../classes/PHPExcel/PHPExcel/Writer/Excel5.php';
 
 
-$banco    = DB::getInstance();
-$conexao  = $banco->ConectarDB();
+	$banco    = DB::getInstance();
+	$conexao  = $banco->ConectarDB();
 
-$sql = <<<SQL
+	$sql = <<<SQL
 SELECT
 	campus.id AS campus_id,
 	campus.nome AS campus_nome,
@@ -35,6 +35,7 @@ SELECT
 	inscrito.especial AS inscrito_especial,
 	inscrito.especial_descricao AS inscrito_descricao_especial,
 	inscrito.isencao AS inscrito_isencao,
+	inscrito.cadastro_unico AS inscrito_nis,
 	inscrito.especial_prova AS inscrito_especial_prova,
 	inscrito.especial_prova_descricao AS inscrito_especial_prova_descricao,
 	inscrito.vaga_especial AS inscrito_vaga_especial
@@ -118,11 +119,22 @@ $sql .= <<<SQL
 	inscrito.especial,
 	inscrito.especial_descricao,
 	inscrito.isencao,
+	inscrito.cadastro_unico,
 	inscrito.especial_prova,
 	inscrito.especial_prova_descricao,
 	inscrito.vaga_especial
 ORDER BY campus.id, inscrito.id
 SQL;
+
+$objPHPExcel = new PHPExcel();
+
+function setCabecalho($objPHPExcel, $colunas) {
+	foreach ($colunas as $coluna => $valor) {
+		$objPHPExcel->getActiveSheet()->SetCellValue($coluna.'1', $valor);
+		$objPHPExcel->getActiveSheet()->getColumnDimension($coluna)->setAutoSize(true);
+		$objPHPExcel->getActiveSheet()->getStyle($coluna.'1')->getFont()->setBold(true);
+	}
+}
 
 $colunas = array(
 	'A' => 'CAMPUS',
@@ -148,20 +160,12 @@ $colunas = array(
 	'U' => utf8_encode('NECESSIDADE ESPECIAL?'),
 	'V' => utf8_encode('DESCRIÇÃO NECESSIDADE ESPECIAL'),
 	'W' => utf8_encode('ISENÇÃO DE TAXA'),
-	'X' => utf8_encode('CONDIÇÕES ESPECIAIS PARA REALIZAÇÃO DA PROVA'),
-	'Y' => utf8_encode('DESCRIÇÃO CONDIÇÕES ESPECIAIS PARA REALIZAÇÃO DA PROVA'),
-	'Z' => utf8_encode('CONCORRE AS VAGAS DESTINADAS A CANDIDATOS COM NECESSIDADES ESPECIAIS'),
+	'X' => utf8_encode('CADASTRO ÚNICO (NIS)'),
+	'Y' => utf8_encode('CONDIÇÕES ESPECIAIS PARA REALIZAÇÃO DA PROVA'),
+	'Z' => utf8_encode('DESCRIÇÃO CONDIÇÕES ESPECIAIS PARA REALIZAÇÃO DA PROVA'),
+	'AA' => utf8_encode('CONCORRE AS VAGAS DESTINADAS A CANDIDATOS COM NECESSIDADES ESPECIAIS'),
 );
 
-$objPHPExcel = new PHPExcel();
-
-function setCabecalho($objPHPExcel, $colunas) {
-	foreach ($colunas as $coluna => $valor) {
-		$objPHPExcel->getActiveSheet()->SetCellValue($coluna.'1', $valor);
-		$objPHPExcel->getActiveSheet()->getColumnDimension($coluna)->setAutoSize(true);
-		$objPHPExcel->getActiveSheet()->getStyle($coluna.'1')->getFont()->setBold(true);
-	}
-}
 
 $query = $banco->ExecutaQueryGenerica($sql);
 $linha = 2;

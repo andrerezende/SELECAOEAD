@@ -1,3 +1,10 @@
+<?php
+ob_start();
+session_start();
+include("../classes/DB.php");
+include("../classes/Inscrito.php");
+include("../classes/Localprova.php");
+?>
 <div class="voltar" style="margin-left: 30px; margin-top: 15px;">
 	<a href="javascript:history.go(-1)">Voltar</a>
 </div>
@@ -32,12 +39,6 @@
 
 // ------------------------- DADOS DINÂMICOS DO SEU CLIENTE PARA A GERAÇÃO DO BOLETO (FIXO OU VIA GET) -------------------- //
 // Os valores abaixo podem ser colocados manualmente ou ajustados p/ formulário c/ POST, GET ou de BD (MySql,Postgre,etc)	//
-
-session_start();
-
-include("../classes/DB.php");
-include("../classes/Inscrito.php");
-include("../classes/Localprova.php");
 
 
 $banco   = DB::getInstance();

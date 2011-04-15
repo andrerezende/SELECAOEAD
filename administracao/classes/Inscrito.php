@@ -389,7 +389,7 @@ class Inscrito {
 
 		$linha = mysql_affected_rows();
 
-		if ($linha >0) {
+		if ($linha > 0) {
 			return mysql_insert_id();
 		} else {
 			return 0;

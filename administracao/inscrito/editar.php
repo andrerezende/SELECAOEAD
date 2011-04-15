@@ -564,28 +564,27 @@ if (count($objinscrito) == 0){
                         <select name="curso" class=".text" id="curso" tabindex=26>
                             <?php
 							$inscrito_curso         = new Inscrito_Curso(null, null, null);
-								$vetor_inscrito_curso   = $inscrito_curso->ListarCurso($conexao, $objinscrito[0]->getid());
-								$nomeCurso              = $vetor_inscrito_curso[0]->getnome();
-								$codigoCurso            = $vetor_inscrito_curso[0]->getcodcurso();
+							$vetor_inscrito_curso   = $inscrito_curso->ListarCurso($conexao, $objinscrito[0]->getid());
+							$nomeCurso              = $vetor_inscrito_curso[0]->getnome();
+							$codigoCurso            = $vetor_inscrito_curso[0]->getcodcurso();
 
-								$cod_campus_selecionado = $objinscrito[0]->getcampus();
+							$cod_campus_selecionado = $objinscrito[0]->getcampus();
 
-								$cursosCampus           = new Curso(null, null, null);
-								$vetor_cursosCampus     = $cursosCampus->SelectCursoPorCampus($conexao, $cod_campus_selecionado);
+							$cursosCampus           = new Curso(null, null, null);
+							$vetor_cursosCampus     = $cursosCampus->SelectCursoPorCampus($conexao, $cod_campus_selecionado);
 
-								$i=0;
-								$total = count($vetor_cursosCampus);
+							$i=0;
+							$total = count($vetor_cursosCampus);
 
-								while ($total > $i) {
-									$nomes      = $vetor_cursosCampus[$i]->getnome();
-									$codigos    = $vetor_cursosCampus[$i]->getcodcurso();
-									if ($codigos == $codigoCurso) {
-										echo("	<option selected value=".$codigos.">".$nomes."</option>\n");
-									}
-									else {
-										echo("	<option value=".$codigos.">".$nomes."</option>\n");
-									}
-									$i= $i + 1;
+							while ($total > $i) {
+								$nomes      = $vetor_cursosCampus[$i]->getnome();
+								$codigos    = $vetor_cursosCampus[$i]->getcodcurso();
+								if ($codigos == $codigoCurso) {
+									echo("	<option selected value=".$codigos.">".$nomes."</option>\n");
+								} else {
+									echo("	<option value=".$codigos.">".$nomes."</option>\n");
+								}
+								$i= $i + 1;
 								}
                             ?>
 						</select>

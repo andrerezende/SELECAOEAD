@@ -34,7 +34,10 @@ class Inscrito_Curso {
 		return $this->nome;
 	}
 
-	public function Inserir ($sock, $pcod_curso){
+	public function Inserir($sock, $pcod_curso) {
+		if (!empty($this->cod_curso) && $this->cod_curso > 0) {
+			$pcod_curso = $this->cod_curso;
+		}
 		$ssql = "insert into inscrito_curso (cod_curso, id_inscrito) values ";
 		$ssql .= " (".$pcod_curso.",". $this->id_inscrito.")";
 

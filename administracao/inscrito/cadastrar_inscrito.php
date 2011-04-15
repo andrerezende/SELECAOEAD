@@ -30,7 +30,6 @@ $inscrito = new Inscrito($nome, $endereco, $bairro, $cep, $cidade, $estado,
 			$sexo, $estadocivil, $orgaoexpedidor, $uf, $dataexpedicao, $especial_descricao, $responsavel,
 			$isencao, $declaracao, $localprova, $numinscricao, $especial_prova, $especial_prova_descricao,
 			$vaga_especial, $vaga_rede_publica, $vaga_rural, $campus);
-			$resultado = $inscrito->Inserir($conexao);
 $existe = $inscrito->Existe($conexao);
 
 if ($existe) {
@@ -47,9 +46,10 @@ if ($existe) {
 		echo("</table>");
 	echo("</div>");
 } else {
-	$resultado = $inscrito->Inserir($conexao);
-	if ($resultado > 0) {
-		$inscrito_curso = new Inscrito_Curso(null,null,$resultado);
+	$id_inscrito = $inscrito->Inserir($conexao);
+	if ($id_inscrito > 0) {
+		$inscrito_curso = new Inscrito_Curso(null,null,$id_inscrito);
+		$inscrito_curso->setcodcurso($curso);
 		$resultado = $inscrito_curso->Inserir($conexao, $curso);
 
 		echo("<div align=".'"'."center".'"'.">");
@@ -64,7 +64,7 @@ if ($existe) {
 						<td>
 							<div align='center'>
 								<form id="frmeditar" name="frmeditar" action="editar.php" method="post">
-									<input type="hidden" name="id" value="<?php echo($id);?>" />
+									<input type="hidden" name="id" value="<?php echo($id_inscrito);?>" />
 									<a href="#" onclick="document.forms['frmeditar'].submit();">Editar Inscri&ccedil;&atilde;o</a>
 								</form>
 							</div>
@@ -74,14 +74,14 @@ if ($existe) {
                         <td>
                             <div align='center'>
                                 <form id='frmboleto' name='frmboleto' action='../boleto/boleto_bb.php' method='post'>
-                                    <input type='hidden' name='id' value="<?php echo($id);?>" />
+                                    <input type='hidden' name='id' value="<?php echo($id_inscrito);?>" />
                                     <a href='#' onclick="document.forms['frmboleto'].submit();">Imprimir Boleto para Pagamento</a>
                                 </form>
                             </div>
                         </td>
                         </tr>
 <?php
-			echo("		<td align=".'"'."center".'"'.">"."<br /><div><a href="."javascript:window.history.go(-1)".">Voltar</a>"." - "."<a href="."../../index.php".">P&aacute;gina Inicial</a></div></td>");
+			echo("		<td align='center'><br /><div><a href='../../index.php'>P&aacute;gina Inicial</a></div></td>");
 			echo("	</tr>");
 			echo("</table>");
 			echo("</div>");

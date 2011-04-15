@@ -55,7 +55,7 @@
 		<label for="senha">Senha:</label>
 		<input name="pwd" id="pwd" type="password" tabindex=2 size="15" maxlength="15" alt="senha" />
 		<input name="Entrar" type="submit" id="Entrar" tabindex=3 value="Acessar" />
-		<p>Informe o RG e a Senha e clique no bot&atilde;o "Acessar".</p>
+		<p>Informe o CPF e a Senha e clique no bot&atilde;o "Acessar".</p>
 	</form>
 </body>
 </html>

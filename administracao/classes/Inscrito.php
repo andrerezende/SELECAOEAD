@@ -366,7 +366,8 @@ class Inscrito {
 
 	public function Inserir($sock) {
 		$this->data_cadastro = date('Y-m-d');
-		$ssql = "INSERT INTO inscrito (nome, endereco, bairro, cep, cidade, estado, email, cpf, rg, especial, senha, nacionalidade, telefone, telefone2, celular, datanascimento, sexo, estadocivil, orgaoexpedidor, uf, dataexpedicao, especial_descricao, responsavel, isencao, declaracao, localprova, numinscricao, especial_prova, especial_prova_descricao, vaga_especial, vaga_rede_publica, vaga_rural, campus, data_cadastro) VALUES ";
+		$this->ultima_alteracao = $this->data_cadastro;
+		$ssql = "INSERT INTO inscrito (nome, endereco, bairro, cep, cidade, estado, email, cpf, rg, especial, senha, nacionalidade, telefone, telefone2, celular, datanascimento, sexo, estadocivil, orgaoexpedidor, uf, dataexpedicao, especial_descricao, responsavel, isencao, declaracao, localprova, numinscricao, especial_prova, especial_prova_descricao, vaga_especial, vaga_rede_publica, vaga_rural, campus, data_cadastro, ultima_alteracao) VALUES ";
 
 		$ssql .= "('" . $this->nome . "','" . $this->endereco . "',";
 		$ssql .= "'" . $this->bairro . "','" . $this->cep . "',";
@@ -383,7 +384,8 @@ class Inscrito {
 		$ssql .= "'" . $this->especial_prova . "','" . $this->especial_prova_descricao . "',";
 		$ssql .= "'" . $this->vaga_especial . "','" . $this->vaga_rede_publica . "',";
 		$ssql .= "'" . $this->vaga_rural . "',";
-		$ssql .= "'" . $this->campus . "','" . $this->data_cadastro . "')";
+		$ssql .= "'" . $this->campus . "',";
+		$ssql .= "'" . $this->data_cadastro . "','" . $this->ultima_alteracao . "')";
 
 		$rs = mysql_query($ssql, $sock);
 

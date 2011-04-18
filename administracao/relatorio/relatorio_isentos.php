@@ -8,6 +8,9 @@ include_once '../classes/PHPExcel/PHPExcel/Writer/Excel5.php';
 $banco = DB::getInstance();
 $conexao = $banco->ConectarDB();
 
+$data = explode('/', $_POST[data_final_isencao]);
+$data = date('Y-m-d', mktime(0, 0, 0, $data[1], $data[0], $data[2]));
+
 function removeAcentos($str, $enc = "ISO-8859-1") {
 	$acentos = array(
 		'A' => '/&Agrave;|&Aacute;|&Acirc;|&Atilde;|&Auml;|&Aring;/',
@@ -61,67 +64,16 @@ SELECT
 	inscrito.isencao AS inscrito_isencao,
 	inscrito.especial_prova AS inscrito_especial_prova,
 	inscrito.especial_prova_descricao AS inscrito_especial_prova_descricao,
-	inscrito.vaga_especial AS inscrito_vaga_especial
-
-SQL;
-if ($_POST['tipo'] == 'candidatos_por_necessidade') {
-	if ($_POST['necessidade_filtro']) {
-		$sql .= <<<SQL
-		, inscrito.especial
+	inscrito.vaga_especial AS inscrito_vaga_especial,
+	inscrito.especial
 		FROM
 			inscrito
 				INNER JOIN localprova ON inscrito.localprova = localprova.id
 				INNER JOIN campus ON campus.id = inscrito.campus
 				INNER JOIN inscrito_curso ON inscrito_curso.id_inscrito = inscrito.id
 				INNER JOIN curso ON curso.cod_curso = inscrito_curso.cod_curso
-		WHERE especial not REGEXP 'N(A|Ã|&Atilde;)O'
-SQL;
-	} else {
-		$sql .= <<<SQL
-		 FROM
-			inscrito
-				INNER JOIN localprova ON inscrito.localprova = localprova.id
-				INNER JOIN campus ON campus.id = inscrito.campus
-				INNER JOIN inscrito_curso ON inscrito_curso.id_inscrito = inscrito.id
-				INNER JOIN curso ON curso.cod_curso = inscrito_curso.cod_curso
-		WHERE especial REGEXP 'N(A|Ã|&Atilde;)O'
-SQL;
-	}
-} elseif ($_POST['tipo'] == 'relacao_cadidatos2') {
-	if ($_POST['filtro_pagamento']) {
-		$sql .= <<<SQL
-		, pagamentos.datapagamento
-		FROM
-			inscrito
-				INNER JOIN localprova ON inscrito.localprova = localprova.id
-				INNER JOIN campus ON campus.id = inscrito.campus
-				INNER JOIN inscrito_curso ON inscrito_curso.id_inscrito = inscrito.id
-				INNER JOIN curso ON curso.cod_curso = inscrito_curso.cod_curso
-				INNER JOIN pagamentos ON pagamentos.id_inscrito = inscrito.id
-SQL;
-	} elseif ($_POST['filtro_pagamento'] === 0) {
-		$sql .= <<<SQL
-		 FROM
-			inscrito
-				INNER JOIN localprova ON inscrito.localprova = localprova.id
-				INNER JOIN campus ON campus.id = inscrito.campus
-				INNER JOIN inscrito_curso ON inscrito_curso.id_inscrito = inscrito.id
-				INNER JOIN curso ON curso.cod_curso = inscrito_curso.cod_curso
-				LEFT JOIN pagamentos ON pagamentos.id_inscrito = inscrito.id
-		WHERE pagamentos.id IS NULL
-SQL;
-	} else {
-		$sql .= <<<SQL
-		 FROM
-			inscrito
-				INNER JOIN localprova ON inscrito.localprova = localprova.id
-				INNER JOIN campus ON campus.id = inscrito.campus
-				INNER JOIN inscrito_curso ON inscrito_curso.id_inscrito = inscrito.id
-				INNER JOIN curso ON curso.cod_curso = inscrito_curso.cod_curso
-SQL;
-	}
-}
-$sql .= <<<SQL
+		WHERE cast(ultima_alteracao as DATE) <= cast('{$data}' as DATE)
+				AND isencao = 'SIM'
  GROUP BY
 	campus.id,
 	campus.nome,
@@ -195,15 +147,14 @@ $colunas = array(
 );
 
 $query = $banco->ExecutaQueryGenerica($sql);
-$numResults = mysql_num_rows($query);
+//echo '<pre>';var_dump($sql);exit;
 $linha = 2;
 $campus_id = null;
 while ($row = mysql_fetch_assoc($query)) {
 	$val = array_values($row);
-//	var_dump($val);exit;
 	if ($campus_id != $val[0]) {
 		$campus_id = $val[0];
-		if ($campus_id > 1 && $numResults > 1) {
+		if ($campus_id > 1) {
 			$objPHPExcel->createSheet();
 			$objPHPExcel->setActiveSheetIndex($objPHPExcel->getActiveSheetIndex() + 1);
 		}
@@ -228,7 +179,7 @@ while ($row = mysql_fetch_assoc($query)) {
 //$objWriter->save(str_replace('.php', '.xls', __FILE__));
 
 header('Content-Type: application/vnd.ms-excel');
-header('Content-Disposition: attachment;filename="relatorio_completo.xls"');
+header('Content-Disposition: attachment;filename="relatorio_isentos.xls"');
 header('Cache-Control: max-age=0');
 
 $objPHPExcel->setActiveSheetIndex(0);

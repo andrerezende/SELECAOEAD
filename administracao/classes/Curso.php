@@ -36,8 +36,8 @@ class Curso {
 
 
 	public function Inserir($sock) {
-		$ssql = "insert into curso (nome) values ";
-		$ssql .= " ('".$this->nome."')";
+		$ssql = "insert into curso (nome, campus) values ";
+		$ssql .= " ('".$this->nome."', $this->id_campus)";
 
 		$rs = mysql_query($ssql, $sock);
 

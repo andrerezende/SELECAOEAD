@@ -6,8 +6,8 @@ include_once '../classes/PHPExcel/PHPExcel.php';
 include_once '../classes/PHPExcel/PHPExcel/Writer/Excel5.php';
 
 
-$banco    = DB::getInstance();
-$conexao  = $banco->ConectarDB();
+$banco = DB::getInstance();
+$conexao = $banco->ConectarDB();
 
 if ($_POST['tipo'] == 'inscritos_por_campus') {
 	$colunas = array(
@@ -86,17 +86,15 @@ function setCabecalho($objPHPExcel, $colunas) {
 		$objPHPExcel->getActiveSheet()->getStyle($coluna.'1')->getFont()->setBold(true);
 	}
 }
-echo '<pre>';
+
 $query = $banco->ExecutaQueryGenerica($sql);
 $linha = 2;
 $campus_id = null;
 while ($row = mysql_fetch_assoc($query)) {
 	$val = array_values($row);
-	var_dump($val);
 	setCabecalho($objPHPExcel, $colunas);
 	$col = 0;
 	foreach ($colunas as $coluna => $valor) {
-		echo mb_detect_encoding(utf8_encode($val[$col])) . '<br />';
 		$objPHPExcel->getActiveSheet()->SetCellValue($coluna.$linha, utf8_encode($val[$col]));
 		$col++;
 	}
@@ -107,11 +105,11 @@ while ($row = mysql_fetch_assoc($query)) {
 //$objWriter = new PHPExcel_Writer_Excel5($objPHPExcel);
 //$objWriter->save(str_replace('.php', '.xls', __FILE__));
 
-//header('Content-Type: application/vnd.ms-excel');
-//header('Content-Disposition: attachment;filename="relatorio_completo.xls"');
-//header('Cache-Control: max-age=0');
+header('Content-Type: application/vnd.ms-excel');
+header('Content-Disposition: attachment;filename="relatorio_completo.xls"');
+header('Cache-Control: max-age=0');
 
-//$objPHPExcel->setActiveSheetIndex(0);
-//$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-//$objWriter->save('php://output');
+$objPHPExcel->setActiveSheetIndex(0);
+$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+$objWriter->save('php://output');
 exit;

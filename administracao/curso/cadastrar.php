@@ -4,12 +4,13 @@ include("../classes/DB.php");
 include("../classes/Curso.php");
 
 $nome = addslashes($_POST['nome']);
+$campus = addslashes($_POST['campus']);
 
 /* Acesso ao banco de dados */
 $banco = DB::getInstance();
 $conexao = $banco->ConectarDB();
 
-$curso = new Curso(null,$nome);
+$curso = new Curso(null,$nome, $campus);
 $resultado = $curso->Inserir($conexao);
 
 if ($resutado = true) {

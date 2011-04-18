@@ -505,7 +505,7 @@ if (count($objinscrito) == 0){
                     <td>
                         <select name="especial" id="especial" tabindex=23 >
                             <?php
-                                $especial = array("N&Atilde;O","VISUAL","MOTORA","AUDITIVA","M&Uacute;LTIPLAS","OUTRA");
+                                $especial = array("NAO","VISUAL","MOTORA","AUDITIVA","M&Uacute;LTIPLAS","OUTRA");
                                 $total = count($especial);
                                 $i =0;
                                 while ($total > $i){

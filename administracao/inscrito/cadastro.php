@@ -510,7 +510,7 @@
                         <select name="estadocivil" id="estadocivil" tabindex=21>
                              <option value="SOLTEIRO(A)" selected="selected">SOLTEIRO(A)</option>
                              <option value="CASADO(A)">CASADO(A)</option>
-                             <option value="VIÚVO(A)">VI&Uacute;VO(A)</option>
+                             <option value="VI&Uacute;VO(A)">VI&Uacute;VO(A)</option>
                              <option value="SEPARADO(A)">SEPARADO(A)</option>
                              <option value="DIVORCIADO(A)">DIVORCIADO(A)</option>
                          </select>
@@ -526,7 +526,7 @@
                     <td height="28" align='right'><label for=especial>Necessidade Especial:</label></td>
                     <td>
                         <select name="especial" id="especial" tabindex=23 onchange="javascript:necessidadeEspecial()">
-                            <option value="N&Atilde;O" selected="selected">N&Atilde;O</option>
+                            <option value="NAO" selected="selected">N&Atilde;O</option>
                             <option value="VISUAL">VISUAL</option>
                             <option value="MOTORA">MOTORA</option>
                             <option value="AUDITIVA">AUDITIVA</option>

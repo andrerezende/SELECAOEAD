@@ -59,7 +59,7 @@ else :
 				<img src="../../imgs/topo2/topo2.png" alt="Instituto Federal Baiano" />
 			</div>
 			<div align="right" class="admin_logout">
-				<p><a href="logout.php" target="_self">Logout</a></p>
+				<p><a href="../login/logout.php" target="_self">Logout</a></p>
 			</div>
 			<div align='center'>
 				<h2>&Aacute;rea Administrativa - Cadastro de Curso</h2>

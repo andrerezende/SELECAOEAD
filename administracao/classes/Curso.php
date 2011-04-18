@@ -37,7 +37,7 @@ class Curso {
 
 	public function Inserir($sock) {
 		$ssql = "insert into curso (nome, campus) values ";
-		$ssql .= " ('".$this->nome."', $this->id_campus)";
+		$ssql .= " ('".$this->nome."', " . $this->id_campus . ")";
 
 		$rs = mysql_query($ssql, $sock);
 
@@ -139,6 +139,19 @@ class Curso {
 		while ($linha = mysql_fetch_row($rs)) {
 			$obj = new Curso($linha[0], $linha[1], $linha[2]);
 			$ar[] = $obj;
+		}
+		return ($ar);
+	}
+
+	public function SelectCampusPorCurso($sock) {
+		$ssql = "select * from curso inner join campus on curso.campus = curso.campus where cod_curso = '".$this->cod_curso."'" ;
+//var_dump($ssql);exit;
+		$rs = mysql_query($ssql, $sock);
+
+		$ar = array();
+
+		while ($linha = mysql_fetch_row($rs)) {
+			$ar[] = $linha;
 		}
 		return ($ar);
 	}

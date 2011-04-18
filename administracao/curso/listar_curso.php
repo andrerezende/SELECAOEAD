@@ -34,7 +34,7 @@ if (!$_SESSION['validacao']) {
 			<img src="../../imgs/topo2/topo2.png" alt="Instituto Federal Baiano" />
      	</div>
 	<div align="right" class="admin_logout">
-		<p><a href="logout.php" target="_self">Logout</a> </p>
+		<p><a href="../login/logout.php" target="_self">Logout</a> </p>
 	</div>
 	<div align="center"><h2>�rea Administrativa - Cursos</h2></div>
 <?php
@@ -42,34 +42,39 @@ if (!$_SESSION['validacao']) {
   include("../classes/Curso.php");
 
   /* Acesso ao banco de dados */
-  $banco   = DB::getInstance();
+  $banco = DB::getInstance();
   $conexao = $banco->ConectarDB();
 
-  $curso      = new Curso(null, null);
+  $curso = new Curso(null, null, null);
   $vetorcurso = $curso->SelectByAll($conexao);
 
   /* Varaveis auxiliares */
-  $i =0;
+  $i = 0;
   $total = count($vetorcurso);
   echo("<form id='excluircurso' name='excluircurso' action='' method='post'>");
   echo('  <table width="76%" border="1">');
   echo('  <tr>');
   echo('    <td width="50%"><strong>Nome do Curso</strong></td>');
+  echo('    <td width="50%"><strong>Campus</strong></td>');
   echo('    <td width="35%"><strong>Excluir</strong></td>');
   echo('  </tr>');
 
 
 
   while ($total > $i) {
+	  $nome = $vetorcurso[$i]->getnome();
+      $cod_curso = $vetorcurso[$i]->getcodcurso();
+	  $curso_campus = $vetorcurso[$i]->SelectCampusPorCurso($conexao);
 
-	  $nome   = $vetorcurso[$i]->getnome();
-          $cod_curso = $vetorcurso[$i]->getcodcurso();
-      $i= $i + 1;
-
-      echo('  <tr>');
-      echo('       <td>' . $nome. '</td>');
+	foreach($curso_campus as $curso) {
+	  echo('  <tr>');
+      echo('       <td>' . $curso[1]. '</td>');
+      echo('       <td>' . $curso[5]. '</td>');
+      echo("       <td><a href='#' onclick='excluir(".$cod_curso.")'>Excluir</a></td>");
       echo("       <td><a href='#' onclick='excluir(".$cod_curso.")'>Excluir</a></td>");
       echo('  </tr>');
+	}
+      $i = $i + 1;
   }
 
   echo('  </table>');

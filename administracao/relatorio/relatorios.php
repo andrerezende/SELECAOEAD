@@ -9,6 +9,15 @@ session_start();
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript">
+	function validar() {
+		var data_final_isencao = document.getElementById("data_final_isencao");
+		if (data_final_isencao.value == "") {
+			alert('Informe a data final de isencao.');
+			data_final_isencao.focus();
+			resultado = false;
+		}
+		return resultado;
+	}
 	function Mascara(tipo, campo, teclaPress) {
 		if (window.event) {
 			var tecla = teclaPress.keyCode;
@@ -91,7 +100,7 @@ else :
 			<img src="../../imgs/topo2/topo2.png" alt="Instituto Federal Baiano" />
 		</div>
 	<div align="right" class="admin_logout">
-		<p><a href="logout.php" target="_self">Logout</a></p>
+		<p><a href="../login/logout.php" target="_self">Logout</a></p>
 	</div>
 	<div align='center'>
 		<h2>&Aacute;rea Administrativa - Relat&oacute;rios</h2>
@@ -169,12 +178,12 @@ else :
 			</form>
 		</tr>
 		<tr>
-			<form id='relatorioisentos' name='relatorioisentos' action='relatorio_isentos.php' method='post'>
+			<form id='relatorioisentos' name='relatorioisentos' action='relatorio_isentos.php' method='post' onsubmit='return validar()'>
 				<input type='hidden' value='relacao_isentos' name="tipo" />
 				<td><b>Relat&oacute;rio de Isentos</b></td>
 				<td>&nbsp;</td>
 				<td>
-					<input type="text" name="data_final_isencao" size="11" maxlength="10" onkeypress="Mascara('DATA',this,event); return Onlynumber(event);" />
+					<input type="text" name="data_final_isencao" size="11" maxlength="10" onkeypress="Mascara('DATA',this,event); return Onlynumber(event);" id="data_final_isencao" />
 				</td>
 				<td><input name="visualizar_relatorio" type="submit" id="visualizar_relatorio" value="Visualizar"></td>
 			</form>

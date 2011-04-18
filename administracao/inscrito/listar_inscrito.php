@@ -36,14 +36,14 @@ else :
 			<div id="topo2" align="left">
 				<img src="../../imgs/topo2/topo2.png" alt="Instituto Federal Baiano" />
 			</div>
-			<div align="right" class="admin_logout"><p><a href="logout.php" target="_self">Logout</a></p></div>
+			<div align="right" class="admin_logout"><p><a href="../login/logout.php" target="_self">Logout</a></p></div>
 			<div align='center'><h2>&Aacute;rea Administrativa - Inscritos</h2></div>
 			<?php
 			/* Acesso ao banco de dados */
 			$banco = DB::getInstance();
 			$conexao = $banco->ConectarDB();
 
-			$inscrito = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null);
+			$inscrito = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
 			$vetorinscrito = $inscrito->SelectByAll($conexao);
 
 			/* Varaveis auxiliares */

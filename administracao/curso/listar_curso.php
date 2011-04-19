@@ -1,5 +1,10 @@
 <?php
+ini_set('display_errors', 1);
 session_start();
+
+include("../classes/DB.php");
+include("../classes/Curso.php");
+
 if (!$_SESSION['validacao']) {
 	header("Location: ../login/login.php");
 } else {
@@ -36,48 +41,35 @@ if (!$_SESSION['validacao']) {
 	<div align="right" class="admin_logout">
 		<p><a href="../login/logout.php" target="_self">Logout</a> </p>
 	</div>
-	<div align="center"><h2>�rea Administrativa - Cursos</h2></div>
+	<div align="center"><h2>&Aacute;rea Administrativa - Cursos</h2></div>
 <?php
-  include("../classes/DB.php");
-  include("../classes/Curso.php");
+/* Acesso ao banco de dados */
+$banco = DB::getInstance();
+$conexao = $banco->ConectarDB();
 
-  /* Acesso ao banco de dados */
-  $banco = DB::getInstance();
-  $conexao = $banco->ConectarDB();
+$curso = new Curso(null, null, null);
+$vetorcurso = $curso->SelectByAll($conexao);
 
-  $curso = new Curso(null, null, null);
-  $vetorcurso = $curso->SelectByAll($conexao);
+echo("<form id='excluircurso' name='excluircurso' action='' method='post'>");
+echo('  <table width="76%" border="1">');
+echo('  <tr>');
+echo('    <td width="50%"><strong>Nome do Curso</strong></td>');
+echo('    <td width="50%"><strong>Campus</strong></td>');
+echo('    <td width="35%"><strong>Excluir</strong></td>');
+echo('  </tr>');
 
-  /* Varaveis auxiliares */
-  $i = 0;
-  $total = count($vetorcurso);
-  echo("<form id='excluircurso' name='excluircurso' action='' method='post'>");
-  echo('  <table width="76%" border="1">');
-  echo('  <tr>');
-  echo('    <td width="50%"><strong>Nome do Curso</strong></td>');
-  echo('    <td width="50%"><strong>Campus</strong></td>');
-  echo('    <td width="35%"><strong>Excluir</strong></td>');
-  echo('  </tr>');
-
-
-
-  while ($total > $i) {
-	  $nome = $vetorcurso[$i]->getnome();
-      $cod_curso = $vetorcurso[$i]->getcodcurso();
-	  $curso_campus = $vetorcurso[$i]->SelectCampusPorCurso($conexao);
-
-	foreach($curso_campus as $curso) {
-	  echo('  <tr>');
-      echo('       <td>' . $curso[1]. '</td>');
-      echo('       <td>' . $curso[5]. '</td>');
-      echo("       <td><a href='#' onclick='excluir(".$cod_curso.")'>Excluir</a></td>");
-      echo("       <td><a href='#' onclick='excluir(".$cod_curso.")'>Excluir</a></td>");
-      echo('  </tr>');
+foreach ($vetorcurso as $curso) {
+	$resultado = $curso->SelectCampusPorCurso($conexao);
+	echo('  <tr>');
+	while ($row = mysql_fetch_assoc($resultado)) {
+		$val = array_values($row);
+		echo('       <td>' . $val[1]. '</td>');
+		echo('       <td>' . $val[2]. '</td>');
+		echo("       <td><a href='#' onclick='excluir(".$val[0].")'>Excluir</a></td>");
 	}
-      $i = $i + 1;
-  }
-
-  echo('  </table>');
+	echo('  </tr>');
+}
+echo('  </table>');
 }
 ?>
 <script type="text/javascript">

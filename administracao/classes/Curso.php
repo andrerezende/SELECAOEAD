@@ -144,16 +144,13 @@ class Curso {
 	}
 
 	public function SelectCampusPorCurso($sock) {
-		$ssql = "select * from curso inner join campus on curso.campus = curso.campus where cod_curso = '".$this->cod_curso."'" ;
-//var_dump($ssql);exit;
+		$ssql = "SELECT curso.cod_curso, curso.nome as nome_curso, campus.nome as nome_campus FROM curso";
+		$ssql .= " INNER JOIN campus ON curso.campus = campus.id";
+		$ssql .= " WHERE cod_curso = '$this->cod_curso'";
+
 		$rs = mysql_query($ssql, $sock);
 
-		$ar = array();
-
-		while ($linha = mysql_fetch_row($rs)) {
-			$ar[] = $linha;
-		}
-		return ($ar);
+		return $rs;
 	}
 
 }

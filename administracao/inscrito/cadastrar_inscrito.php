@@ -70,7 +70,17 @@ if ($existe) {
 							</div>
 						</td>
 					</tr>
-                        <tr>
+					<tr>
+						<td>
+							<div align="center">
+								<form id="frmimpressao" name="frmimpressao" action="impressao.php" method="post">
+									<input type="hidden" name="id" value="<?php echo($id_inscrito);?>" />
+									<a href="#" onclick="document.forms['frmimpressao'].submit();">Imprimir Ficha de Inscri&ccedil;&atilde;o</a>
+								</form>
+							</div>
+						</td>
+					</tr>
+					<tr>
                         <td>
                             <div align='center'>
                                 <form id='frmboleto' name='frmboleto' action='../boleto/boleto_bb.php' method='post'>
@@ -79,7 +89,7 @@ if ($existe) {
                                 </form>
                             </div>
                         </td>
-                        </tr>
+					</tr>
 <?php
 			echo("		<td align='center'><br /><div><a href='../../index.php'>P&aacute;gina Inicial</a></div></td>");
 			echo("	</tr>");

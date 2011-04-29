@@ -6,13 +6,17 @@ include("../classes/Campus.php");
 include("../classes/Localprova.php");
 
 $cpf = addslashes($_POST['cpf']);
+$id = $_POST['id'];
 
 /* Acesso ao banco de dados */
 $banco   = DB::getInstance();
 $conexao = $banco->ConectarDB();
-
-$inscrito    = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);//36
-$objinscrito = $inscrito->SelectByCpf($conexao, $cpf);
+$inscrito  = new Inscrito		(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);//36
+if ($id) {
+	$objinscrito = $inscrito->SelectById($conexao, $id);
+} elseif ($cpf) {
+	$objinscrito = $inscrito->SelectByCpf($conexao, $cpf);
+}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

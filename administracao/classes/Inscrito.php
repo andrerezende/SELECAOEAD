@@ -412,7 +412,7 @@ class Inscrito {
 		$ssql .= "estadocivil = '" . $this->estadocivil . "', orgaoexpedidor = '" . $this->orgaoexpedidor . "', uf = '" . $this->uf . "',";
 		$ssql .= "dataexpedicao = '" . $this->dataexpedicao . "', especial_descricao = '" . $this->especial_descricao . "', responsavel = '" . $this->responsavel . "',";
 		$ssql .= "isencao = '" . $this->isencao . "',";
-		$ssql .= "declaracao = '" . $this->declaracao . "', localprova = '" . $this->localprova . "', numinscricao = '" . $this->numinscricao . "',";
+		$ssql .= "localprova = '" . $this->localprova . "', numinscricao = '" . $this->numinscricao . "',";
 		$ssql .= "especial_prova = '" . $this->especial_prova . "', especial_prova_descricao = '" . $this->especial_prova_descricao . "',";
 		$ssql .= "vaga_especial = '" . $this->vaga_especial . "', vaga_rede_publica = '" . $this->vaga_rede_publica . "',";
 		$ssql .= "vaga_rural = '" . $this->vaga_rural . "',";
@@ -425,7 +425,7 @@ class Inscrito {
 
 		$linha = mysql_affected_rows();
 
-		if ($linha >0) {
+		if ($linha > 0 || true === $rs) {
 			return true;
 		} else {
 			return false;

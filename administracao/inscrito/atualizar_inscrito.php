@@ -54,6 +54,16 @@ if ($resultado) {
 				</tr>
 				<tr>
 					<td>
+						<div align="center">
+							<form id="frmimpressao" name="frmimpressao" action="impressao.php" method="post">
+								<input type="hidden" name="cpf" value="<?php echo($cpf);?>" />
+								<a href="#" onclick="document.forms['frmimpressao'].submit();">Imprimir Ficha de Inscri&ccedil;&atilde;o</a>
+							</form>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
 						<div align='center'>
 							<form id='frmboleto' name='frmboleto' action='../boleto/boleto_bb.php' method='post'>
 								<input type='hidden' name='id' value="<?php echo($id);?>" />

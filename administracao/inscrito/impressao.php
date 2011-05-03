@@ -168,7 +168,14 @@ if (count($objinscrito) == 0) {
         <tr>
             <td align='right'><label for=estadocivil>Estado Civil:</label></td>
             <td>
-                <input style="text-transform:uppercase" name="estadocivil" id="estadocivil" disabled="true" type="text" tabindex=21 alt="E-mail" value="<?echo($objinscrito[0]->getestadocivil()); ?>"/>
+                <input style="text-transform:uppercase" name="estadocivil" id="estadocivil" disabled="true" type="text" tabindex=21 alt="Estado Civil" value="<?echo($objinscrito[0]->getestadocivil()); ?>"/>
+            </td>
+        </tr>
+
+		<tr>
+            <td align='right'><label for=responsavel>Respons&aacute;vel:</label></td>
+            <td>
+                <input style="text-transform:uppercase" name="responsavel" id="responsavel" disabled="true" type="text" tabindex=21 alt="Responsável" value="<?echo($objinscrito[0]->getresponsavel()); ?>"/>
             </td>
         </tr>
 

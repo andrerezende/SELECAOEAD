@@ -21,7 +21,7 @@ if ($inscrito_eliminado && $inscritoCurso_eliminado) {
 } else {
 	$_SESSION['flashMensagem'] = 'Problemas ao efetuar o transa&ccedil;&atilde;o.';
 }
-header('Location: /administracao/login/menu.php');
+header('Location: ../login/menu.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">

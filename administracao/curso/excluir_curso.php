@@ -30,7 +30,7 @@ if ($curso_eliminado) {
 } else {
 	$_SESSION['flashMensagem'] = 'Problemas ao efetuar o transa&ccedil;&atilde;o.';
 }
-header('Location: /administracao/login/menu.php');
+header('Location: ../login/menu.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
@@ -38,13 +38,8 @@ header('Location: /administracao/login/menu.php');
 	<title>Concurso P&uacute;blico para Discente - 2011.2</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript">
-	function delayer(){
-		window.location = '../login/login.php';
-	}
-	</script>
 </head>
-<body onload="setTimeout('delayer()', 1000)">
+<body>
 <?php
 if ($curso_eliminado) {
 	echo("<table width='90%' border='0'>");

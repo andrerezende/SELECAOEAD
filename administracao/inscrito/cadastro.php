@@ -37,12 +37,16 @@
 		var nacionalidade   = document.getElementById("nacionalidade");
 		var dataNascimento  = document.getElementById("datanascimento");
 		var sexo            = document.getElementById("sexo");
-		var email            = document.getElementById("email");
-		var campus            = document.getElementById("campus");
-		var curso            = document.getElementById("curso");
+		var email           = document.getElementById("email");
+		var campus          = document.getElementById("campus");
+		var curso           = document.getElementById("curso");
 
 		resultado = true;
-		if (nome.value == "") {
+		if (declaracao.value == "NAO") {
+			alert('Voce precisa aceitar a declaracao!');
+			declaracao.focus();
+			resultado = false;
+		} else if (nome.value == "") {
 			alert('Informe o nome!');
 			nome.focus();
 			resultado = false;
@@ -105,10 +109,6 @@
 		} else if (especial.value == "") {
 			alert('Informe se possui necessidades especiais!');
 			especial.focus();
-			resultado = false;
-		} else if (declaracao.value == "NAO") {
-			alert('Voce precisa aceitar a declaracao!');
-			declaracao.focus();
 			resultado = false;
 		} else if (!ValidaCPF(cpf)) {
 			resultado = false;

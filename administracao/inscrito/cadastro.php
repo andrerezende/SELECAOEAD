@@ -54,6 +54,8 @@
 			alert('Informe o CPF!');
 			cpf.focus();
 			resultado = false;
+		} else if (!ValidaCPF(cpf)) {
+			resultado = false;
 		} else if(senha.value== "") {
 			alert('Informe a senha!');
 			senha.focus();
@@ -109,8 +111,6 @@
 		} else if (especial.value == "") {
 			alert('Informe se possui necessidades especiais!');
 			especial.focus();
-			resultado = false;
-		} else if (!ValidaCPF(cpf)) {
 			resultado = false;
 		}
 		return resultado;
@@ -268,7 +268,7 @@
                 // Verifica se os valores dos dígitos verificadores conferem
                 DV = DIGITO[9] * 10 + DIGITO[10];
                    if (DV != DV_INFORMADO) {
-                      alert('CPF inválido');
+                      alert('CPF invalido');
                       campo.value = '';
                       campo.focus();
                       return false;

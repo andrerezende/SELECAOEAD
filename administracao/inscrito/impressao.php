@@ -21,7 +21,7 @@ if ($id) {
 <!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Concurso P&uacute;blico para Discente - 2011.2</title>
+	<title>Processo Seletivo para Ingresso de Estudantes - 2011.2</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 </head>
@@ -40,7 +40,7 @@ if (count($objinscrito) == 0) {
 
 <div align='center'>
 	<p><img src="../../imgs/logo.gif" width="178" height="100" alt="logotipo do Ifbaiano"></p>
-        <p><h2>Concurso P&uacute;blico para Discente - 2011.2</h2>
+        <p><h2>Processo Seletivo para Ingresso de Estudantes - 2011.2</h2>
 	<p><h3>Edital N&#176; 01/2011</h3>
 	<p><h3>Ficha de Inscri&ccedil;&atilde;o</h3>
 </div>

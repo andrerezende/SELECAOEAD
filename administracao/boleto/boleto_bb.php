@@ -1,9 +1,29 @@
 <?php
-ob_start();
+//ob_start();
 session_start();
 include("../classes/DB.php");
 include("../classes/Inscrito.php");
 include("../classes/Localprova.php");
+
+$banco   = DB::getInstance();
+$conexao = $banco->ConectarDB();
+
+$inscrito = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);//36 null
+$local_prova = new Localprova(null, null, null);
+
+if (isset($_POST['id']) && !empty($_POST['id'])) {
+	$id = addslashes($_POST['id']);
+	$objinscrito = $inscrito->SelectById($conexao, $id);
+} else if(isset($_POST['cpf']) && !empty($_POST['cpf'])) {
+	$cpf = addslashes($_POST['cpf']);
+	$objinscrito = $inscrito->SelectByCpf($conexao, $cpf);
+}
+
+if (empty($objinscrito)) {
+	$_SESSION['flashMensagem'] = 'CPF n&atilde;o encontrado na nossa base de dados.';
+	header("Location:" . $_SERVER['HTTP_REFERER']);
+	exit;
+}
 ?>
 <div class="voltar" style="margin-left: 30px; margin-top: 15px;">
 	<a href="javascript:history.go(-1)">Voltar</a>
@@ -41,26 +61,6 @@ include("../classes/Localprova.php");
 // Os valores abaixo podem ser colocados manualmente ou ajustados p/ formulário c/ POST, GET ou de BD (MySql,Postgre,etc)	//
 
 
-$banco   = DB::getInstance();
-$conexao = $banco->ConectarDB();
-
-$inscrito = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);//36 null
-$local_prova = new Localprova(null, null, null);
-
-if (isset($_POST['id']) && !empty($_POST['id'])) {
-	$id = addslashes($_POST['id']);
-	$objinscrito = $inscrito->SelectById($conexao, $id);
-} else if(isset($_POST['cpf']) && !empty($_POST['cpf'])) {
-	$cpf = addslashes($_POST['cpf']);
-	$objinscrito = $inscrito->SelectByCpf($conexao, $cpf);
-}
-
-if (empty($objinscrito)) {
-	$_SESSION['flashMensagem'] = 'CPF n&atilde;o encontrado na nossa base de dados.';
-	header("Location:" . $_SERVER['HTTP_REFERER']);
-}
-
-
 // DADOS DO BOLETO PARA O SEU CLIENTE
 $dias_de_prazo_para_pagamento = 1;
 $taxa_boleto = 0.0;
@@ -85,7 +85,7 @@ $dadosboleto["endereco2"] = $objinscrito[0]->getcidade()." - ".$objinscrito[0]->
 
 // INFORMACOES PARA O CLIENTE
 $local_prova = $local_prova->SelectByPrimaryKey($conexao, $objinscrito[0]->getlocalprova());
-$dadosboleto["demonstrativo1"] = "Pagamento de Taxa de Inscri&ccedil;&atilde;o - Sele&ccedil;&atilde;o de alunos 2011.2 - IF Baiano";
+$dadosboleto["demonstrativo1"] = "Pagamento de Taxa de Inscri&ccedil;&atilde;o - Processo Seletivo para Ingresso de Estudantes - 2011.2 - IF Baiano";
 $dadosboleto["demonstrativo2"] = " CPF do Candidato: ".$objinscrito[0]->getcpf();
 $dadosboleto["demonstrativo3"] = " Local de prova: " . $local_prova[0]->getnome();
 //$dadosboleto["demonstrativo2"] = "Taxa bancária - R$ ".number_format($taxa_boleto, 2, ',', '');

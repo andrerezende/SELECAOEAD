@@ -286,6 +286,18 @@
             }
 
 			$(document).ready(function() {
+				$("#vaga_especial").change(function() {
+					if ($(this).val() == "SIM") {
+						$("#vaga_rede_publica").val("NAO");
+					}
+				});
+
+				$("#vaga_rede_publica").change(function() {
+					if ($(this).val() == "SIM") {
+						$("#vaga_especial").val("NAO");
+					}
+				});
+
 				$("#especial_prova_descricao").attr("disabled", true);
 				//$("#especial_descricao").attr("disabled", true);
 
@@ -527,7 +539,8 @@
                     <td>
                         <select name="especial" id="especial" tabindex=23 onchange="javascript:necessidadeEspecial()">
                             <option value="NAO" selected="selected">N&Atilde;O</option>
-                            <option value="VISUAL">VISUAL</option>
+                            <option value="VISUAL - CEGUEIRA">VISUAL - CEGUEIRA</option>
+                            <option value="VISUAL - BAIXA VIS&Atilde;O">VISUAL - BAIXA VISÃO</option>
                             <option value="MOTORA">MOTORA</option>
                             <option value="AUDITIVA">AUDITIVA</option>
                             <option value="M&Uacute;LTIPLAS">M&Uacute;LTIPLAS</option>
@@ -537,6 +550,20 @@
 
                         &nbsp;&nbsp;Qual:&nbsp;&nbsp;
                         <input style="text-transform:uppercase" name="especial_descricao" type="text" id="especial_descricao" onclick="javascript:necessidadeEspecial()" tabindex=24 size='40' maxlength="40" alt="CEP" />
+                    </td>
+                </tr>
+
+				<tr>
+                    <td height="28" align='right'><label for=especial_prova>Condi&ccedil;&otilde;es especiais para realiza&ccedil;&atilde;o da prova:</label></td>
+                    <td>
+                        <select name="especial_prova" id="especial_prova" tabindex=29 onchange="javascript:especialProva()">
+                            <option value="N&Atilde;O" selected="selected">N&Atilde;O</option>
+                            <option value="SIM">SIM</option>
+                        </select>
+                        <span class="textoSobrescrito">*</span>
+
+                        &nbsp;&nbsp;Qual:&nbsp;&nbsp;
+                        <input style="text-transform:uppercase" name="especial_prova_descricao" type="text" id="especial_prova_descricao" tabindex=30 size='40' maxlength="40" alt="Especial Prova" />
                     </td>
                 </tr>
 
@@ -628,20 +655,6 @@
 					</td>
 				</tr>
 
-				<tr>
-                    <td height="28" align='right'><label for=especial_prova>Condi&ccedil;&otilde;es especiais para realiza&ccedil;&atilde;o da prova:</label></td>
-                    <td>
-                        <select name="especial_prova" id="especial_prova" tabindex=29 onchange="javascript:especialProva()">
-                            <option value="N&Atilde;O" selected="selected">N&Atilde;O</option>
-                            <option value="SIM">SIM</option>
-                        </select>
-                        <span class="textoSobrescrito">*</span>
-
-                        &nbsp;&nbsp;Qual:&nbsp;&nbsp;
-                        <input style="text-transform:uppercase" name="especial_prova_descricao" type="text" id="especial_prova_descricao" tabindex=30 size='40' maxlength="40" alt="Especial Prova" />
-                    </td>
-                </tr>
-
                 <tr>
                     <td height="28" align='left'><label for=vaga_especial>Concorrer &agrave;s vagas reservadas para alunos com Necessidades Especiais:</label></td>
                     <td>
@@ -664,7 +677,7 @@
                     </td>
                 </tr>
 
-                <tr>
+                <tr style="display: none">
                     <td height="28" align='left'><label for=vaga_rural>Concorrer &agrave;s vagas reservadas para alunos filhos de Pequenos Produtores Rurais, Assentados, Lavradores e Trabalhadores Rurais:</label></td>
                     <td>
                         <select name="vaga_rural" id="vaga_rural" tabindex=33>

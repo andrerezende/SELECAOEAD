@@ -189,6 +189,18 @@
 		}
 
 		$(document).ready(function() {
+			$("#vaga_especial").change(function() {
+				if ($(this).val() == "SIM") {
+					$("#vaga_rede_publica").val("NAO");
+				}
+			});
+
+			$("#vaga_rede_publica").change(function() {
+				if ($(this).val() == "SIM") {
+					$("#vaga_especial").val("NAO");
+				}
+			});
+
 			if ($("#especial option:selected").val() == 'OUTRA') {
 				$("#especial_descricao").removeAttr("disabled");
 			} else {
@@ -505,7 +517,7 @@ if (count($objinscrito) == 0){
                     <td>
                         <select name="especial" id="especial" tabindex=23 >
                             <?php
-                                $especial = array("NAO","VISUAL","MOTORA","AUDITIVA","M&Uacute;LTIPLAS","OUTRA");
+                                $especial = array("NAO","VISUAL - CEGUEIRA","VISUAL - BAIXA VIS&Atilde;O","MOTORA","AUDITIVA","M&Uacute;LTIPLAS","OUTRA");
                                 $total = count($especial);
                                 $i =0;
                                 while ($total > $i){
@@ -524,6 +536,30 @@ if (count($objinscrito) == 0){
                         <input style="text-transform:uppercase" name="especial_descricao" type="text" id="especial_descricao" tabindex=24 size='40' maxlength="40" alt="Qual deficiência?" value="<?echo($objinscrito[0]->getespecial_descricao()); ?>" />
                     </td>
                 </tr>
+
+				<tr>
+					<td height="28" align='right'><label for=especial_prova>Condi&ccedil;&otilde;es especiais para realiza&ccedil;&atilde;o da prova:</label></td>
+					<td>
+						<select name="especial_prova" id="especial_prova" tabindex=29>
+							<?php
+							$especial_prova = array("N&Atilde;O","SIM");
+							$total = count($especial_prova);
+							$i = 0;
+							while ($total > $i) {
+								if ($especial_prova[$i] != $objinscrito[0]->getespecialprova()) {
+									echo("	<option value=".$especial_prova[$i].">".$especial_prova[$i]."</option>\n");
+								} else {
+									echo("	<option selected value=".$especial_prova[$i].">".$especial_prova[$i]."</option>\n");
+								}
+								$i = $i + 1;
+							}
+							?>
+						</select>
+						<span class="textoSobrescrito">*</span>
+						&nbsp;&nbsp;Qual?&nbsp;&nbsp;
+						<input style="text-transform:uppercase" name="especial_prova_descricao" type="text" id="especial_prova_descricao" tabindex=30 size='40' maxlength="40" alt="Qual?" value="<?echo($objinscrito[0]->getespecialprovadescricao()); ?>" />
+					</td>
+				</tr>
 
                 <tr>
                     <td align='right' width="200px"><label for=campus>Campus:</label></td>
@@ -665,30 +701,6 @@ if (count($objinscrito) == 0){
 				</tr>
 
 				<tr>
-					<td height="28" align='right'><label for=especial_prova>Condi&ccedil;&otilde;es especiais para realiza&ccedil;&atilde;o da prova:</label></td>
-					<td>
-						<select name="especial_prova" id="especial_prova" tabindex=29>
-							<?php
-							$especial_prova = array("N&Atilde;O","SIM");
-							$total = count($especial_prova);
-							$i = 0;
-							while ($total > $i) {
-								if ($especial_prova[$i] != $objinscrito[0]->getespecialprova()) {
-									echo("	<option value=".$especial_prova[$i].">".$especial_prova[$i]."</option>\n");
-								} else {
-									echo("	<option selected value=".$especial_prova[$i].">".$especial_prova[$i]."</option>\n");
-								}
-								$i = $i + 1;
-							}
-							?>
-						</select>
-						<span class="textoSobrescrito">*</span>
-						&nbsp;&nbsp;Qual?&nbsp;&nbsp;
-						<input style="text-transform:uppercase" name="especial_prova_descricao" type="text" id="especial_prova_descricao" tabindex=30 size='40' maxlength="40" alt="Qual?" value="<?echo($objinscrito[0]->getespecialprovadescricao()); ?>" />
-					</td>
-				</tr>
-
-				<tr>
                     <td height="28" align='right'><label for=vaga_especial>Concorrer &agrave;s vagas reservadas para alunos com Necessidades Especiais:</label></td>
 					<td>
 						<select name="vaga_especial" id="vaga_especial" tabindex=31>
@@ -713,7 +725,7 @@ if (count($objinscrito) == 0){
                 <tr>
                     <td height="28" align='right'><label for=vaga_rede_publica>Concorrer &agrave;s vagas reservadas para alunos oriundos da Rede P&uacute;blica:</label></td>
                     <td>
-                        <select name="vaga_rede_publica" id="vaga_especial" tabindex=32>
+                        <select name="vaga_rede_publica" id="vaga_rede_publica" tabindex=32>
 							<?php
 							$vaga_especial = array("N&Atilde;O","SIM");
 							$total = count($vaga_especial);
@@ -732,10 +744,10 @@ if (count($objinscrito) == 0){
                     </td>
                 </tr>
 
-                <tr>
+                <tr style="display: none">
                     <td height="28" align='right'><label for=vaga_rural>Concorrer &agrave;s vagas reservadas para alunos filhos de Pequenos Produtores Rurais, Assentados, Lavradores e Trabalhadores Rurais:</label></td>
                     <td>
-                        <select name="vaga_rural" id="vaga_especial" tabindex=33>
+                        <select name="vaga_rural" id="vaga_rural" tabindex=33>
 							<?php
 							$vaga_especial = array("N&Atilde;O","SIM");
 							$total = count($vaga_especial);

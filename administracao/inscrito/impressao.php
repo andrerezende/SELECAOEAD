@@ -41,7 +41,6 @@ if (count($objinscrito) == 0) {
 <div align='center'>
 	<p><img src="../../imgs/logo.gif" width="178" height="100" alt="logotipo do Ifbaiano"></p>
         <p><h2>Processo Seletivo para Ingresso de Estudantes - 2011.2</h2>
-	<p><h3>Edital N&#176; 01/2011</h3>
 	<p><h3>Ficha de Inscri&ccedil;&atilde;o</h3>
 </div>
 
@@ -270,7 +269,7 @@ if (count($objinscrito) == 0) {
             </td>
         </tr>
 
-        <tr>
+        <tr style="display: none">
             <td height="28" align='right'><label for=vaga_rural>Concorrer &agrave;s vagas reservadas para alunos filhos de Pequenos Produtores Rurais, Assentados, Lavradores e Trabalhadores Rurais:</label></td>
             <td>
                 <input style="text-transform:uppercase" name="vaga_rural" id="vaga_rural" disabled="disabled" tabindex=30 size="3" value="<?echo($objinscrito[0]->getvagarural()); ?>" />

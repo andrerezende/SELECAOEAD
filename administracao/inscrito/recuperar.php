@@ -59,14 +59,14 @@ else :
 
 	$mensagem = Swift_Message::newInstance()
 		->setSubject('Recupera Senha - Processo Seletivo')
-		->setFrom(array('substituto2011@ifbaiano.edu.br' => 'IF Baiano - Processo Seletivo para Ingresso de Estudantes - 2011.2'))
+		->setFrom(array('selecaodiscente2011@ifbaiano.edu.br' => 'IF Baiano - Processo Seletivo para Ingresso de Estudantes - 2011.2'))
 		->setTo(array($emailInscrito => $nomeInscrito))
 		->setBody(
 			'<p>Candidato: ' .$nomeInscrito. '</p>' .
 			''.
 			'<p>Sua senha: <b>' .$senhaInscrito. '</b></p>',
 		'text/html')
-		->setSender('substituto2011@ifbaiano.edu.br')
+		->setSender('selecaodiscente2011@ifbaiano.edu.br')
 		->setPriority(2)
 	;
 

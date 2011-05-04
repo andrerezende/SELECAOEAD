@@ -10,7 +10,7 @@ $id = addslashes($_GET['id']);
 $banco    = DB::getInstance();
 $conexao  = $banco->ConectarDB();
 
-$curso = new Curso(null,null);
+$curso = new Curso(null,null,null);
 $inscrito_curso = new Inscrito_Curso(null,null,null);
 
 $existeCandidatoAssociado = $curso->existeCursoAssociadoAcandidato($conexao, $id);

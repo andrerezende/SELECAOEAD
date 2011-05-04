@@ -10,7 +10,7 @@ $id = addslashes($_POST['id']);
 $banco = DB::getInstance();
 $conexao = $banco->ConectarDB();
 
-$inscrito = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+$inscrito = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
 $inscrito_curso = new Inscrito_Curso(null,null,null);
 
 $inscrito_eliminado = $inscrito->apagar($conexao, $id);

@@ -29,7 +29,7 @@ if (empty($objinscrito)) {
 			setTimeout(function () {
 				$(".mensagem").fadeOut("slow");
 			}, 2000);
-			setTimeout("location.href='../../index.php?sc=Inscricao'",3000);
+			setTimeout("location.href='../../index.php",3000);
 		});
 	});
 	</script>

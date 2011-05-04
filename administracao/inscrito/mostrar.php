@@ -1,10 +1,10 @@
 <?php
 session_start();
-include("../classes/DB.php");
-include("../classes/Inscrito.php");
-include("../classes/Inscrito_Curso.php");
-include("../classes/Campus.php");
-include("../classes/Localprova.php");
+require_once("../classes/DB.php");
+require_once("../classes/Inscrito.php");
+require_once("../classes/Inscrito_Curso.php");
+require_once("../classes/Campus.php");
+require_once("../classes/Localprova.php");
 
 $cpf = addslashes($_POST['cpf']);
 $senha = addslashes($_POST['pwd']);

@@ -29,7 +29,7 @@ if (empty($objinscrito)) {
 			setTimeout(function () {
 				$(".mensagem").fadeOut("slow");
 			}, 2000);
-			setTimeout("location.href='../../index.php",3000);
+			setTimeout("location.href='../../index.php'", 3000);
 		});
 	});
 	</script>
@@ -37,7 +37,7 @@ if (empty($objinscrito)) {
 
 <body>
 <?php
-if (count($objinscrito) == 0) :
+if (count($objinscrito) == 0 || true) :
 	echo("<table width='90%' border='0' class='mensagem'>");
 	echo("  <tr>");
 	echo("    <td height='280'><div align='center'><font size='5'>Inscri&ccedil;&atilde;o n&atilde;o encontrada na base de dados.</font><font size='5'></font></div></td>");

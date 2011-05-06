@@ -64,7 +64,7 @@ if (empty($objinscrito)) {
 // DADOS DO BOLETO PARA O SEU CLIENTE
 $dias_de_prazo_para_pagamento = 1;
 $taxa_boleto = 0.0;
-$data_venc = '30/05/2010';  // Prazo de X dias OU informe data: "13/04/2006";
+$data_venc = '30/05/2011';  // Prazo de X dias OU informe data: "13/04/2006";
 $valor_cobrado = "10,00"; // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
 $valor_cobrado = str_replace(",", ".",$valor_cobrado);
 $valor_boleto=number_format($valor_cobrado+$taxa_boleto, 2, ',', '');
@@ -72,7 +72,7 @@ $valor_boleto=number_format($valor_cobrado+$taxa_boleto, 2, ',', '');
 $dadosboleto["nosso_numero"] = $objinscrito[0]->getnuminscricao(); //getid();
 $dadosboleto["numero_documento"] = $objinscrito[0]->getnuminscricao(); //"27.030195.10";	// Num do pedido ou do documento
 //$dadosboleto["data_vencimento"] = $data_venc; // Data de Vencimento do Boleto - REGRA: Formato DD/MM/AAAA
-$dadosboleto["data_vencimento"] = '30/05/2010'; // Data de Vencimento do Boleto - REGRA: Formato DD/MM/AAAA
+$dadosboleto["data_vencimento"] = '30/05/2011'; // Data de Vencimento do Boleto - REGRA: Formato DD/MM/AAAA
 $dadosboleto["data_documento"] = date("d/m/Y"); // Data de emissão do Boleto
 $dadosboleto["data_processamento"] = date("d/m/Y"); // Data de processamento do boleto (opcional)
 $dadosboleto["valor_boleto"] = $valor_boleto; 	// Valor do Boleto - REGRA: Com vírgula e sempre com duas casas depois da virgula

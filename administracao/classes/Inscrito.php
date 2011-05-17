@@ -365,8 +365,9 @@ class Inscrito {
 	}
 
 	public function Inserir($sock) {
-		$this->data_cadastro = date('Y-m-d');
+		$this->data_cadastro = date('Y-m-d H:i:s');
 		$this->ultima_alteracao = $this->data_cadastro;
+
 		$ssql = "INSERT INTO inscrito (nome, endereco, bairro, cep, cidade, estado, email, cpf, rg, especial, senha, nacionalidade, telefone, telefone2, celular, datanascimento, sexo, estadocivil, orgaoexpedidor, uf, dataexpedicao, especial_descricao, responsavel, isencao, declaracao, localprova, numinscricao, especial_prova, especial_prova_descricao, vaga_especial, vaga_rede_publica, vaga_rural, campus, data_cadastro, ultima_alteracao) VALUES ";
 
 		$ssql .= "('" . $this->nome . "','" . $this->endereco . "',";

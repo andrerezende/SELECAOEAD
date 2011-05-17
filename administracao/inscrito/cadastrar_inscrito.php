@@ -46,11 +46,17 @@ if ($existe) {
 		echo("</table>");
 	echo("</div>");
 } else {
+	$banco->startTransaction();
 	$id_inscrito = $inscrito->Inserir($conexao);
-	if ($id_inscrito > 0) {
+	if ($id_inscrito > -1) {
 		$inscrito_curso = new Inscrito_Curso(null,null,$id_inscrito);
 		$inscrito_curso->setcodcurso($curso);
 		$resultado = $inscrito_curso->Inserir($conexao, $curso);
+		if ($resultado === true) {
+			$banco->commitTransaction();
+		} else {
+			$banco->rollbackTransaction();
+		}
 
 		echo("<div align=".'"'."center".'"'.">");
 			echo("<img src=".'"'."../../imgs/topo2/topo_formulario.png".'"'." alt=".'"'."Instituto Federal Baiano".'"'." />");

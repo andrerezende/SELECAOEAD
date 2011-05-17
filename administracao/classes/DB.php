@@ -85,4 +85,17 @@ class DB {
 		$result = mysql_query($sql);
 		return $result;
 	}
+
+	public function startTransaction() {
+		mysql_query('SET AUTOCOMMIT=0');
+		mysql_query('START TRANSACTION');
+	}
+
+	public function commitTransaction() {
+		mysql_query('COMMIT');
+	}
+
+	public function rollbackTransaction() {
+		mysql_query('ROLLBACK');
+	}
 }

@@ -44,7 +44,7 @@ if (count($objinscrito)==0){
 		echo("</table>");
 	echo("</div>");
 } else {
-	$id =$objinscrito[0]->getid();
+	$id = $objinscrito[0]->getid();
 ?>
 <body>
 	<div align="center">
@@ -64,7 +64,6 @@ if (count($objinscrito)==0){
 			</form>
 		</div>
 		<div align="center">
-			<br />
 			<a href="../../index.php">P&aacute;gina Inicial</a>
 		</div>
 

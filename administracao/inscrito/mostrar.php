@@ -64,12 +64,6 @@ if (count($objinscrito)==0){
 			</form>
 		</div>
 		<div align="center">
-			<form id="frmboleto" name="frmboleto" action="../boleto/boleto_bb.php" method="post">
-				<input type="hidden" name="id" value="<?echo($id);?>" />
-				<a href="#" onclick="document.forms['frmboleto'].submit();">Imprimir Boleto para Pagamento</a>
-			</form>
-		</div>
-		<div align="center">
 			<br />
 			<a href="../../index.php">P&aacute;gina Inicial</a>
 		</div>

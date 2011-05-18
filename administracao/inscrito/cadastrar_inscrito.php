@@ -86,16 +86,6 @@ if ($existe) {
 							</div>
 						</td>
 					</tr>
-					<tr>
-                        <td>
-                            <div align='center'>
-                                <form id='frmboleto' name='frmboleto' action='../boleto/boleto_bb.php' method='post'>
-                                    <input type='hidden' name='id' value="<?php echo($id_inscrito);?>" />
-                                    <a href='#' onclick="document.forms['frmboleto'].submit();">Imprimir Boleto para Pagamento</a>
-                                </form>
-                            </div>
-                        </td>
-					</tr>
 <?php
 			echo("		<td align='center'><br /><div><a href='../../index.php'>P&aacute;gina Inicial</a></div></td>");
 			echo("	</tr>");

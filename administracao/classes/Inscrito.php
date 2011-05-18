@@ -553,7 +553,7 @@ class Inscrito {
 	}
 
 	public function SelectByCpf($sock,$codigo) {
-		$ssql = "SELECT nome, endereco, bairro, cep, cidade, estado, email, cpf, rg, especial, senha, nacionalidade, telefone, telefone2, celular, datanascimento, sexo, estadocivil, orgaoexpedidor, uf, dataexpedicao, especial_descricao, responsavel, isencao, declaracao, localprova, numinscricao, especial_prova, especial_prova_descricao, vaga_especial, vaga_rede_publica, vaga_rural, campus, id FROM inscrito A " ;
+		$ssql = "SELECT nome, endereco, bairro, cep, cidade, estado, email, cpf, rg, especial, senha, nacionalidade, telefone, telefone2, celular, datanascimento, sexo, estadocivil, orgaoexpedidor, uf, dataexpedicao, especial_descricao, responsavel, isencao, declaracao, localprova, numinscricao, especial_prova, especial_prova_descricao, vaga_especial, vaga_rede_publica, vaga_rural, campus , media_por_1, media_por_2, media_por_3, media_mat_1, media_mat_2, media_mat_3, id, curso_superior FROM inscrito A ";
 		$ssql = $ssql . " WHERE cpf=" .$codigo;
 
 		$rs = mysql_query($ssql, $sock);

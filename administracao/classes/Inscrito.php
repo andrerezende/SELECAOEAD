@@ -36,12 +36,20 @@ class Inscrito {
 	protected $campus;
 	protected $data_cadastro;
 	protected $ultima_alteracao;
+	protected $media_por_1;
+	protected $media_por_2;
+	protected $media_por_3;
+	protected $media_mat_1;
+	protected $media_mat_2;
+	protected $media_mat_3;
+	protected $curso_superior;
 
-	public function Inscrito($pnome, $pendereco, $pbairro, $pcep, $pcidade, $pestado,
-	$pemail, $pcpf, $prg, $pespecial, $psenha, $pnacionalidade, $ptelefone, $ptelefone2, $pcelular, $pdatanascimento,
-	$psexo, $pestadocivil, $porgaoexpedidor, $puf, $pdataexpedicao, $pespecial_descricao, $presponsavel,
-	$pisencao, $pdeclaracao, $plocalprova, $pnuminscricao, $pespecial_prova, $pespecial_prova_descricao,
-	$pvaga_especial, $pvaga_rede_publica, $pvaga_rural, $pcampus, $pid = null, $pdata_cadastro = null, $pultima_alteracao = null) {
+	public function Inscrito($pnome = null, $pendereco = null, $pbairro = null, $pcep = null, $pcidade = null, $pestado = null,
+	$pemail = null, $pcpf = null, $prg = null, $pespecial = null, $psenha = null, $pnacionalidade = null, $ptelefone = null, $ptelefone2 = null, $pcelular = null, $pdatanascimento = null,
+	$psexo = null, $pestadocivil = null, $porgaoexpedidor = null, $puf = null, $pdataexpedicao = null, $pespecial_descricao = null, $presponsavel = null,
+	$pisencao = null, $pdeclaracao = null, $plocalprova = null, $pnuminscricao = null, $pespecial_prova = null, $pespecial_prova_descricao = null,
+	$pvaga_especial = null, $pvaga_rede_publica = null, $pvaga_rural = null, $pcampus = null, $pmedia_por_1 = null, $pmedia_por_2 = null, $pmedia_por_3 = null, $pmedia_mat_1 = null,
+	$pmedia_mat_2 = null, $pmedia_mat_3 = null, $pid = null, $pdata_cadastro = null, $pultima_alteracao = null, $pcurso_superior = null) {
 
 		$this->id = $pid;
 		$this->nome = $pnome;
@@ -79,6 +87,13 @@ class Inscrito {
 		$this->campus = $pcampus;
 		$this->data_cadastro = $pdata_cadastro;
 		$this->ultima_alteracao = $pultima_alteracao;
+		$this->media_por_1 = $pmedia_por_1;
+		$this->media_por_2 = $pmedia_por_2;
+		$this->media_por_3 = $pmedia_por_3;
+		$this->media_mat_1 = $pmedia_mat_1;
+		$this->media_mat_2 = $pmedia_mat_2;
+		$this->media_mat_3 = $pmedia_mat_3;
+		$this->curso_superior = $pcurso_superior;
 	}
 
 	public function getid() {
@@ -364,11 +379,44 @@ class Inscrito {
 		$this->ultima_alteracao = $pultima_alteracao;
 	}
 
+	public function getMediasMatematica() {
+		$return = array();
+		$return[] = $this->numberPad($this->media_mat_1);
+		$return[] = $this->numberPad($this->media_mat_2);
+		$return[] = $this->numberPad($this->media_mat_3);
+		return $return;
+	}
+
+	public function getMediasPortugues() {
+		$return = array();
+		$return[] = $this->numberPad($this->media_por_1);
+		$return[] = $this->numberPad($this->media_por_2);
+		$return[] = $this->numberPad($this->media_por_3);
+		return $return;
+	}
+
+	public function getcursosuperior() {
+		return $this->curso_superior;
+	}
+
+	private function numberPad($num) {
+		$num = number_format($num, 1);
+		if ($num < 10) {
+			$num = '0' . $num;
+		}
+		return $num;
+	}
+
 	public function Inserir($sock) {
 		$this->data_cadastro = date('Y-m-d H:i:s');
 		$this->ultima_alteracao = $this->data_cadastro;
 
-		$ssql = "INSERT INTO inscrito (nome, endereco, bairro, cep, cidade, estado, email, cpf, rg, especial, senha, nacionalidade, telefone, telefone2, celular, datanascimento, sexo, estadocivil, orgaoexpedidor, uf, dataexpedicao, especial_descricao, responsavel, isencao, declaracao, localprova, numinscricao, especial_prova, especial_prova_descricao, vaga_especial, vaga_rede_publica, vaga_rural, campus, data_cadastro, ultima_alteracao) VALUES ";
+		$ssql = "INSERT INTO
+			inscrito (nome, endereco, bairro, cep, cidade, estado, email, cpf, rg, especial, senha,
+			nacionalidade, telefone, telefone2, celular, datanascimento, sexo, estadocivil, orgaoexpedidor,
+			uf, dataexpedicao, especial_descricao, responsavel, isencao, declaracao, localprova, numinscricao,
+			especial_prova, especial_prova_descricao, vaga_especial, vaga_rede_publica, vaga_rural, campus,
+			media_mat_1, media_mat_2, media_mat_3, media_por_1, media_por_2, media_por_3, curso_superior, data_cadastro, ultima_alteracao) VALUES ";
 
 		$ssql .= "('" . $this->nome . "','" . $this->endereco . "',";
 		$ssql .= "'" . $this->bairro . "','" . $this->cep . "',";
@@ -386,6 +434,8 @@ class Inscrito {
 		$ssql .= "'" . $this->vaga_especial . "','" . $this->vaga_rede_publica . "',";
 		$ssql .= "'" . $this->vaga_rural . "',";
 		$ssql .= "'" . $this->campus . "',";
+		$ssql .= "'" . $this->media_mat_1 . "','" . $this->media_mat_2 . "','" . $this->media_mat_3 . "','" . $this->media_por_1 . "',";
+		$ssql .= "'" . $this->media_por_2 . "','" . $this->media_por_3 . "','" . $this->curso_superior . "',";
 		$ssql .= "'" . $this->data_cadastro . "','" . $this->ultima_alteracao . "')";
 
 		$rs = mysql_query($ssql, $sock);
@@ -418,6 +468,10 @@ class Inscrito {
 		$ssql .= "vaga_especial = '" . $this->vaga_especial . "', vaga_rede_publica = '" . $this->vaga_rede_publica . "',";
 		$ssql .= "vaga_rural = '" . $this->vaga_rural . "',";
 		$ssql .= "ultima_alteracao = '" . $this->ultima_alteracao . "',";
+		$ssql .= "curso_superior = '" . $this->curso_superior . "',";
+		$ssql .= "media_por_1 = '" . $this->media_por_1 . "', media_por_2 = '" . $this->media_por_2 . "',";
+		$ssql .= "media_por_3 = '" . $this->media_por_3 . "', media_mat_1 = '" . $this->media_mat_1 . "',";
+		$ssql .= "media_mat_2 = '" . $this->media_mat_2 . "', media_mat_3 = '" . $this->media_mat_3 . "',";
 		$ssql .= "campus = '" . $this->campus . "'";
 
 		$ssql .= " WHERE id = " . $this->id;
@@ -469,7 +523,7 @@ class Inscrito {
 	}
 
 	public function SelectByPrimaryKey($sock,$codigo,$senha) {
-		$ssql = "SELECT nome, endereco, bairro, cep, cidade, estado, email, cpf, rg, especial, senha, nacionalidade, telefone, telefone2, celular, datanascimento, sexo, estadocivil, orgaoexpedidor, uf, dataexpedicao, especial_descricao, responsavel, isencao, declaracao, localprova, numinscricao, especial_prova, especial_prova_descricao, vaga_especial, vaga_rede_publica, vaga_rural, campus, id FROM inscrito A " ;
+		$ssql = "SELECT nome, endereco, bairro, cep, cidade, estado, email, cpf, rg, especial, senha, nacionalidade, telefone, telefone2, celular, datanascimento, sexo, estadocivil, orgaoexpedidor, uf, dataexpedicao, especial_descricao, responsavel, isencao, declaracao, localprova, numinscricao, especial_prova, especial_prova_descricao, vaga_especial, vaga_rede_publica, vaga_rural, campus , media_por_1, media_por_2, media_por_3, media_mat_1, media_mat_2, media_mat_3, id, curso_superior FROM inscrito A ";
 		$ssql = $ssql . " WHERE cpf=" .$codigo." AND senha = '" .$senha."'";
 
 		$rs = mysql_query($ssql, $sock);
@@ -477,7 +531,7 @@ class Inscrito {
 		$ar = array();
 
 		while ($linha = mysql_fetch_row($rs)) {
-			$obj = new Inscrito($linha[0],$linha[1],$linha[2],$linha[3],$linha[4],$linha[5],$linha[6],$linha[7],$linha[8],$linha[9],$linha[10],$linha[11],$linha[12],$linha[13],$linha[14],$linha[15],$linha[16],$linha[17],$linha[18],$linha[19],$linha[20],$linha[21],$linha[22],$linha[23],$linha[24],$linha[25],$linha[26],$linha[27],$linha[28],$linha[29],$linha[30],$linha[31],$linha[32],$linha[33]);
+			$obj = new Inscrito($linha[0],$linha[1],$linha[2],$linha[3],$linha[4],$linha[5],$linha[6],$linha[7],$linha[8],$linha[9],$linha[10],$linha[11],$linha[12],$linha[13],$linha[14],$linha[15],$linha[16],$linha[17],$linha[18],$linha[19],$linha[20],$linha[21],$linha[22],$linha[23],$linha[24],$linha[25],$linha[26],$linha[27],$linha[28],$linha[29],$linha[30],$linha[31],$linha[32],$linha[33],$linha[34],$linha[35],$linha[36],$linha[37],$linha[38],$linha[39],$linha[40]);
 			$ar[] = $obj;
 		}
 		return $ar;
@@ -507,22 +561,21 @@ class Inscrito {
 		$ar = array();
 
 		while ($linha = mysql_fetch_row($rs)) {
-			$obj = new Inscrito($linha[0],$linha[1],$linha[2],$linha[3],$linha[4],$linha[5],$linha[6],$linha[7],$linha[8],$linha[9],$linha[10],$linha[11],$linha[12],$linha[13],$linha[14],$linha[15],$linha[16],$linha[17],$linha[18],$linha[19],$linha[20],$linha[21],$linha[22],$linha[23],$linha[24],$linha[25],$linha[26],$linha[27],$linha[28],$linha[29],$linha[30],$linha[31],$linha[32],$linha[33]);
+			$obj = new Inscrito($linha[0],$linha[1],$linha[2],$linha[3],$linha[4],$linha[5],$linha[6],$linha[7],$linha[8],$linha[9],$linha[10],$linha[11],$linha[12],$linha[13],$linha[14],$linha[15],$linha[16],$linha[17],$linha[18],$linha[19],$linha[20],$linha[21],$linha[22],$linha[23],$linha[24],$linha[25],$linha[26],$linha[27],$linha[28],$linha[29],$linha[30],$linha[31],$linha[32],$linha[33],$linha[34],$linha[35],$linha[36],$linha[37],$linha[38],$linha[39],null,null,$linha[40]);
 			$ar[] = $obj;
 		}
 		return $ar;
 	}
 
 	public function SelectById($sock,$id) {
-		$ssql = "SELECT nome, endereco, bairro, cep, cidade, estado, email, cpf, rg, especial, senha, nacionalidade, telefone, telefone2, celular, datanascimento, sexo, estadocivil, orgaoexpedidor, uf, dataexpedicao, especial_descricao, responsavel, isencao, declaracao, localprova, numinscricao, especial_prova, especial_prova_descricao, vaga_especial, vaga_rede_publica, vaga_rural, campus, id FROM inscrito A " ;
+		$ssql = "SELECT nome, endereco, bairro, cep, cidade, estado, email, cpf, rg, especial, senha, nacionalidade, telefone, telefone2, celular, datanascimento, sexo, estadocivil, orgaoexpedidor, uf, dataexpedicao, especial_descricao, responsavel, isencao, declaracao, localprova, numinscricao, especial_prova, especial_prova_descricao, vaga_especial, vaga_rede_publica, vaga_rural, campus , media_por_1, media_por_2, media_por_3, media_mat_1, media_mat_2, media_mat_3, id, curso_superior FROM inscrito A ";
 		$ssql .= " WHERE id='" .$id ."'";
-
 		$rs = mysql_query($ssql, $sock);
 
 		$ar = array();
 
 		while ($linha = mysql_fetch_row($rs)) {
-			$obj = new Inscrito($linha[0],$linha[1],$linha[2],$linha[3],$linha[4],$linha[5],$linha[6],$linha[7],$linha[8],$linha[9],$linha[10],$linha[11],$linha[12],$linha[13],$linha[14],$linha[15],$linha[16],$linha[17],$linha[18],$linha[19],$linha[20],$linha[21],$linha[22],$linha[23],$linha[24],$linha[25],$linha[26],$linha[27],$linha[28],$linha[29],$linha[30],$linha[31],$linha[32],$linha[33]);
+			$obj = new Inscrito($linha[0],$linha[1],$linha[2],$linha[3],$linha[4],$linha[5],$linha[6],$linha[7],$linha[8],$linha[9],$linha[10],$linha[11],$linha[12],$linha[13],$linha[14],$linha[15],$linha[16],$linha[17],$linha[18],$linha[19],$linha[20],$linha[21],$linha[22],$linha[23],$linha[24],$linha[25],$linha[26],$linha[27],$linha[28],$linha[29],$linha[30],$linha[31],$linha[32],$linha[33],$linha[34],$linha[35],$linha[36],$linha[37],$linha[38],$linha[39],null,null,$linha[40]);
 			$ar[] = $obj;
 		}
 		return $ar;

@@ -5,6 +5,7 @@
 	<title>Processo Seletivo para Ingresso de Estudantes - 2011.2</title>
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="../../js/jquery.maskedinput-1.3.min.js"></script>
 	<script language="JavaScript" type="text/JavaScript">
 	function Onlynumber(e){
 		var tecla=new Number();
@@ -22,24 +23,30 @@
 	}
 
 	function validar() {
-		var nome            = document.getElementById("nome");
-		var endereco        = document.getElementById("endereco");
-		var bairro          = document.getElementById("bairro");
-		//var cep             = document.getElementById("cep");
-		var cidade          = document.getElementById("cidade");
-		var estado          = document.getElementById("estado");
-		var rg              = document.getElementById("rg");
-		var cpf             = document.getElementById("cpf");
-		var especial        = document.getElementById("especial");
-		var senha           = document.getElementById("senha");
-		var senhaConfirm    = document.getElementById("senhaConfirm");
-		var declaracao      = document.getElementById("declaracao");
-		var nacionalidade   = document.getElementById("nacionalidade");
-		var dataNascimento  = document.getElementById("datanascimento");
-		var sexo            = document.getElementById("sexo");
-		var email           = document.getElementById("email");
-		var campus          = document.getElementById("campus");
-		var curso           = document.getElementById("curso");
+		var nome			= document.getElementById("nome");
+		var endereco		= document.getElementById("endereco");
+		var bairro			= document.getElementById("bairro");
+		//var cep			= document.getElementById("cep");
+		var cidade			= document.getElementById("cidade");
+		var estado			= document.getElementById("estado");
+		var rg				= document.getElementById("rg");
+		var cpf				= document.getElementById("cpf");
+		var especial		= document.getElementById("especial");
+		var senha			= document.getElementById("senha");
+		var senhaConfirm	= document.getElementById("senhaConfirm");
+		var declaracao		= document.getElementById("declaracao");
+		var nacionalidade	= document.getElementById("nacionalidade");
+		var dataNascimento	= document.getElementById("datanascimento");
+		var sexo			= document.getElementById("sexo");
+		var email			= document.getElementById("email");
+		var campus			= document.getElementById("campus");
+		var curso			= document.getElementById("curso");
+		var mediaPor1		= document.getElementById("media_por_1");
+		var mediaPor2		= document.getElementById("media_por_2");
+		var mediaPor3		= document.getElementById("media_por_3");
+		var mediaMat1		= document.getElementById("media_mat_1");
+		var mediaMat2		= document.getElementById("media_mat_2");
+		var mediaMat3		= document.getElementById("media_mat_3");
 
 		resultado = true;
 		if (declaracao.value == "NAO") {
@@ -112,227 +119,214 @@
 			alert('Informe se possui necessidades especiais!');
 			especial.focus();
 			resultado = false;
+		} else if (mediaPor1.value == "" || mediaPor2.value == "" || mediaPor3.value == "" ||
+					mediaMat1.value == "" || mediaMat2.value == "" || mediaMat3.value == "") {
+			alert('Informe suas notas!');
+			mediaPor1.focus();
+			resultado = false;
 		}
 		return resultado;
 	}
 
-            function Mascara(tipo, campo, teclaPress) {
-                    if (window.event)
-                    {
-                            var tecla = teclaPress.keyCode;
-                    } else {
-                            tecla = teclaPress.which;
-                    }
+	function Mascara(tipo, campo, teclaPress) {
+		if (window.event) {
+			var tecla = teclaPress.keyCode;
+		} else {
+			tecla = teclaPress.which;
+		}
+		var s = new String(campo.value);
 
-                    var s = new String(campo.value);
+		// Remove todos os caracteres a seguir: ( ) / - . e espaço, para tratar a string denovo.
+		s = s.replace(/(\.|\(|\)|\/|\-| )+/g,'');
+		tam = s.length + 1;
 
-                    // Remove todos os caracteres a seguir: ( ) / - . e espaço, para tratar a string denovo.
-
-                    s = s.replace(/(\.|\(|\)|\/|\-| )+/g,'');
-
-                    tam = s.length + 1;
-
-                    if ( tecla != 9 && tecla != 8 ) {
-                            switch (tipo)
-                            {
-                            case 'CPF' :
-                                    if (tam > 3 && tam < 7)
-                                            campo.value = s.substr(0,3) + '.' + s.substr(3, tam);
-                                    if (tam >= 7 && tam < 10)
-                                            campo.value = s.substr(0,3) + '.' + s.substr(3,3) + '.' + s.substr(6,tam-6);
-                                    if (tam >= 10 && tam < 12)
-                                            campo.value = s.substr(0,3) + '.' + s.substr(3,3) + '.' + s.substr(6,3) + '-' + s.substr(9,tam-9);
-                            break;
-
-                            case 'CNPJ' :
-
-                                    if (tam > 2 && tam < 6)
-                                            campo.value = s.substr(0,2) + '.' + s.substr(2, tam);
-                                    if (tam >= 6 && tam < 9)
-                                            campo.value = s.substr(0,2) + '.' + s.substr(2,3) + '.' + s.substr(5,tam-5);
-                                    if (tam >= 9 && tam < 13)
-                                            campo.value = s.substr(0,2) + '.' + s.substr(2,3) + '.' + s.substr(5,3) + '/' + s.substr(8,tam-8);
-                                    if (tam >= 13 && tam < 15)
-                                            campo.value = s.substr(0,2) + '.' + s.substr(2,3) + '.' + s.substr(5,3) + '/' + s.substr(8,4)+ '-' + s.substr(12,tam-12);
-                            break;
-
-                            case 'TEL' :
-                                    if (tam > 2 && tam < 4)
-                                            campo.value = '(' + s.substr(0,2) + ') ' + s.substr(2,tam);
-                                    if (tam >= 7 && tam < 11)
-                                            campo.value = '(' + s.substr(0,2) + ') ' + s.substr(2,4) + '-' + s.substr(6,tam-6);
-                            break;
-
-                            case 'DATA' :
-                                    if (tam > 2 && tam < 4)
-                                            campo.value = s.substr(0,2) + '/' + s.substr(2, tam);
-                                    if (tam > 4 && tam < 11)
-                                            campo.value = s.substr(0,2) + '/' + s.substr(2,2) + '/' + s.substr(4,tam-4);
-                            break;
-
-                            case 'CEP' :
-                                    if (tam > 5 && tam < 7)
-                                            campo.value = s.substr(0,5) + '-' + s.substr(5, tam);
-                            break;
-
-                            }
-                    }
-            }
-
-            function formata(src, mask)
-            //funcao para formatar qualquer campo.Ex.:cep,cpf,telefone,cnpj.
-            {
-                    var i = src.value.length;
-                    var saida = '#';
-                    var texto = mask.substring(i)
-                    if (texto.substring(0,1) != saida)
-                    {
-                            src.value += texto.substring(0,1);
-                    }
-            }
-
-
-			function necessidadeEspecial() {
-				// Habilita Desabilita campo especial_descricao
-				// de acordo com a escolha do campo 'especial'
-				var especial = document.getElementById("especial");
-
-				if (especial.value == "OUTRA") {
-					document.getElementById("especial_descricao").readOnly=false;
-				} else {
-					document.getElementById("especial_descricao").value = "";
-					document.getElementById("especial_descricao").readOnly=true;
-				}
+		if ( tecla != 9 && tecla != 8 ) {
+			switch (tipo) {
+				case 'CPF' :
+					if (tam > 3 && tam < 7)
+						campo.value = s.substr(0,3) + '.' + s.substr(3, tam);
+					if (tam >= 7 && tam < 10)
+						campo.value = s.substr(0,3) + '.' + s.substr(3,3) + '.' + s.substr(6,tam-6);
+					if (tam >= 10 && tam < 12)
+						campo.value = s.substr(0,3) + '.' + s.substr(3,3) + '.' + s.substr(6,3) + '-' + s.substr(9,tam-9);
+					break;
+				case 'CNPJ' :
+					if (tam > 2 && tam < 6)
+						campo.value = s.substr(0,2) + '.' + s.substr(2, tam);
+					if (tam >= 6 && tam < 9)
+						campo.value = s.substr(0,2) + '.' + s.substr(2,3) + '.' + s.substr(5,tam-5);
+					if (tam >= 9 && tam < 13)
+						campo.value = s.substr(0,2) + '.' + s.substr(2,3) + '.' + s.substr(5,3) + '/' + s.substr(8,tam-8);
+					if (tam >= 13 && tam < 15)
+						campo.value = s.substr(0,2) + '.' + s.substr(2,3) + '.' + s.substr(5,3) + '/' + s.substr(8,4)+ '-' + s.substr(12,tam-12);
+					break;
+				case 'TEL' :
+					if (tam > 2 && tam < 4)
+						campo.value = '(' + s.substr(0,2) + ') ' + s.substr(2,tam);
+					if (tam >= 7 && tam < 11)
+						campo.value = '(' + s.substr(0,2) + ') ' + s.substr(2,4) + '-' + s.substr(6,tam-6);
+					break;
+				case 'DATA' :
+					if (tam > 2 && tam < 4)
+						campo.value = s.substr(0,2) + '/' + s.substr(2, tam);
+					if (tam > 4 && tam < 11)
+						campo.value = s.substr(0,2) + '/' + s.substr(2,2) + '/' + s.substr(4,tam-4);
+					break;
+				case 'CEP' :
+					if (tam > 5 && tam < 7)
+						campo.value = s.substr(0,5) + '-' + s.substr(5, tam);
+					break;
 			}
+		}
+	}
 
-			function especialProva() {
-				var especial = document.getElementById("especial_prova");
-				if (especial.value == "SIM") {
-					document.getElementById("especial_prova_descricao").readOnly=false;
-				} else {
-					document.getElementById("especial_prova_descricao").value = "";
-					document.getElementById("especial_prova_descricao").readOnly=true;
-				}
+	//funcao para formatar qualquer campo.Ex.:cep,cpf,telefone,cnpj.
+	function formata(src, mask) {
+		var i = src.value.length;
+		var saida = '#';
+		var texto = mask.substring(i)
+		if (texto.substring(0,1) != saida) {
+			src.value += texto.substring(0,1);
+		}
+	}
+
+	function necessidadeEspecial() {
+		// Habilita Desabilita campo especial_descricao
+		// de acordo com a escolha do campo 'especial'
+		var especial = document.getElementById("especial");
+
+		if (especial.value == "OUTRA") {
+			document.getElementById("especial_descricao").readOnly=false;
+		} else {
+			document.getElementById("especial_descricao").value = "";
+			document.getElementById("especial_descricao").readOnly=true;
+		}
+	}
+
+	function especialProva() {
+		var especial = document.getElementById("especial_prova");
+		if (especial.value == "SIM") {
+			document.getElementById("especial_prova_descricao").readOnly=false;
+		} else {
+			document.getElementById("especial_prova_descricao").value = "";
+			document.getElementById("especial_prova_descricao").readOnly=true;
+		}
+	}
+
+	function redireciona() {
+		window.location="../../index.php"; //redereciona para a página inicial.
+	}
+
+	function ValidaCPF(campo) {
+		var CPF = campo.value; // Recebe o valor digitado no campo
+
+		// Aqui começa a checagem do CPF
+		var POSICAO, I, SOMA, DV, DV_INFORMADO;
+		var DIGITO = new Array(10);
+		DV_INFORMADO = CPF.substr(9, 2); // Retira os dois últimos dígitos do número informado
+
+		// Desemembra o número do CPF na array DIGITO
+		for (I=0; I<=8; I++) {
+			DIGITO[I] = CPF.substr( I, 1);
+		}
+
+		// Calcula o valor do 10 dígito da verificação
+		POSICAO = 10;
+		SOMA = 0;
+		for (I=0; I<=8; I++) {
+			SOMA = SOMA + DIGITO[I] * POSICAO;
+			POSICAO = POSICAO - 1;
+		}
+		DIGITO[9] = SOMA % 11;
+		if (DIGITO[9] < 2) {
+			DIGITO[9] = 0;
+		} else {
+			DIGITO[9] = 11 - DIGITO[9];
+		}
+
+		// Calcula o valor do 11 dígito da verificação
+		POSICAO = 11;
+		SOMA = 0;
+		for (I=0; I<=9; I++) {
+			SOMA = SOMA + DIGITO[I] * POSICAO;
+			POSICAO = POSICAO - 1;
+		}
+		DIGITO[10] = SOMA % 11;
+		if (DIGITO[10] < 2) {
+			DIGITO[10] = 0;
+		} else {
+			DIGITO[10] = 11 - DIGITO[10];
+		}
+
+		// Verifica se os valores dos dígitos verificadores conferem
+		DV = DIGITO[9] * 10 + DIGITO[10];
+		if (DV != DV_INFORMADO) {
+			alert('CPF invalido');
+			campo.value = '';
+			campo.focus();
+			return false;
+		}
+		return true;
+	}
+
+	function getCurso(pCampus) {
+		if (pCampus.selectedIndex != '') {
+			var campusCurso2 = pCampus.value;
+			//document.location=('cadastro.php?campusCurso=' + campusCurso);
+			//document.getElementById('campusCurso') = campusCurso2;
+			return campusCurso2;
+		}
+	}
+
+	$(document).ready(function() {
+		$(".notas").mask("99.9",{placeholder:" "});
+
+		$("#vaga_especial").change(function() {
+			if ($(this).val() == "SIM") {
+				$("#vaga_rede_publica").val("NAO");
 			}
+		});
 
-            function redireciona()
-            {
-                window.location="../../index.php"; //redereciona para a página inicial.
-            }
+		$("#vaga_rede_publica").change(function() {
+			if ($(this).val() == "SIM") {
+				$("#vaga_especial").val("NAO");
+			}
+		});
 
+		$("#especial_prova_descricao").attr("disabled", true);
+			//$("#especial_descricao").attr("disabled", true);
 
+		$("#especial_prova").change(function() {
+			$("#especial_prova option:selected").each(function() {
+				if (this.value == "SIM") {
+					$("#especial_prova_descricao").removeAttr("disabled");
+				} else {
+					$("#especial_prova_descricao").val("");
+					$("#especial_prova_descricao").attr("disabled", true);
+				}
+			});
+		});
 
-            function ValidaCPF(campo) {
-                var CPF = campo.value; // Recebe o valor digitado no campo
+		$("select[name=campus]").change(function() {
+			$("select[name=curso]").html('<option value="0">Carregando...</option>');
+			$.post("cursos.php",
+				{ campus: $(this).val() },
+				function(valor) {
+					$("select[name=curso]").html(valor);
+				}
+			)
+		})
 
-                // Aqui começa a checagem do CPF
-                var POSICAO, I, SOMA, DV, DV_INFORMADO;
-                var DIGITO = new Array(10);
-                DV_INFORMADO = CPF.substr(9, 2); // Retira os dois últimos dígitos do número informado
-
-                // Desemembra o número do CPF na array DIGITO
-                for (I=0; I<=8; I++) {
-                  DIGITO[I] = CPF.substr( I, 1);
-                }
-
-                // Calcula o valor do 10 dígito da verificação
-                POSICAO = 10;
-                SOMA = 0;
-                   for (I=0; I<=8; I++) {
-                      SOMA = SOMA + DIGITO[I] * POSICAO;
-                      POSICAO = POSICAO - 1;
-                   }
-                DIGITO[9] = SOMA % 11;
-                   if (DIGITO[9] < 2) {
-                        DIGITO[9] = 0;
-                }
-                   else{
-                       DIGITO[9] = 11 - DIGITO[9];
-                }
-
-                // Calcula o valor do 11 dígito da verificação
-                POSICAO = 11;
-                SOMA = 0;
-                   for (I=0; I<=9; I++) {
-                      SOMA = SOMA + DIGITO[I] * POSICAO;
-                      POSICAO = POSICAO - 1;
-                   }
-                DIGITO[10] = SOMA % 11;
-                   if (DIGITO[10] < 2) {
-                        DIGITO[10] = 0;
-                   }
-                   else {
-                        DIGITO[10] = 11 - DIGITO[10];
-                   }
-
-                // Verifica se os valores dos dígitos verificadores conferem
-                DV = DIGITO[9] * 10 + DIGITO[10];
-                   if (DV != DV_INFORMADO) {
-                      alert('CPF invalido');
-                      campo.value = '';
-                      campo.focus();
-                      return false;
-                   }
-                   return true;
-                }
-
-            function getCurso(pCampus) {
-               if (pCampus.selectedIndex != '') {
-                  var campusCurso2 = pCampus.value;
-                  //document.location=('cadastro.php?campusCurso=' + campusCurso);
-                  //document.getElementById('campusCurso') = campusCurso2;
-                  return campusCurso2;
-               }
-            }
-
-			$(document).ready(function() {
-				$("#vaga_especial").change(function() {
-					if ($(this).val() == "SIM") {
-						$("#vaga_rede_publica").val("NAO");
-					}
-				});
-
-				$("#vaga_rede_publica").change(function() {
-					if ($(this).val() == "SIM") {
-						$("#vaga_especial").val("NAO");
-					}
-				});
-
-				$("#especial_prova_descricao").attr("disabled", true);
-				//$("#especial_descricao").attr("disabled", true);
-
-				$("#especial_prova").change(function() {
-					$("#especial_prova option:selected").each(function() {
-						if (this.value == "SIM") {
-							$("#especial_prova_descricao").removeAttr("disabled");
-						} else {
-							$("#especial_prova_descricao").val("");
-							$("#especial_prova_descricao").attr("disabled", true);
-						}
-					});
-				});
-
-				$("select[name=campus]").change(function(){
-					$("select[name=curso]").html('<option value="0">Carregando...</option>');
-					$.post("cursos.php",
-						{campus:$(this).val()},
-						function(valor){
-							$("select[name=curso]").html(valor);
-						}
-					)
-				})
-
-				$("select[name=campus]").change(function(){
-					$("select[name=localprova]").html('<option value="0">Carregando...</option>');
-					$.post("locais.php",
-						{campus:$(this).val()},
-						function(valor){
-							$("select[name=localprova]").html(valor);
-						}
-					)
-				})
-			})
-
+		$("select[name=campus]").change(function(){
+			$("select[name=localprova]").html('<option value="0">Carregando...</option>');
+			$.post("locais.php",
+				{ campus:$(this).val() },
+				function(valor) {
+					$("select[name=localprova]").html(valor);
+				}
+			)
+		})
+	})
 	</script>
 </head>
 <body>
@@ -540,7 +534,7 @@
                         <select name="especial" id="especial" tabindex=23 onchange="javascript:necessidadeEspecial()">
                             <option value="NAO" selected="selected">N&Atilde;O</option>
                             <option value="VISUAL - CEGUEIRA">VISUAL - CEGUEIRA</option>
-                            <option value="VISUAL - BAIXA VIS&Atilde;O">VISUAL - BAIXA VIS�O</option>
+                            <option value="VISUAL - BAIXA VIS&Atilde;O">VISUAL - BAIXA VIS�O</option>
                             <option value="MOTORA">MOTORA</option>
                             <option value="AUDITIVA">AUDITIVA</option>
                             <option value="M&Uacute;LTIPLAS">M&Uacute;LTIPLAS</option>
@@ -574,7 +568,7 @@
 
                     <td colspan='2'>
 
-                        <select name="campus" tabindex="25">
+                        <select id="campus" name="campus" tabindex="25">
                                <option value="0" selected="selected">Escolha um Campus</option>
                                 <?php
                                     include ("../classes/DB.php");
@@ -615,7 +609,7 @@
                         </span>
                     </td>
                 </tr>
-                <tr>
+                <tr style="display: none">
                     <td align='right' width="200px">
                         <label for=localprova>Local de realiza&ccedil;&atilde;o prova:</label>
                     </td>
@@ -685,6 +679,41 @@
                              <option value="SIM">SIM</option>
                         </select>
                         <span class="textoSobrescrito">*</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td height="28" align='right'><label for="curso_superior">Curso Superior:</label></td>
+                    <td>
+                        <select name="curso_superior" id="curso_superior" tabindex=33>
+                             <option value="NAO" selected="selected">N&Atilde;O</option>
+                             <option value="SIM">SIM</option>
+                        </select>
+                        <span class="textoSobrescrito">*</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align='right' width="200px">M&eacute;dias de Portugu&ecirc;s:</td>
+                    <td>
+                    	&emsp;1&deg; Ano:<input class="notas" name="media_por_1" type="text" id="media_por_1" onkeypress="javascript:return Onlynumber(event);" value="" size="3" maxlength="3" alt="Média de Portugu&ecirc;s 1&deg;" />
+                    	<span class="textoSobrescrito">*</span>
+                    	&emsp;2&deg; Ano:<input class="notas" name="media_por_2" type="text" id="media_por_2" onkeypress="javascript:return Onlynumber(event);" value="" size="3" maxlength="3" alt="Média de Portugu&ecirc;s 2&deg;" />
+                    	<span class="textoSobrescrito">*</span>
+                    	&emsp;3&deg; Ano:<input class="notas" name="media_por_3" type="text" id="media_por_3" onkeypress="javascript:return Onlynumber(event);" value="" size="3" maxlength="3" alt="Média de Portugu&ecirc;s 3&deg;" />
+                    	<span class="textoSobrescrito">*</span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align='right' width="200px">M&eacute;dias de Matem&aacute;tica:</td>
+                    <td>
+                    	&emsp;1&deg; Ano:<input class="notas" name="media_mat_1" type="text" id="media_mat_1" onkeypress="javascript:return Onlynumber(event);" value="" size="3" maxlength="3" alt="Média de Matem&aacute;tica 1&deg;" />
+                    	<span class="textoSobrescrito">*</span>
+                    	&emsp;2&deg; Ano:<input class="notas" name="media_mat_2" type="text" id="media_mat_2" onkeypress="javascript:return Onlynumber(event);" value="" size="3" maxlength="3" alt="Média de Matem&aacute;tica 2&deg;" />
+                    	<span class="textoSobrescrito">*</span>
+                    	&emsp;3&deg; Ano:<input class="notas" name="media_mat_3" type="text" id="media_mat_3" onkeypress="javascript:return Onlynumber(event);" value="" size="3" maxlength="3" alt="Média de Matem&aacute;tica 3&deg;" />
+                    	<span class="textoSobrescrito">*</span>
                     </td>
                 </tr>
 

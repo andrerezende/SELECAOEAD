@@ -5,6 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="../../js/jquery.maskedinput-1.3.min.js"></script>
 	<script language="JavaScript" type="text/JavaScript">
 		function Onlynumber(e){
 			var tecla=new Number();
@@ -189,6 +190,8 @@
 		}
 
 		$(document).ready(function() {
+			$(".notas").mask("99.9",{placeholder:" "});
+
 			$("#vaga_especial").change(function() {
 				if ($(this).val() == "SIM") {
 					$("#vaga_rede_publica").val("NAO");
@@ -274,8 +277,7 @@ $id = $_POST['id'];
 $banco = DB::getInstance();
 $conexao = $banco->ConectarDB();
 
-$inscrito = new Inscrito(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-			null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+$inscrito = new Inscrito();
 $objinscrito = $inscrito->SelectById($conexao, $id);
 
 if (count($objinscrito) == 0){
@@ -628,7 +630,7 @@ if (count($objinscrito) == 0){
                     </td>
                 </tr>
 
-				<tr>
+				<tr style="display: none">
 					<td align='right' width="200px">
 						<label for=localprova>Local de realiza&ccedil;&atilde;o da prova</label>
 					</td>
@@ -765,6 +767,57 @@ if (count($objinscrito) == 0){
                         <span class="textoSobrescrito">*</span>
                     </td>
                 </tr>
+
+				<tr>
+					<td height="28" align='right'><label for="curso_superior">Curso Superior:</label></td>
+					<td>
+						<select name="curso_superior" id="curso_superior" tabindex=33>
+							<?php
+							$curso_superior = array("NAO","SIM");
+							$total = count($curso_superior);
+							$i = 0;
+							while ($total > $i) {
+								if ($curso_superior[$i] != $objinscrito[0]->getcursosuperior()) {
+									echo("	<option value=".$curso_superior[$i].">".$curso_superior[$i]."</option>\n");
+								} else {
+									echo("	<option selected value=".$curso_superior[$i].">".$curso_superior[$i]."</option>\n");
+								}
+								$i = $i + 1;
+							}
+							?>
+						</select>
+						<span class="textoSobrescrito">*</span>
+					</td>
+				</tr>
+
+				<tr>
+					<?php
+					$medias_portugues = $objinscrito[0]->getMediasPortugues();
+					$medias_matematica = $objinscrito[0]->getMediasMatematica();
+					var_dump($medias_portugues);
+					?>
+					<td align='right' width="200px">M&eacute;dias de Portugu&ecirc;s:</td>
+					<td>
+						&emsp;1&deg; Ano:<input class="notas" name="media_por_1" type="text" id="media_por_1" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_portugues[0]; ?>" size="3" maxlength="3" alt="Média de Portugu&ecirc;s 1&deg;" />
+						<span class="textoSobrescrito">*</span>
+						&emsp;2&deg; Ano:<input class="notas" name="media_por_2" type="text" id="media_por_2" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_portugues[1]; ?>" size="3" maxlength="3" alt="Média de Portugu&ecirc;s 2&deg;" />
+						<span class="textoSobrescrito">*</span>
+						&emsp;3&deg; Ano:<input class="notas" name="media_por_3" type="text" id="media_por_3" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_portugues[2]; ?>" size="3" maxlength="3" alt="Média de Portugu&ecirc;s 3&deg;" />
+						<span class="textoSobrescrito">*</span>
+					</td>
+				</tr>
+
+				<tr>
+					<td align='right' width="200px">M&eacute;dias de Matem&aacute;tica:</td>
+					<td>
+						&emsp;1&deg; Ano:<input class="notas" name="media_mat_1" type="text" id="media_mat_1" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_matematica[0]; ?>" size="3" maxlength="3" alt="Média de Matem&aacute;tica 1&deg;" />
+						<span class="textoSobrescrito">*</span>
+						&emsp;2&deg; Ano:<input class="notas" name="media_mat_2" type="text" id="media_mat_2" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_matematica[1]; ?>" size="3" maxlength="3" alt="Média de Matem&aacute;tica 2&deg;" />
+						<span class="textoSobrescrito">*</span>
+						&emsp;3&deg; Ano:<input class="notas" name="media_mat_3" type="text" id="media_mat_3" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_matematica[2]; ?>" size="3" maxlength="3" alt="Média de Matem&aacute;tica 3&deg;" />
+						<span class="textoSobrescrito">*</span>
+					</td>
+				</tr>
 
 				<tr>
 					<td colspan="2" align="justify">

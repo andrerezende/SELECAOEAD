@@ -794,7 +794,6 @@ if (count($objinscrito) == 0){
 					<?php
 					$medias_portugues = $objinscrito[0]->getMediasPortugues();
 					$medias_matematica = $objinscrito[0]->getMediasMatematica();
-					var_dump($medias_portugues);
 					?>
 					<td align='right' width="200px">M&eacute;dias de Portugu&ecirc;s:</td>
 					<td>

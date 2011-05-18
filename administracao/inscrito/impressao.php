@@ -11,7 +11,7 @@ $id = $_POST['id'];
 /* Acesso ao banco de dados */
 $banco   = DB::getInstance();
 $conexao = $banco->ConectarDB();
-$inscrito  = new Inscrito		(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);//36
+$inscrito  = new Inscrito();//36
 if ($id) {
 	$objinscrito = $inscrito->SelectById($conexao, $id);
 } elseif ($cpf) {
@@ -45,7 +45,7 @@ if (count($objinscrito) == 0) {
 </div>
 
 <form id='frmficha' name='frmficha' action='ficha_excel.php' method='post' onsubmit='' >
-<!--    <input type="hidden" name="cpf" id="cpf" value="<?//echo($cpf);?>">-->
+<!--    <input type="hidden" name="cpf" id="cpf" value="<?php //echo($cpf);?>">-->
 
     <table width="760px" border="0" align="center">
         <tr>

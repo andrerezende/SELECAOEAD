@@ -26,7 +26,7 @@ $inscrito = new Inscrito($nome, $endereco, $bairro, $cep, $cidade, $estado,
 			$email, $cpf, $rg, $especial, $senha, $nacionalidade, $telefone, null, $celular, $datanascimento,
 			$sexo, $estadocivil, $orgaoexpedidor, $uf, $dataexpedicao, $especial_descricao, $responsavel,
 			$isencao, $declaracao, $localprova, $numinscricao, $especial_prova, $especial_prova_descricao,
-			$vaga_especial, $vaga_rede_publica, $vaga_rural, $campus, $id);
+			$vaga_especial, $vaga_rede_publica, $vaga_rural, $campus, $media_por_1, $media_por_2, $media_por_3, $media_mat_1, $media_mat_2, $media_mat_3, $id, null, null, $curso_superior);
 $resultado = $inscrito->atualizar($conexao);
 
 if ($resultado) {
@@ -58,16 +58,6 @@ if ($resultado) {
 							<form id="frmimpressao" name="frmimpressao" action="impressao.php" method="post">
 								<input type="hidden" name="cpf" value="<?php echo($cpf);?>" />
 								<a href="#" onclick="document.forms['frmimpressao'].submit();">Imprimir Ficha de Inscri&ccedil;&atilde;o</a>
-							</form>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div align='center'>
-							<form id='frmboleto' name='frmboleto' action='../boleto/boleto_bb.php' method='post'>
-								<input type='hidden' name='id' value="<?php echo($id);?>" />
-								<a href='#' onClick="document.forms['frmboleto'].submit();">Imprimir Boleto para Pagamento</a>
 							</form>
 						</div>
 					</td>

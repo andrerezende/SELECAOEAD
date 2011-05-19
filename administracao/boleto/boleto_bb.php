@@ -85,7 +85,7 @@ $dadosboleto["endereco2"] = $objinscrito[0]->getcidade()." - ".$objinscrito[0]->
 
 // INFORMACOES PARA O CLIENTE
 $local_prova = $local_prova->SelectByPrimaryKey($conexao, $objinscrito[0]->getlocalprova());
-$dadosboleto["demonstrativo1"] = "Pagamento de Taxa de Inscri&ccedil;&atilde;o - Processo Seletivo para Cursos Técnicos à Distância - 2011.2 - IF Baiano";
+$dadosboleto["demonstrativo1"] = "Pagamento de Taxa de Inscri&ccedil;&atilde;o - Processo Seletivo para Cursos T&eacute;cnicos &agrave; Dist&acirc;ncia - 2011.2 - IF Baiano";
 $dadosboleto["demonstrativo2"] = " CPF do Candidato: ".$objinscrito[0]->getcpf();
 $dadosboleto["demonstrativo3"] = " Local de prova: " . $local_prova[0]->getnome();
 //$dadosboleto["demonstrativo2"] = "Taxa bancária - R$ ".number_format($taxa_boleto, 2, ',', '');

@@ -1,67 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Processo Seletivo para Cursos Técnicos à Distância - 2011.2</title>
-<link href="../estilo_selecao.css" rel="stylesheet" type="text/css" />
+	<title>Processo Seletivo para Cursos T&eacute;cnicos &agrave; Dist&acirc;ncia - 2011.2</title>
+	<link href="../estilo_selecao.css" rel="stylesheet" type="text/css" />
+	<script language="JavaScript" type="text/JavaScript">
+	function Onlynumber(e) {
+		var tecla = new Number();
+
+		if (window.event) {
+			tecla = e.keyCode;
+		} else if (e.which) {
+			tecla = e.which;
+		} else {
+			return true;
+		}
+
+		if (((tecla < 48) || (tecla > 57)) && (tecla!=8)) {
+			return false;
+		}
+	}
+
+	function validar() {
+		var rg = document.getElementById("rg");
+		var senha = document.getElementById("senha");
+
+		resultado = true;
+		if (rg.value == "") {
+			alert('Informe org.');
+			rg.focus();
+			resultado = false;
+		} else if (senha .value == "") {
+			alert('Informe a Senha.');
+			senha.focus();
+			resultado = false;
+		}
+		return resultado;
+	}
+	</script>
 </head>
-
-
-<script language="JavaScript" type="text/JavaScript">
-
-function Onlynumber(e){
-
-    var tecla=new Number();
-
-    if(window.event) {
-        tecla = e.keyCode;
-    }
-    else if(e.which) {
-        tecla = e.which;
-    }
-    else {
-        return true;
-    }
-
-    if(((tecla < 48) || (tecla > 57)) && (tecla!=8)){
-        return false;
-    }
-}
-
-function validar() {
-
-
-    var rg = document.getElementById("rg");
-    var senha = document.getElementById("senha");
-
-
-    resultado = true;
-    if (rg.value == ""){
-
-      alert('Informe org.');
-	  rg.focus();
-      resultado = false;
-	}
-    else if (senha .value == ""){
-
-      alert('Informe a Senha.');
-	  senha .focus();
-      resultado = false;
-	}
-        return resultado;
-}
-
-
-</script>
-
 <body>
-<TD align='right'>
-<br>
-<br>
-<td  colspan='2'><a href=""><div align='center'><H2>INSCRIÇÕES ENCERRADAS</H2></div></a>&nbsp;&nbsp;</td>
-</td>
-</tr>
-
-
-</form>
+	<table>
+		<tr>
+			<td align='right'>
+				<br />
+				<br />
+			</td>
+			<td colspan='2'>
+				<div align='center'>
+					<h2><a href="">INSCRIÇÕES ENCERRADAS</a></h2>
+				</div>&nbsp;&nbsp;
+			</td>
+		</tr>
+	</table>
 </body>
 </html>

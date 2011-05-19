@@ -226,7 +226,7 @@ if (count($objinscrito) == 0) {
             </td>
         </tr>
 
-		<tr>
+		<tr style="display: none;">
 			<td height="28" align='right'><label for=localprova>Local de realiza&ccedil;&atilde;o da prova:</label></td>
 			<td>
 				<?php

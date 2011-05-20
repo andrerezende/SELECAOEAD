@@ -3,7 +3,7 @@ ob_start();
 session_start();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 	<title>Processo Seletivo para Cursos T&eacute;cnicos &agrave; Dist&acirc;ncia - 2011.2</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
@@ -114,20 +114,20 @@ else :
 		</tr>
 		<tr><th>&nbsp;</th></tr>
 		<tr>
-			<form id='necessidadeform' name='necessidadeform' action='relatorio_geral.php' method='post'>
-				<input type='hidden' value='candidatos_por_necessidade' name="tipo" />
-				<td><b>Candidatos por Necessidade Especial</b></td>
+			<form id='cotasform' name='cotasform' action='relatorio_cotas.php' method='post'>
+				<input type='hidden' value='candidatos_por_cotas' name="tipo" />
+				<td><b>Candidatos por Cotas</b></td>
 				<td>&nbsp;</td>
 				<td>
-					<select name="necessidade_filtro" id="necessidade_filtro" alt="Filtro de Necessidades Especiais" >
-						<option value="1">Sim</option>
-						<option value="0">Nao</option>
+					<select name="cotas_filtro" id="cotas_filtro">
+						<option value="todos">Todos</option>
+						<option value="necessidade_especial">Necessidade Especial</option>
+						<option value="escola_publica">Escola P&uacute;blica</option>
 					</select>
 				</td>
-				<td><input name="visualizar_portadores" type="submit" id="visualizar_portadores" value="Visualizar"></td>
+				<td><input name="visualizar_cotistas" type="submit" id="visualizar_cotistas" value="Visualizar"></td>
 			</form>
 		</tr>
-		<tr>
 		<tr>
 			<th>Relat&oacute;rio</th>
 			<th colspan="2">Filtro de Pagamento</th>
@@ -173,17 +173,6 @@ else :
 						<option value="0">N&atilde;o Pagos</option>
 						<option value="1">Pagos</option>
 					</select>
-				</td>
-				<td><input name="visualizar_relatorio" type="submit" id="visualizar_relatorio" value="Visualizar"></td>
-			</form>
-		</tr>
-		<tr>
-			<form id='relatorioisentos' name='relatorioisentos' action='relatorio_isentos.php' method='post' onsubmit='return validar()'>
-				<input type='hidden' value='relacao_isentos' name="tipo" />
-				<td><b>Relat&oacute;rio de Isentos</b></td>
-				<td>&nbsp;</td>
-				<td>
-					<input type="text" name="data_final_isencao" size="11" maxlength="10" onkeypress="Mascara('DATA',this,event); return Onlynumber(event);" id="data_final_isencao" />
 				</td>
 				<td><input name="visualizar_relatorio" type="submit" id="visualizar_relatorio" value="Visualizar"></td>
 			</form>

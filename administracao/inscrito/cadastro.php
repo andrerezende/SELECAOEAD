@@ -547,7 +547,7 @@
                     </td>
                 </tr>
 
-				<tr>
+				<tr style="display: none">
                     <td height="28" align='right'><label for=especial_prova>Condi&ccedil;&otilde;es especiais para realiza&ccedil;&atilde;o da prova:</label></td>
                     <td>
                         <select name="especial_prova" id="especial_prova" tabindex=29 onchange="javascript:especialProva()">
@@ -622,7 +622,7 @@
                     </td>
                 </tr>
 
-                <tr>
+				<tr style="display: none">
                     <td height="28" align='right'><label for=isencao>Isen&ccedil;&atilde;o de Taxa:</label></td>
                     <td>
                         <select name="isencao" id="isencao" tabindex=28>

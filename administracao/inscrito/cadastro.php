@@ -5,7 +5,7 @@
 	<title>Processo Seletivo para Cursos T&eacute;cnicos &agrave; Dist&acirc;ncia - 2011.2</title>
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
-	<script type="text/javascript" src="../../js/jquery.maskedinput-1.3.min.js"></script>
+	<script type="text/javascript" src="../../js/jquery.price_format.1.4.js"></script>
 	<script language="JavaScript" type="text/JavaScript">
 	function Onlynumber(e){
 		var tecla=new Number();
@@ -24,29 +24,39 @@
 
 	function validar() {
 		var nome			= document.getElementById("nome");
-		var endereco		= document.getElementById("endereco");
-		var bairro			= document.getElementById("bairro");
-		//var cep			= document.getElementById("cep");
-		var cidade			= document.getElementById("cidade");
-		var estado			= document.getElementById("estado");
-		var rg				= document.getElementById("rg");
 		var cpf				= document.getElementById("cpf");
-		var especial		= document.getElementById("especial");
 		var senha			= document.getElementById("senha");
 		var senhaConfirm	= document.getElementById("senhaConfirm");
-		var declaracao		= document.getElementById("declaracao");
+		var rg				= document.getElementById("rg");
+		var orgaoexpedidor  = document.getElementById("orgaoexpedidor");
+		var uf              = document.getElementById("uf");
+		var dataexpedicao   = document.getElementById("dataexpedicao");
 		var nacionalidade	= document.getElementById("nacionalidade");
 		var dataNascimento	= document.getElementById("datanascimento");
 		var sexo			= document.getElementById("sexo");
-		var email			= document.getElementById("email");
+		var endereco		= document.getElementById("endereco");
+		var bairro			= document.getElementById("bairro");
+		var cep			    = document.getElementById("cep");
+		var cidade			= document.getElementById("cidade");
+		var estado			= document.getElementById("estado");
+		var telefone        = document.getElementById("telefone");
+		var celular         = document.getElementById("celular");
+		var email           = document.getElementById("email");
+		var estadocivil     = document.getElementById("estadocivil");
+		var responsavel     = document.getElementById("responsavel");
+		var especial		= document.getElementById("especial");
 		var campus			= document.getElementById("campus");
 		var curso			= document.getElementById("curso");
+		var vaga_especial   = document.getElementById("vaga_especial");
+		var vaga_rede_publica = documet.getElementById("vaga_rede_publica");
+		var curso_superior    = document.getElementById("curso_superior");
 		var mediaPor1		= document.getElementById("media_por_1");
 		var mediaPor2		= document.getElementById("media_por_2");
 		var mediaPor3		= document.getElementById("media_por_3");
 		var mediaMat1		= document.getElementById("media_mat_1");
 		var mediaMat2		= document.getElementById("media_mat_2");
 		var mediaMat3		= document.getElementById("media_mat_3");
+		var declaracao		= document.getElementById("declaracao");
 
 		resultado = true;
 		if (declaracao.value == "NAO") {
@@ -279,7 +289,13 @@
 	}
 
 	$(document).ready(function() {
-		$(".notas").mask("99.9",{placeholder:" "});
+		$(".notas").priceFormat({
+		    prefix: '',
+		    limit: 3,
+		    centsLimit: 1,
+		    centsSeparator: '.',
+		    thousandsSeparator: ''
+		});
 
 		$("#vaga_especial").change(function() {
 			if ($(this).val() == "SIM") {
@@ -380,37 +396,40 @@
                 </tr>
 
                 <tr>
-                    <td align='right'><label for=orgaoexpedidor>&Oacute;rg&atilde;o Expedidor:</label></td>
-                        <td>
-                            <input style="text-transform:uppercase" name="orgaoexpedidor" id="orgaoexpedidor"  type="text" tabindex=6 size="8" maxlength="8" alt="Órgão Expedidor" />
-                                &nbsp;&nbsp;UF:&nbsp;&nbsp;
-                                 <select name="uf" id="uf" tabindex=7>
-                                     <option value="BA" selected="selected">BA</option>
-                                     <option value="SE">SE</option>
-                                     <option value="RJ">RJ</option>
-                                     <option value="MA">MA</option>
-                                     <option value="MT">MT</option>
-                                     <option value="ES">ES</option>
-                                     <option value="MG">MG</option>
-                                     <option value="SP">SP</option>
-                                     <option value="AC">AC</option>
-                                     <option value="RR">RR</option>
-                                     <option value="RS">RS</option>
-                                     <option value="AL">AL</option>
-                                     <option value="PE">PE</option>
-                                     <option value="MS">MS</option>
-                                     <option value="PI">PI</option>
-                                     <option value="CE">CE</option>
-                                     <option value="PR">PR</option>
-                                     <option value="DF">DF</option>
-                                 </select>
-                        </td>
-                </tr>
+					<td align='right'><label for=orgaoexpedidor>&Oacute;rg&atilde;o Expedidor:</label></td>
+					<td>
+						<input style="text-transform:uppercase" name="orgaoexpedidor" id="orgaoexpedidor"  type="text" tabindex=6 size="8" maxlength="8" alt="Órgão Expedidor" />
+						<span class="textoSobrescrito">*</span>
+						&nbsp;&nbsp;UF:&nbsp;&nbsp;
+						<select name="uf" id="uf" tabindex=7>
+							<option value="BA" selected="selected">BA</option>
+							<option value="SE">SE</option>
+							<option value="RJ">RJ</option>
+							<option value="MA">MA</option>
+							<option value="MT">MT</option>
+							<option value="ES">ES</option>
+							<option value="MG">MG</option>
+							<option value="SP">SP</option>
+							<option value="AC">AC</option>
+							<option value="RR">RR</option>
+							<option value="RS">RS</option>
+							<option value="AL">AL</option>
+							<option value="PE">PE</option>
+							<option value="MS">MS</option>
+							<option value="PI">PI</option>
+							<option value="CE">CE</option>
+							<option value="PR">PR</option>
+							<option value="DF">DF</option>
+						</select>
+						<span class="textoSobrescrito">*</span>
+					</td>
+				</tr>
 
                 <tr>
                     <td align='right'><label for=dataexpedicao>Data de Expedi&ccedil;&atilde;o:</label></td>
                     <td>
                         <input name="dataexpedicao" id="dataexpedicao" type="text" tabindex=8 size="10" maxlength="10" alt="Data de Expedi&ccedil;&atilde;o (RG)" onkeypress="Mascara('DATA',this,event); return Onlynumber(event);" />
+                        <span class="textoSobrescrito">*</span>
                     </td>
                 </tr>
 
@@ -454,6 +473,7 @@
                         <span class="textoSobrescrito">*</span>
                         &nbsp;&nbsp;CEP:&nbsp;&nbsp;
                         <input name="cep" type="text" id="cep" tabindex=14 onkeypress="Mascara('CEP',this,event); return Onlynumber(event);" size='09' maxlength="09" alt="CEP" />
+                        <span class="textoSobrescrito">*</span>
                     </td>
                 </tr>
 
@@ -492,6 +512,7 @@
                     <td align='right'><label for=telefone>Telefone:</label></td>
                     <td>
                         <input name="telefone" id="telefone" type="text" tabindex=17 size="17" maxlength="14" alt="Telefone"  onkeypress="Mascara('TEL',this,event); return Onlynumber(event);" />
+                        <span class="textoSobrescrito">*</span>
                     </td>
                 </tr>
 
@@ -499,6 +520,7 @@
                     <td align='right'><label for=celular >Celular:</label></td>
                     <td>
                         <input name="celular" id="celular" type="text" tabindex=19 size="17" maxlength="14" alt="Celular" onkeypress="Mascara('TEL',this,event); return Onlynumber(event);" />
+                        <span class="textoSobrescrito">*</span>
                     </td>
                 </tr>
 
@@ -520,12 +542,14 @@
                              <option value="SEPARADO(A)">SEPARADO(A)</option>
                              <option value="DIVORCIADO(A)">DIVORCIADO(A)</option>
                          </select>
+                         <span class="textoSobrescrito">*</span>
                     </td>
                 </tr>
 				<tr>
 					<td width="139" align='right'><label for=responsavel>Respons&aacute;vel:</label></td>
 					<td width="412" colspan='2'>
 						<input style="text-transform:uppercase" name="responsavel" id="responsavel" type="text" tabindex=22 size='65' maxlength="65" alt="Nome do Responsável" />
+						<span class="textoSobrescrito">*</span>
 					</td>
 				</tr>
                 <tr>
@@ -628,7 +652,6 @@
                         <select name="isencao" id="isencao" tabindex=28>
                              <option value="NAO" selected="selected">N&Atilde;O</option>
                              <option value="SIM" >SIM</option>
-
                         </select>
                         <span class="textoSobrescrito">
                             * Caso positivo, veja as condi&ccedil;&otilde;es de atendimento no Edital<br />
@@ -636,7 +659,7 @@
                     </td>
                 </tr>
 
-               	<tr>
+               	<tr style="display: none">
 					<td></td>
 					<td>
 						<span class="textoSobrescrito">
@@ -696,11 +719,11 @@
                 <tr>
                     <td align='right' width="200px">M&eacute;dias de Portugu&ecirc;s:</td>
                     <td>
-                    	&emsp;1&deg; Ano:<input class="notas" name="media_por_1" type="text" id="media_por_1" onkeypress="javascript:return Onlynumber(event);" value="" size="3" maxlength="3" alt="Média de Portugu&ecirc;s 1&deg;" />
+                    	&emsp;1&deg; Ano:<input class="notas" name="media_por_1" type="text" id="media_por_1" onkeypress="javascript:return Onlynumber(event);" value="" size="5" maxlength="5" alt="Média de Portugu&ecirc;s 1&deg;" />
                     	<span class="textoSobrescrito">*</span>
-                    	&emsp;2&deg; Ano:<input class="notas" name="media_por_2" type="text" id="media_por_2" onkeypress="javascript:return Onlynumber(event);" value="" size="3" maxlength="3" alt="Média de Portugu&ecirc;s 2&deg;" />
+                    	&emsp;2&deg; Ano:<input class="notas" name="media_por_2" type="text" id="media_por_2" onkeypress="javascript:return Onlynumber(event);" value="" size="5" maxlength="5" alt="Média de Portugu&ecirc;s 2&deg;" />
                     	<span class="textoSobrescrito">*</span>
-                    	&emsp;3&deg; Ano:<input class="notas" name="media_por_3" type="text" id="media_por_3" onkeypress="javascript:return Onlynumber(event);" value="" size="3" maxlength="3" alt="Média de Portugu&ecirc;s 3&deg;" />
+                    	&emsp;3&deg; Ano:<input class="notas" name="media_por_3" type="text" id="media_por_3" onkeypress="javascript:return Onlynumber(event);" value="" size="5" maxlength="5" alt="Média de Portugu&ecirc;s 3&deg;" />
                     	<span class="textoSobrescrito">*</span>
                     </td>
                 </tr>
@@ -708,11 +731,11 @@
                 <tr>
                     <td align='right' width="200px">M&eacute;dias de Matem&aacute;tica:</td>
                     <td>
-                    	&emsp;1&deg; Ano:<input class="notas" name="media_mat_1" type="text" id="media_mat_1" onkeypress="javascript:return Onlynumber(event);" value="" size="3" maxlength="3" alt="Média de Matem&aacute;tica 1&deg;" />
+                    	&emsp;1&deg; Ano:<input class="notas" name="media_mat_1" type="text" id="media_mat_1" onkeypress="javascript:return Onlynumber(event);" value="" size="5" maxlength="5" alt="Média de Matem&aacute;tica 1&deg;" />
                     	<span class="textoSobrescrito">*</span>
-                    	&emsp;2&deg; Ano:<input class="notas" name="media_mat_2" type="text" id="media_mat_2" onkeypress="javascript:return Onlynumber(event);" value="" size="3" maxlength="3" alt="Média de Matem&aacute;tica 2&deg;" />
+                    	&emsp;2&deg; Ano:<input class="notas" name="media_mat_2" type="text" id="media_mat_2" onkeypress="javascript:return Onlynumber(event);" value="" size="5" maxlength="5" alt="Média de Matem&aacute;tica 2&deg;" />
                     	<span class="textoSobrescrito">*</span>
-                    	&emsp;3&deg; Ano:<input class="notas" name="media_mat_3" type="text" id="media_mat_3" onkeypress="javascript:return Onlynumber(event);" value="" size="3" maxlength="3" alt="Média de Matem&aacute;tica 3&deg;" />
+                    	&emsp;3&deg; Ano:<input class="notas" name="media_mat_3" type="text" id="media_mat_3" onkeypress="javascript:return Onlynumber(event);" value="" size="5" maxlength="5" alt="Média de Matem&aacute;tica 3&deg;" />
                     	<span class="textoSobrescrito">*</span>
                     </td>
                 </tr>

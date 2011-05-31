@@ -203,7 +203,7 @@ if (count($objinscrito) == 0) {
 
         <tr>
             <td align='right' width="200px">
-                <label for=curso>&Aacute;rea:</label>
+                <label for=curso>Curso:</label>
             </td>
             <td colspan='2'>
 				<?php
@@ -239,14 +239,14 @@ if (count($objinscrito) == 0) {
 			</td>
 		</tr>
 
-        <tr>
+        <tr style="display: none;">
             <td height="28" align='right'><label for=isencao>Solicita Isen&ccedil;&atilde;o de Taxa?</label></td>
             <td>
                 <input name="isencao" id="isencao" disabled="disabled" id="curso" tabindex=26 size="3" value="<?php echo($objinscrito[0]->getisencao()); ?>" />
             </td>
         </tr>
 
-        <tr>
+        <tr style="display: none;">
             <td height="28" align='right'><label for=especial_prova>Condi&ccedil;&otilde;es especiais para realiza&ccedil;&atilde;o da prova:</label></td>
             <td>
                 <input style="text-transform:uppercase" name="especial_prova" id="especial_prova" disabled="disabled" id="especial_prova" tabindex=27 size="3" value="<?php echo($objinscrito[0]->getespecialprova()); ?>" />

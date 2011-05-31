@@ -5,7 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
-	<script type="text/javascript" src="../../js/jquery.maskedinput-1.3.min.js"></script>
+	<script type="text/javascript" src="../../js/jquery.price_format.1.4.js"></script>
 	<script language="JavaScript" type="text/JavaScript">
 		function Onlynumber(e){
 			var tecla=new Number();
@@ -22,25 +22,42 @@
 		}
 
 		function validar() {
-			var nome            = document.getElementById("nome");
-			var endereco        = document.getElementById("endereco");
-			var bairro          = document.getElementById("bairro");
-//			var cep             = document.getElementById("cep");
-			var cidade          = document.getElementById("cidade");
-			var estado          = document.getElementById("estado");
-			var rg              = document.getElementById("rg");
-			var cpf             = document.getElementById("cpf");
-			var especial        = document.getElementById("especial");
-			var senha           = document.getElementById("senha");
-			var senhaConfirm    = document.getElementById("senhaConfirm");
-			var declaracao      = document.getElementById("declaracao");
-			var nacionalidade   = document.getElementById("nacionalidade");
-			var dataNascimento  = document.getElementById("datanascimento");
-			var sexo            = document.getElementById("sexo");
-			var email            = document.getElementById("email");
+			var nome				= document.getElementById("nome");
+			var cpf					= document.getElementById("cpf");
+			var senha				= document.getElementById("senha");
+			var senhaConfirm		= document.getElementById("senhaConfirm");
+			var rg					= document.getElementById("rg");
+			var orgaoexpedidor		= document.getElementById("orgaoexpedidor");
+			var uf					= document.getElementById("uf");
+			var dataexpedicao		= document.getElementById("dataexpedicao");
+			var nacionalidade		= document.getElementById("nacionalidade");
+			var dataNascimento		= document.getElementById("datanascimento");
+			var sexo				= document.getElementById("sexo");
+			var endereco			= document.getElementById("endereco");
+			var bairro				= document.getElementById("bairro");
+			var cep					= document.getElementById("cep");
+			var cidade				= document.getElementById("cidade");
+			var estado				= document.getElementById("estado");
+			var telefone			= document.getElementById("telefone");
+			var celular				= document.getElementById("celular");
+			var email				= document.getElementById("email");
+			var estadocivil			= document.getElementById("estadocivil");
+			var responsavel			= document.getElementById("responsavel");
+			var especial			= document.getElementById("especial");
+			var campus				= document.getElementById("campus");
+			var curso				= document.getElementById("curso");
+			var vaga_especial		= document.getElementById("vaga_especial");
+			var vaga_rede_publica	= document.getElementById("vaga_rede_publica");
+			var curso_superior		= document.getElementById("curso_superior");
+			var mediaPor1			= document.getElementById("media_por_1");
+			var mediaPor2			= document.getElementById("media_por_2");
+			var mediaPor3			= document.getElementById("media_por_3");
+			var mediaMat1			= document.getElementById("media_mat_1");
+			var mediaMat2			= document.getElementById("media_mat_2");
+			var mediaMat3			= document.getElementById("media_mat_3");
+			var declaracao			= document.getElementById("declaracao");
 
 			resultado = true;
-
 			if (declaracao.value == "NAO") {
 				alert('Voce precisa aceitar a declaracao!');
 				declaracao.focus();
@@ -49,49 +66,61 @@
 				alert('Informe o nome!');
 				nome.focus();
 				resultado = false;
-			} else if (cpf.value== "") {
+			} else if(cpf.value == "") {
 				alert('Informe o CPF!');
 				cpf.focus();
+				resultado = false;
+			} else if(senha.value == "") {
+				alert('Informe a senha!');
+				senha.focus();
+				resultado = false;
+			} else if(senhaConfirm.value == "") {
+				alert('Informe a confirmacao de senha!');
+				senhaConfirm.focus();
+				resultado = false;
+			} else if(senhaConfirm.value != senha.value) {
+				alert('Confirmacao de senha deve ser igual a senha!');
+				senhaConfirm.focus();
 				resultado = false;
 			} else if (rg.value == "") {
 				alert('Informe o RG!');
 				rg.focus();
 				resultado = false;
-			} else if (senha.value== "") {
-				alert('Informe a senha!');
-				senha.focus();
+			} else if (orgaoexpedidor.value == "") {
+				alert('Informe o Orgão expedidor!');
+				orgaoexpedidor.focus();
 				resultado = false;
-			} else if (senhaConfirm.value == "") {
-				alert('Informe a confirmacao de senha!');
-				senhaConfirm.focus();
+			} else if (uf.value == "") {
+				alert('Informe a UF!');
+				uf.focus();
 				resultado = false;
-			} else if (senhaConfirm.value != senha.value) {
-				alert('Confirmacao de senha deve ser igual a senha!');
-				senhaConfirm.focus();
+			} else if (dataexpedicao.value == "") {
+				alert('Informe a data de expedicao!');
+				dataexpedicao.focus();
 				resultado = false;
-			} else if (email.value == "") {
-				alert('Informe o email!');
-				email.focus();
-				resultado = false;
-			} else if (nacionalidade.value == "") {
+			} else if(nacionalidade.value == "") {
 				alert('Informe a nacionalidade!');
-				senhaConfirm.focus();
+				nacionalidade.focus();
 				resultado = false;
-			} else if (dataNascimento.value == "") {
+			} else if(dataNascimento.value == "") {
 				alert('Informe a data de nascimento!');
-				senhaConfirm.focus();
+				dataNascimento.focus();
 				resultado = false;
-			} else if (sexo.value == "") {
+			} else if(sexo.value == "") {
 				alert('Informe sexo!');
-				senhaConfirm.focus();
+				sexo.focus();
 				resultado = false;
 			} else if (endereco.value == "") {
 				alert('Informe o endereco!');
 				endereco.focus();
 				resultado = false;
-			} else if (bairro.value == "") {
+			}  else if (bairro.value == "") {
 				alert('Informe o bairro!');
 				bairro.focus();
+				resultado = false;
+			} else if (cep.value == "") {
+				alert('Informe o CEP!');
+				cep.focus();
 				resultado = false;
 			} else if (cidade.value == "") {
 				alert('Informe a cidade!');
@@ -101,15 +130,42 @@
 				alert('Informe o estado!');
 				estado.focus();
 				resultado = false;
-			} else if (campus.value <= 0) {
-				alert('Favor preencher o Campus e Area!');
-				campus.focus();
+			} else if (telefone.value == "") {
+				alert('Informe o email!');
+				telefone.focus();
+				resultado = false;
+			} else if (celular.value == "") {
+				alert('Informe o celular!');
+				celular.focus();
+				resultado = false;
+			} else if (email.value == "") {
+				alert('Informe o email!');
+				email.focus();
+				resultado = false;
+			} else if (estadocivil.value == "") {
+				alert('Informe o estado civil!');
+				estadocivil.focus();
 				resultado = false;
 			} else if (especial.value == "") {
 				alert('Informe se possui necessidades especiais!');
 				especial.focus();
 				resultado = false;
+			} else if (campus.value <= 0) {
+				alert('Favor preencher o Campus!');
+				campus.focus();
+				resultado = false;
+			} else if (mediaPor1.value == "" || mediaPor2.value == "" || mediaPor3.value == "" ||
+						mediaMat1.value == "" || mediaMat2.value == "" || mediaMat3.value == "") {
+				alert('Informe suas notas!');
+				mediaPor1.focus();
+				resultado = false;
+			} else if (mediaPor1.value > 10.0 || mediaPor2.value > 10.0 || mediaPor3.value > 10.0 ||
+						mediaMat1.value > 10.0 || mediaMat2.value > 10.0 || mediaMat3.value > 10.0) {
+				alert('A nota deve ser ate 10.0!');
+				mediaPor1.focus();
+				resultado = false;
 			}
+
 			return resultado;
 		}
 
@@ -190,7 +246,13 @@
 		}
 
 		$(document).ready(function() {
-			$(".notas").mask("99.9",{placeholder:" "});
+			$(".notas").priceFormat({
+			    prefix: '',
+			    limit: 3,
+			    centsLimit: 1,
+			    centsSeparator: '.',
+			    thousandsSeparator: ''
+			});
 
 			$("#vaga_especial").change(function() {
 				if ($(this).val() == "SIM") {
@@ -300,7 +362,7 @@ if (count($objinscrito) == 0){
 	<h2>Ficha de Inscri&ccedil;&atilde;o</h2>
 </div>
 <div id="formularioInscricao">
-	<form id='frmeditarinscricao' name='formeditarinscricao' action='atualizar_inscrito.php' method='post' onsubmit='return validar()' >
+	<form id='frmeditarinscricao' name='formeditarinscricao' action='atualizar_inscrito.php' method='post' onsubmit="return validar();" >
 		<table width="760px" border="0" align="center">
 			<tr>
 				<td align='right'>
@@ -539,7 +601,7 @@ if (count($objinscrito) == 0){
                     </td>
                 </tr>
 
-				<tr>
+				<tr style="display: none;">
 					<td height="28" align='right'><label for=especial_prova>Condi&ccedil;&otilde;es especiais para realiza&ccedil;&atilde;o da prova:</label></td>
 					<td>
 						<select name="especial_prova" id="especial_prova" tabindex=29>
@@ -566,7 +628,7 @@ if (count($objinscrito) == 0){
                 <tr>
                     <td align='right' width="200px"><label for=campus>Campus:</label></td>
                     <td colspan='2'>
-                        <select name="campus" tabindex="25">
+                        <select id="campus" name="campus" tabindex="25">
                            <option value="0" selected="selected">Escolha um Campus</option>
                             <?php
 							$campus = new Campus(null, null);
@@ -663,7 +725,7 @@ if (count($objinscrito) == 0){
 					</td>
 				</tr>
 
-				<tr>
+				<tr style="display: none;">
 					<td height="28" align='right'><label for=isencao>Isen&ccedil;&atilde;o de Taxa?</label></td>
 					<td>
 						<select name="isencao" id="isencao" tabindex=28>
@@ -689,7 +751,7 @@ if (count($objinscrito) == 0){
 					</td>
 				</tr>
 
-				<tr>
+				<tr style="display: none;">
 					<td></td>
 					<td>
 						<span class="textoSobrescrito">
@@ -797,11 +859,11 @@ if (count($objinscrito) == 0){
 					?>
 					<td align='right' width="200px">M&eacute;dias de Portugu&ecirc;s:</td>
 					<td>
-						&emsp;1&deg; Ano:<input class="notas" name="media_por_1" type="text" id="media_por_1" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_portugues[0]; ?>" size="3" maxlength="3" alt="Média de Portugu&ecirc;s 1&deg;" />
+						&emsp;1&deg; Ano:<input class="notas" name="media_por_1" type="text" id="media_por_1" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_portugues[0]; ?>" size="5" maxlength="5" alt="Média de Portugu&ecirc;s 1&deg;" />
 						<span class="textoSobrescrito">*</span>
-						&emsp;2&deg; Ano:<input class="notas" name="media_por_2" type="text" id="media_por_2" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_portugues[1]; ?>" size="3" maxlength="3" alt="Média de Portugu&ecirc;s 2&deg;" />
+						&emsp;2&deg; Ano:<input class="notas" name="media_por_2" type="text" id="media_por_2" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_portugues[1]; ?>" size="5" maxlength="5" alt="Média de Portugu&ecirc;s 2&deg;" />
 						<span class="textoSobrescrito">*</span>
-						&emsp;3&deg; Ano:<input class="notas" name="media_por_3" type="text" id="media_por_3" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_portugues[2]; ?>" size="3" maxlength="3" alt="Média de Portugu&ecirc;s 3&deg;" />
+						&emsp;3&deg; Ano:<input class="notas" name="media_por_3" type="text" id="media_por_3" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_portugues[2]; ?>" size="5" maxlength="5" alt="Média de Portugu&ecirc;s 3&deg;" />
 						<span class="textoSobrescrito">*</span>
 					</td>
 				</tr>
@@ -809,11 +871,11 @@ if (count($objinscrito) == 0){
 				<tr>
 					<td align='right' width="200px">M&eacute;dias de Matem&aacute;tica:</td>
 					<td>
-						&emsp;1&deg; Ano:<input class="notas" name="media_mat_1" type="text" id="media_mat_1" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_matematica[0]; ?>" size="3" maxlength="3" alt="Média de Matem&aacute;tica 1&deg;" />
+						&emsp;1&deg; Ano:<input class="notas" name="media_mat_1" type="text" id="media_mat_1" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_matematica[0]; ?>" size="5" maxlength="5" alt="Média de Matem&aacute;tica 1&deg;" />
 						<span class="textoSobrescrito">*</span>
-						&emsp;2&deg; Ano:<input class="notas" name="media_mat_2" type="text" id="media_mat_2" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_matematica[1]; ?>" size="3" maxlength="3" alt="Média de Matem&aacute;tica 2&deg;" />
+						&emsp;2&deg; Ano:<input class="notas" name="media_mat_2" type="text" id="media_mat_2" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_matematica[1]; ?>" size="5" maxlength="5" alt="Média de Matem&aacute;tica 2&deg;" />
 						<span class="textoSobrescrito">*</span>
-						&emsp;3&deg; Ano:<input class="notas" name="media_mat_3" type="text" id="media_mat_3" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_matematica[2]; ?>" size="3" maxlength="3" alt="Média de Matem&aacute;tica 3&deg;" />
+						&emsp;3&deg; Ano:<input class="notas" name="media_mat_3" type="text" id="media_mat_3" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_matematica[2]; ?>" size="5" maxlength="5" alt="Média de Matem&aacute;tica 3&deg;" />
 						<span class="textoSobrescrito">*</span>
 					</td>
 				</tr>

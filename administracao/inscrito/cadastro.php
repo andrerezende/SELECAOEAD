@@ -67,37 +67,37 @@
 			alert('Informe o nome!');
 			nome.focus();
 			resultado = false;
-		} else if(cpf.value == "") {
-			alert('Informe o CPF!');
-			cpf.focus();
-			resultado = false;
-		} else if (!ValidaCPF(cpf)) {
-			resultado = false;
-		} else if(senha.value == "") {
-			alert('Informe a senha!');
-			senha.focus();
-			resultado = false;
-		} else if(senhaConfirm.value == "") {
-			alert('Informe a confirmacao de senha!');
-			senhaConfirm.focus();
-			resultado = false;
-		} else if(senhaConfirm.value != senha.value) {
-			alert('Confirmacao de senha deve ser igual a senha!');
-			senhaConfirm.focus();
-			resultado = false;
-		} else if (rg.value == "") {
-			alert('Informe o RG!');
-			rg.focus();
-			resultado = false;
-		} else if (orgaoexpedidor.value == "") {
-			alert('Informe o Orgão expedidor!');
-			orgaoexpedidor.focus();
-			resultado = false;
-		} else if (uf.value == "") {
-			alert('Informe a UF!');
-			uf.focus();
-			resultado = false;
-		} else if (dataexpedicao.value == "") {
+//		} else if(cpf.value == "") {
+//			alert('Informe o CPF!');
+//			cpf.focus();
+//			resultado = false;
+//		} else if (!ValidaCPF(cpf)) {
+//			resultado = false;
+//		} else if (senha.value == "") {
+//			alert('Informe a senha!');
+//			senha.focus();
+//			resultado = false;
+//		} else if (senhaConfirm.value == "") {
+//			alert('Informe a confirmacao de senha!');
+//			senhaConfirm.focus();
+//			resultado = false;
+//		} else if(senhaConfirm.value != senha.value) {
+//			alert('Confirmacao de senha deve ser igual a senha!');
+//			senhaConfirm.focus();
+//			resultado = false;
+//		} else if (rg.value == "") {
+//			alert('Informe o RG!');
+//			rg.focus();
+//			resultado = false;
+//		} else if (orgaoexpedidor.value == "") {
+//			alert('Informe o Orgao expedidor!');
+//			orgaoexpedidor.focus();
+//			resultado = false;
+//		} else if (uf.value == "") {
+//			alert('Informe a UF!');
+//			uf.focus();
+//			resultado = false;
+//		} else if (dataexpedicao.value == "") {
 			alert('Informe a data de expedicao!');
 			dataexpedicao.focus();
 			resultado = false;
@@ -105,11 +105,11 @@
 			alert('Informe a nacionalidade!');
 			nacionalidade.focus();
 			resultado = false;
-		} else if(dataNascimento.value == "") {
+		} else if (dataNascimento.value == "") {
 			alert('Informe a data de nascimento!');
 			dataNascimento.focus();
 			resultado = false;
-		} else if(sexo.value == "") {
+		} else if (sexo.value == "") {
 			alert('Informe sexo!');
 			sexo.focus();
 			resultado = false;
@@ -164,11 +164,10 @@
 			resultado = false;
 		} else if (mediaPor1.value > 10.0 || mediaPor2.value > 10.0 || mediaPor3.value > 10.0 ||
 					mediaMat1.value > 10.0 || mediaMat2.value > 10.0 || mediaMat3.value > 10.0) {
-			alert('A nota deve ser menor que 10.0!');
+			alert('A nota deve ser ate 10.0!');
 			mediaPor1.focus();
 			resultado = false;
 		}
-
 		return resultado;
 	}
 
@@ -387,7 +386,7 @@
 	</div>
 
 	<div id="formularioInscricao">
-		<form id='forminscricao' name='frmaincricao' action='cadastrar_inscrito.php' method='post' onsubmit='return validar()' >
+		<form id='forminscricao' name='frmaincricao' action='cadastrar_inscrito.php' method='post' onsubmit="return validar();" >
 			<table width="760" border="0" align='center'>
 				<tr>
 					<td align="right"><label for=nome>Nome:</label></td>

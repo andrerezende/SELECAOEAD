@@ -23,40 +23,40 @@
 	}
 
 	function validar() {
-		var nome			= document.getElementById("nome");
-		var cpf				= document.getElementById("cpf");
-		var senha			= document.getElementById("senha");
-		var senhaConfirm	= document.getElementById("senhaConfirm");
-		var rg				= document.getElementById("rg");
-		var orgaoexpedidor  = document.getElementById("orgaoexpedidor");
-		var uf              = document.getElementById("uf");
-		var dataexpedicao   = document.getElementById("dataexpedicao");
-		var nacionalidade	= document.getElementById("nacionalidade");
-		var dataNascimento	= document.getElementById("datanascimento");
-		var sexo			= document.getElementById("sexo");
-		var endereco		= document.getElementById("endereco");
-		var bairro			= document.getElementById("bairro");
-		var cep			    = document.getElementById("cep");
-		var cidade			= document.getElementById("cidade");
-		var estado			= document.getElementById("estado");
-		var telefone        = document.getElementById("telefone");
-		var celular         = document.getElementById("celular");
-		var email           = document.getElementById("email");
-		var estadocivil     = document.getElementById("estadocivil");
-		var responsavel     = document.getElementById("responsavel");
-		var especial		= document.getElementById("especial");
-		var campus			= document.getElementById("campus");
-		var curso			= document.getElementById("curso");
-		var vaga_especial   = document.getElementById("vaga_especial");
-		var vaga_rede_publica = documet.getElementById("vaga_rede_publica");
-		var curso_superior    = document.getElementById("curso_superior");
-		var mediaPor1		= document.getElementById("media_por_1");
-		var mediaPor2		= document.getElementById("media_por_2");
-		var mediaPor3		= document.getElementById("media_por_3");
-		var mediaMat1		= document.getElementById("media_mat_1");
-		var mediaMat2		= document.getElementById("media_mat_2");
-		var mediaMat3		= document.getElementById("media_mat_3");
-		var declaracao		= document.getElementById("declaracao");
+		var nome				= document.getElementById("nome");
+		var cpf					= document.getElementById("cpf");
+		var senha				= document.getElementById("senha");
+		var senhaConfirm		= document.getElementById("senhaConfirm");
+		var rg					= document.getElementById("rg");
+		var orgaoexpedidor		= document.getElementById("orgaoexpedidor");
+		var uf					= document.getElementById("uf");
+		var dataexpedicao		= document.getElementById("dataexpedicao");
+		var nacionalidade		= document.getElementById("nacionalidade");
+		var dataNascimento		= document.getElementById("datanascimento");
+		var sexo				= document.getElementById("sexo");
+		var endereco			= document.getElementById("endereco");
+		var bairro				= document.getElementById("bairro");
+		var cep					= document.getElementById("cep");
+		var cidade				= document.getElementById("cidade");
+		var estado				= document.getElementById("estado");
+		var telefone			= document.getElementById("telefone");
+		var celular				= document.getElementById("celular");
+		var email				= document.getElementById("email");
+		var estadocivil			= document.getElementById("estadocivil");
+		var responsavel			= document.getElementById("responsavel");
+		var especial			= document.getElementById("especial");
+		var campus				= document.getElementById("campus");
+		var curso				= document.getElementById("curso");
+		var vaga_especial		= document.getElementById("vaga_especial");
+		var vaga_rede_publica	= document.getElementById("vaga_rede_publica");
+		var curso_superior		= document.getElementById("curso_superior");
+		var mediaPor1			= document.getElementById("media_por_1");
+		var mediaPor2			= document.getElementById("media_por_2");
+		var mediaPor3			= document.getElementById("media_por_3");
+		var mediaMat1			= document.getElementById("media_mat_1");
+		var mediaMat2			= document.getElementById("media_mat_2");
+		var mediaMat3			= document.getElementById("media_mat_3");
+		var declaracao			= document.getElementById("declaracao");
 
 		resultado = true;
 		if (declaracao.value == "NAO") {
@@ -67,13 +67,13 @@
 			alert('Informe o nome!');
 			nome.focus();
 			resultado = false;
-		} else if(cpf.value== "") {
+		} else if(cpf.value == "") {
 			alert('Informe o CPF!');
 			cpf.focus();
 			resultado = false;
 		} else if (!ValidaCPF(cpf)) {
 			resultado = false;
-		} else if(senha.value== "") {
+		} else if(senha.value == "") {
 			alert('Informe a senha!');
 			senha.focus();
 			resultado = false;
@@ -89,9 +89,17 @@
 			alert('Informe o RG!');
 			rg.focus();
 			resultado = false;
-		} else if (email.value == "") {
-			alert('Informe o email!');
-			email.focus();
+		} else if (orgaoexpedidor.value == "") {
+			alert('Informe o Orgão expedidor!');
+			orgaoexpedidor.focus();
+			resultado = false;
+		} else if (uf.value == "") {
+			alert('Informe a UF!');
+			uf.focus();
+			resultado = false;
+		} else if (dataexpedicao.value == "") {
+			alert('Informe a data de expedicao!');
+			dataexpedicao.focus();
 			resultado = false;
 		} else if(nacionalidade.value == "") {
 			alert('Informe a nacionalidade!');
@@ -109,9 +117,13 @@
 			alert('Informe o endereco!');
 			endereco.focus();
 			resultado = false;
-		} else if (bairro.value == "") {
+		}  else if (bairro.value == "") {
 			alert('Informe o bairro!');
 			bairro.focus();
+			resultado = false;
+		} else if (cep.value == "") {
+			alert('Informe o CEP!');
+			cep.focus();
 			resultado = false;
 		} else if (cidade.value == "") {
 			alert('Informe a cidade!');
@@ -121,20 +133,42 @@
 			alert('Informe o estado!');
 			estado.focus();
 			resultado = false;
-		} else if (campus.value <= 0) {
-			alert('Favor preencher o Campus e Area!');
-			campus.focus();
+		} else if (telefone.value == "") {
+			alert('Informe o email!');
+			telefone.focus();
+			resultado = false;
+		} else if (celular.value == "") {
+			alert('Informe o celular!');
+			celular.focus();
+			resultado = false;
+		} else if (email.value == "") {
+			alert('Informe o email!');
+			email.focus();
+			resultado = false;
+		} else if (estadocivil.value == "") {
+			alert('Informe o estado civil!');
+			estadocivil.focus();
 			resultado = false;
 		} else if (especial.value == "") {
 			alert('Informe se possui necessidades especiais!');
 			especial.focus();
+			resultado = false;
+		} else if (campus.value <= 0) {
+			alert('Favor preencher o Campus!');
+			campus.focus();
 			resultado = false;
 		} else if (mediaPor1.value == "" || mediaPor2.value == "" || mediaPor3.value == "" ||
 					mediaMat1.value == "" || mediaMat2.value == "" || mediaMat3.value == "") {
 			alert('Informe suas notas!');
 			mediaPor1.focus();
 			resultado = false;
+		} else if (mediaPor1.value > 10.0 || mediaPor2.value > 10.0 || mediaPor3.value > 10.0 ||
+					mediaMat1.value > 10.0 || mediaMat2.value > 10.0 || mediaMat3.value > 10.0) {
+			alert('A nota deve ser menor que 10.0!');
+			mediaPor1.focus();
+			resultado = false;
 		}
+
 		return resultado;
 	}
 

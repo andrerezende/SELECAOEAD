@@ -9,7 +9,7 @@ $cpf = addslashes($_POST['cpf']);
 $banco = DB::getInstance();
 $conexao  = $banco->ConectarDB();
 
-$inscrito = new Inscrito(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);//36
+$inscrito = new Inscrito();//36
 $objinscrito = $inscrito->SelectByCpf($conexao, $cpf);
 if (empty($objinscrito)) {
 	$_SESSION['flashMensagem'] = 'CPF n&atilde;o encontrado na nossa base de dados.';
@@ -37,7 +37,7 @@ if (empty($objinscrito)) {
 
 <body>
 <?php
-if (count($objinscrito) == 0 || true) :
+if (count($objinscrito) == 0) :
 	echo("<table width='90%' border='0' class='mensagem'>");
 	echo("  <tr>");
 	echo("    <td height='280'><div align='center'><font size='5'>Inscri&ccedil;&atilde;o n&atilde;o encontrada na base de dados.</font><font size='5'></font></div></td>");
@@ -59,14 +59,14 @@ else :
 
 	$mensagem = Swift_Message::newInstance()
 		->setSubject('Recupera Senha - Processo Seletivo')
-		->setFrom(array('selecaodiscente2011@ifbaiano.edu.br' => 'IF Baiano - Processo Seletivo para Cursos T&eacute;cnicos &agrave; Dist&acirc;ncia - 2011.2'))
+		->setFrom(array('selecaoead@ifbaiano.edu.br' => 'IF Baiano - Processo Seletivo para Cursos T&eacute;cnicos &agrave; Dist&acirc;ncia - 2011.2'))
 		->setTo(array($emailInscrito => $nomeInscrito))
 		->setBody(
 			'<p>Candidato: ' .$nomeInscrito. '</p>' .
 			''.
 			'<p>Sua senha: <b>' .$senhaInscrito. '</b></p>',
 		'text/html')
-		->setSender('selecaodiscente2011@ifbaiano.edu.br')
+		->setSender('selecaoead@ifbaiano.edu.br')
 		->setPriority(2)
 	;
 

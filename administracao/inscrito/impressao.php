@@ -290,18 +290,18 @@ if (count($objinscrito) == 0) {
 			?>
 			<td align='right' width="200px">M&eacute;dias de Portugu&ecirc;s:</td>
 			<td>
-				&emsp;1&deg; Ano: <input disabled="disabled" name="media_por_1" type="text" id="media_por_1" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_portugues[0]; ?>" size="3" maxlength="3" alt="Média de Portugu&ecirc;s 1&deg;" />
-				&emsp;2&deg; Ano: <input disabled="disabled" name="media_por_2" type="text" id="media_por_2" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_portugues[1]; ?>" size="3" maxlength="3" alt="Média de Portugu&ecirc;s 2&deg;" />
-				&emsp;3&deg; Ano: <input disabled="disabled" name="media_por_3" type="text" id="media_por_3" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_portugues[2]; ?>" size="3" maxlength="3" alt="Média de Portugu&ecirc;s 3&deg;" />
+				&emsp;1&deg; Ano: <input disabled="disabled" name="media_por_1" type="text" id="media_por_1" onkeypress="javascript:return Onlynumber(event);" value="<?php echo (strpos($medias_portugues[0], "0") == 0) ? substr($medias_portugues[0], 1) : $medias_portugues[0]; ?>" size="3" maxlength="3" alt="Média de Portugu&ecirc;s 1&deg;" />
+				&emsp;2&deg; Ano: <input disabled="disabled" name="media_por_2" type="text" id="media_por_2" onkeypress="javascript:return Onlynumber(event);" value="<?php echo (strpos($medias_portugues[1], "0") == 0) ? substr($medias_portugues[1], 1) : $medias_portugues[1]; ?>" size="3" maxlength="3" alt="Média de Portugu&ecirc;s 2&deg;" />
+				&emsp;3&deg; Ano: <input disabled="disabled" name="media_por_3" type="text" id="media_por_3" onkeypress="javascript:return Onlynumber(event);" value="<?php echo (strpos($medias_portugues[2], "0") == 0) ? substr($medias_portugues[2], 1) : $medias_portugues[2]; ?>" size="3" maxlength="3" alt="Média de Portugu&ecirc;s 3&deg;" />
 			</td>
 		</tr>
 
 		<tr>
 			<td align='right' width="200px">M&eacute;dias de Matem&aacute;tica:</td>
 			<td>
-				&emsp;1&deg; Ano: <input disabled="disabled" name="media_mat_1" type="text" id="media_mat_1" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_matematica[0]; ?>" size="3" maxlength="3" alt="Média de Matem&aacute;tica 1&deg;" />
-				&emsp;2&deg; Ano: <input disabled="disabled" name="media_mat_2" type="text" id="media_mat_2" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_matematica[1]; ?>" size="3" maxlength="3" alt="Média de Matem&aacute;tica 2&deg;" />
-				&emsp;3&deg; Ano: <input disabled="disabled" name="media_mat_3" type="text" id="media_mat_3" onkeypress="javascript:return Onlynumber(event);" value="<?php echo $medias_matematica[2]; ?>" size="3" maxlength="3" alt="Média de Matem&aacute;tica 3&deg;" />
+				&emsp;1&deg; Ano: <input disabled="disabled" name="media_mat_1" type="text" id="media_mat_1" onkeypress="javascript:return Onlynumber(event);" value="<?php echo (strpos($medias_matematica[0], "0") == 0) ? substr($medias_matematica[0], 1) : $medias_matematica[0]; ?>" size="3" maxlength="3" alt="Média de Matem&aacute;tica 1&deg;" />
+				&emsp;2&deg; Ano: <input disabled="disabled" name="media_mat_2" type="text" id="media_mat_2" onkeypress="javascript:return Onlynumber(event);" value="<?php echo (strpos($medias_matematica[1], "0") == 0) ? substr($medias_matematica[1], 1) : $medias_matematica[1]; ?>" size="3" maxlength="3" alt="Média de Matem&aacute;tica 2&deg;" />
+				&emsp;3&deg; Ano: <input disabled="disabled" name="media_mat_3" type="text" id="media_mat_3" onkeypress="javascript:return Onlynumber(event);" value="<?php echo (strpos($medias_matematica[2], "0") == 0) ? substr($medias_matematica[2], 1) : $medias_matematica[2]; ?>" size="3" maxlength="3" alt="Média de Matem&aacute;tica 3&deg;" />
 			</td>
 		</tr>
 

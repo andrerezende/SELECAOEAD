@@ -39,10 +39,8 @@
 			var cidade				= document.getElementById("cidade");
 			var estado				= document.getElementById("estado");
 			var telefone			= document.getElementById("telefone");
-			var celular				= document.getElementById("celular");
 			var email				= document.getElementById("email");
 			var estadocivil			= document.getElementById("estadocivil");
-			var responsavel			= document.getElementById("responsavel");
 			var especial			= document.getElementById("especial");
 			var campus				= document.getElementById("campus");
 			var curso				= document.getElementById("curso");
@@ -133,10 +131,6 @@
 			} else if (telefone.value == "") {
 				alert('Informe o email!');
 				telefone.focus();
-				resultado = false;
-			} else if (celular.value == "") {
-				alert('Informe o celular!');
-				celular.focus();
 				resultado = false;
 			} else if (email.value == "") {
 				alert('Informe o email!');
@@ -443,7 +437,7 @@ if (count($objinscrito) == 0){
 			<tr>
 				<td align='right'><label for=dataexpedicao>Data de Expedi&ccedil;&atilde;o:</label></td>
 				<td>
-					<input name="dataexpedicao" id="dataexpedicao" type="text" tabindex=8 size="10" maxlength="10" alt="Data de Expedi&ccedil;&atilde;o (RG)" onkeypress="Mascara('DATA',this,event); return Onlynumber(event);" value="<?echo($objinscrito[0]->getdataexpedicao()); ?>" />
+					<input name="dataexpedicao" id="dataexpedicao" type="text" tabindex=8 size="13" maxlength="10" alt="Data de Expedi&ccedil;&atilde;o (RG)" onkeypress="Mascara('DATA',this,event); return Onlynumber(event);" value="<?echo($objinscrito[0]->getdataexpedicao()); ?>" />
 				</td>
 			</tr>
 
@@ -458,7 +452,7 @@ if (count($objinscrito) == 0){
 			<tr>
 				<td align='right'><label for=datanascimento>Data de Nascimento:</label></td>
 				<td>
-					<input name="datanascimento" id="datanascimento" type="text" tabindex=10 size="10" maxlength="10" alt="Data de Nascimento" onkeypress="Mascara('DATA',this,event); return Onlynumber(event);" value="<?echo($objinscrito[0]->getdatanascimento()); ?>" />
+					<input name="datanascimento" id="datanascimento" type="text" tabindex=10 size="13" maxlength="10" alt="Data de Nascimento" onkeypress="Mascara('DATA',this,event); return Onlynumber(event);" value="<?echo($objinscrito[0]->getdatanascimento()); ?>" />
 					<span class="textoSobrescrito">*</span>
 				</td>
 			</tr>
@@ -499,7 +493,7 @@ if (count($objinscrito) == 0){
 					<input style="text-transform:uppercase" name="bairro" id="bairro" type="text" tabindex=13 size="30" maxlength="30" alt="Bairro" value="<?echo($objinscrito[0]->getbairro()); ?>" />
 					<span class="textoSobrescrito">*</span>
 					&nbsp;&nbsp;CEP:&nbsp;&nbsp;
-					<input name="cep" type="text" id="cep" tabindex=14 onkeypress="Mascara('CEP',this,event); return Onlynumber(event);" size='09' maxlength="09" alt="CEP" value="<?echo($objinscrito[0]->getcep()); ?>" />
+					<input name="cep" type="text" id="cep" tabindex=14 onkeypress="Mascara('CEP',this,event); return Onlynumber(event);" size='12' maxlength="09" alt="CEP" value="<?echo($objinscrito[0]->getcep()); ?>" />
 				</td>
 			</tr>
 
@@ -531,14 +525,14 @@ if (count($objinscrito) == 0){
 			<tr>
                     <td align='right'><label for=telefone>Telefone:</label></td>
                     <td>
-                        <input name="telefone" id="telefone" type="text" tabindex=17 size="15" maxlength="14" alt="Telefone" onkeypress="Mascara('TEL',this,event); return Onlynumber(event);" value="<?echo($objinscrito[0]->gettelefone()); ?>" />
+                        <input name="telefone" id="telefone" type="text" tabindex=17 size="20" maxlength="14" alt="Telefone" onkeypress="Mascara('TEL',this,event); return Onlynumber(event);" value="<?echo($objinscrito[0]->gettelefone()); ?>" />
                     </td>
                 </tr>
 
                 <tr>
                     <td align='right'><label for=celular >Celular:</label></td>
                     <td>
-                        <input name="celular" id="celular" type="text" tabindex=19 size="15" maxlength="14" alt="Celular" onkeypress="Mascara('TEL',this,event); return Onlynumber(event);" value="<?echo($objinscrito[0]->getcelular()); ?>" />
+                        <input name="celular" id="celular" type="text" tabindex=19 size="20" maxlength="14" alt="Celular" onkeypress="Mascara('TEL',this,event); return Onlynumber(event);" value="<?echo($objinscrito[0]->getcelular()); ?>" />
                     </td>
                 </tr>
 
@@ -626,10 +620,10 @@ if (count($objinscrito) == 0){
 				</tr>
 
                 <tr>
-                    <td align='right' width="200px"><label for=campus>Campus:</label></td>
+                    <td align='right' width="200px"><label for=campus>Polo:</label></td>
                     <td colspan='2'>
                         <select id="campus" name="campus" tabindex="25">
-                           <option value="0" selected="selected">Escolha um Campus</option>
+                           <option value="0" selected="selected">Escolha um Polo</option>
                             <?php
 							$campus = new Campus(null, null);
 							$vetorcampus = $campus->SelectByAll($conexao);
@@ -904,7 +898,7 @@ if (count($objinscrito) == 0){
 				<tr>
 					<td colspan='3' align='center'>
 						<input name="Gravar" type="submit" id="Gravar" tabindex=35 value="Gravar Dados" />
-						<input type="button" value="Cancelar" onclick="javascript:redireciona();" />
+						<input type="button" value="Cancelar" onclick="history.go(-1)" />
 					</td>
 				</tr>
 <?php }?>

@@ -40,10 +40,8 @@
 		var cidade				= document.getElementById("cidade");
 		var estado				= document.getElementById("estado");
 		var telefone			= document.getElementById("telefone");
-		var celular				= document.getElementById("celular");
 		var email				= document.getElementById("email");
 		var estadocivil			= document.getElementById("estadocivil");
-		var responsavel			= document.getElementById("responsavel");
 		var especial			= document.getElementById("especial");
 		var campus				= document.getElementById("campus");
 		var curso				= document.getElementById("curso");
@@ -67,37 +65,37 @@
 			alert('Informe o nome!');
 			nome.focus();
 			resultado = false;
-//		} else if(cpf.value == "") {
-//			alert('Informe o CPF!');
-//			cpf.focus();
-//			resultado = false;
-//		} else if (!ValidaCPF(cpf)) {
-//			resultado = false;
-//		} else if (senha.value == "") {
-//			alert('Informe a senha!');
-//			senha.focus();
-//			resultado = false;
-//		} else if (senhaConfirm.value == "") {
-//			alert('Informe a confirmacao de senha!');
-//			senhaConfirm.focus();
-//			resultado = false;
-//		} else if(senhaConfirm.value != senha.value) {
-//			alert('Confirmacao de senha deve ser igual a senha!');
-//			senhaConfirm.focus();
-//			resultado = false;
-//		} else if (rg.value == "") {
-//			alert('Informe o RG!');
-//			rg.focus();
-//			resultado = false;
-//		} else if (orgaoexpedidor.value == "") {
-//			alert('Informe o Orgao expedidor!');
-//			orgaoexpedidor.focus();
-//			resultado = false;
-//		} else if (uf.value == "") {
-//			alert('Informe a UF!');
-//			uf.focus();
-//			resultado = false;
-//		} else if (dataexpedicao.value == "") {
+		} else if(cpf.value == "") {
+			alert('Informe o CPF!');
+			cpf.focus();
+			resultado = false;
+		} else if (!ValidaCPF(cpf)) {
+			resultado = false;
+		} else if (senha.value == "") {
+			alert('Informe a senha!');
+			senha.focus();
+			resultado = false;
+		} else if (senhaConfirm.value == "") {
+			alert('Informe a confirmacao de senha!');
+			senhaConfirm.focus();
+			resultado = false;
+		} else if(senhaConfirm.value != senha.value) {
+			alert('Confirmacao de senha deve ser igual a senha!');
+			senhaConfirm.focus();
+			resultado = false;
+		} else if (rg.value == "") {
+			alert('Informe o RG!');
+			rg.focus();
+			resultado = false;
+		} else if (orgaoexpedidor.value == "") {
+			alert('Informe o Orgao expedidor!');
+			orgaoexpedidor.focus();
+			resultado = false;
+		} else if (uf.value == "") {
+			alert('Informe a UF!');
+			uf.focus();
+			resultado = false;
+		} else if (dataexpedicao.value == "") {
 			alert('Informe a data de expedicao!');
 			dataexpedicao.focus();
 			resultado = false;
@@ -136,10 +134,6 @@
 		} else if (telefone.value == "") {
 			alert('Informe o email!');
 			telefone.focus();
-			resultado = false;
-		} else if (celular.value == "") {
-			alert('Informe o celular!');
-			celular.focus();
 			resultado = false;
 		} else if (email.value == "") {
 			alert('Informe o email!');
@@ -461,7 +455,7 @@
                 <tr>
                     <td align='right'><label for=dataexpedicao>Data de Expedi&ccedil;&atilde;o:</label></td>
                     <td>
-                        <input name="dataexpedicao" id="dataexpedicao" type="text" tabindex=8 size="10" maxlength="10" alt="Data de Expedi&ccedil;&atilde;o (RG)" onkeypress="Mascara('DATA',this,event); return Onlynumber(event);" />
+                        <input name="dataexpedicao" id="dataexpedicao" type="text" tabindex=8 size="13" maxlength="10" alt="Data de Expedi&ccedil;&atilde;o (RG)" onkeypress="Mascara('DATA',this,event); return Onlynumber(event);" />
                         <span class="textoSobrescrito">*</span>
                     </td>
                 </tr>
@@ -476,7 +470,7 @@
 
                 <tr>
                     <td align='right'><label for=datanascimento>Data de Nascimento:</label></td>
-                    <td><input name="datanascimento" id="datanascimento" type="text" tabindex=10 size="10" maxlength="10" alt="Data de Nascimento" onkeypress="Mascara('DATA',this,event); return Onlynumber(event);" />
+                    <td><input name="datanascimento" id="datanascimento" type="text" tabindex=10 size="13" maxlength="10" alt="Data de Nascimento" onkeypress="Mascara('DATA',this,event); return Onlynumber(event);" />
                     <span class="textoSobrescrito">*</span></td>
                 </tr>
 
@@ -505,7 +499,7 @@
                         <input style="text-transform:uppercase" name="bairro" id="bairro" type="text" tabindex=13 size="30" maxlength="30" alt="Bairro" />
                         <span class="textoSobrescrito">*</span>
                         &nbsp;&nbsp;CEP:&nbsp;&nbsp;
-                        <input name="cep" type="text" id="cep" tabindex=14 onkeypress="Mascara('CEP',this,event); return Onlynumber(event);" size='09' maxlength="09" alt="CEP" />
+                        <input name="cep" type="text" id="cep" tabindex=14 onkeypress="Mascara('CEP',this,event); return Onlynumber(event);" size="12" maxlength="09" alt="CEP" />
                         <span class="textoSobrescrito">*</span>
                     </td>
                 </tr>
@@ -544,7 +538,7 @@
                 <tr>
                     <td align='right'><label for=telefone>Telefone:</label></td>
                     <td>
-                        <input name="telefone" id="telefone" type="text" tabindex=17 size="17" maxlength="14" alt="Telefone"  onkeypress="Mascara('TEL',this,event); return Onlynumber(event);" />
+                        <input name="telefone" id="telefone" type="text" tabindex=17 size="20" maxlength="14" alt="Telefone"  onkeypress="Mascara('TEL',this,event); return Onlynumber(event);" />
                         <span class="textoSobrescrito">*</span>
                     </td>
                 </tr>
@@ -552,8 +546,7 @@
                 <tr>
                     <td align='right'><label for=celular >Celular:</label></td>
                     <td>
-                        <input name="celular" id="celular" type="text" tabindex=19 size="17" maxlength="14" alt="Celular" onkeypress="Mascara('TEL',this,event); return Onlynumber(event);" />
-                        <span class="textoSobrescrito">*</span>
+                        <input name="celular" id="celular" type="text" tabindex=19 size="20" maxlength="14" alt="Celular" onkeypress="Mascara('TEL',this,event); return Onlynumber(event);" />
                     </td>
                 </tr>
 
@@ -582,7 +575,6 @@
 					<td width="139" align='right'><label for=responsavel>Respons&aacute;vel:</label></td>
 					<td width="412" colspan='2'>
 						<input style="text-transform:uppercase" name="responsavel" id="responsavel" type="text" tabindex=22 size='65' maxlength="65" alt="Nome do Responsável" />
-						<span class="textoSobrescrito">*</span>
 					</td>
 				</tr>
                 <tr>
@@ -591,7 +583,7 @@
                         <select name="especial" id="especial" tabindex=23 onchange="javascript:necessidadeEspecial()">
                             <option value="NAO" selected="selected">N&Atilde;O</option>
                             <option value="VISUAL - CEGUEIRA">VISUAL - CEGUEIRA</option>
-                            <option value="VISUAL - BAIXA VIS&Atilde;O">VISUAL - BAIXA VIS�O</option>
+                            <option value="VISUAL - BAIXA VIS&Atilde;O">VISUAL - BAIXA VIS&Atilde;O</option>
                             <option value="MOTORA">MOTORA</option>
                             <option value="AUDITIVA">AUDITIVA</option>
                             <option value="M&Uacute;LTIPLAS">M&Uacute;LTIPLAS</option>
@@ -620,13 +612,13 @@
 
                 <tr>
                     <td align='right' width="200px">
-                        <label for=campus>Campus:</label>
+                        <label for=campus>Polo:</label>
                     </td>
 
                     <td colspan='2'>
 
                         <select id="campus" name="campus" tabindex="25">
-                               <option value="0" selected="selected">Escolha um Campus</option>
+                               <option value="0" selected="selected">Escolha um Polo</option>
                                 <?php
                                     include ("../classes/DB.php");
                                     include ("../classes/Campus.php");
@@ -659,7 +651,7 @@
 
                     <td>
                         <select name="curso" tabindex="26">
-                            <option value="0" disabled="disabled">Escolha um Campus Primeiro</option>
+                            <option value="0" disabled="disabled">Escolha um Polo Primeiro</option>
                         </select>
                         <span class="textoSobrescrito">
                         *
@@ -739,7 +731,7 @@
                 </tr>
 
                 <tr>
-                    <td height="28" align='right'><label for="curso_superior">Curso Superior:</label></td>
+                    <td height="28" align='right'><label for="curso_superior">Possui Curso Superior?:</label></td>
                     <td>
                         <select name="curso_superior" id="curso_superior" tabindex=33>
                              <option value="NAO" selected="selected">N&Atilde;O</option>
@@ -750,25 +742,30 @@
                 </tr>
 
                 <tr>
-                    <td align='right' width="200px">M&eacute;dias de Portugu&ecirc;s:</td>
-                    <td>
-                    	&emsp;1&deg; Ano:<input class="notas" name="media_por_1" type="text" id="media_por_1" onkeypress="javascript:return Onlynumber(event);" value="" size="5" maxlength="5" alt="Média de Portugu&ecirc;s 1&deg;" />
-                    	<span class="textoSobrescrito">*</span>
-                    	&emsp;2&deg; Ano:<input class="notas" name="media_por_2" type="text" id="media_por_2" onkeypress="javascript:return Onlynumber(event);" value="" size="5" maxlength="5" alt="Média de Portugu&ecirc;s 2&deg;" />
-                    	<span class="textoSobrescrito">*</span>
-                    	&emsp;3&deg; Ano:<input class="notas" name="media_por_3" type="text" id="media_por_3" onkeypress="javascript:return Onlynumber(event);" value="" size="5" maxlength="5" alt="Média de Portugu&ecirc;s 3&deg;" />
-                    	<span class="textoSobrescrito">*</span>
-                    </td>
+                    <td align="left" width="200px">Informe as m&eacute;dias das seguintes disciplinas durante o Ensino M&eacute;dio:</td>
+                    <td>&nbsp;</td>
                 </tr>
 
+				<tr>
+					<td align='right' width="200px">Portugu&ecirc;s:</td>
+					<td>
+						&emsp;1&deg; Ano: <input class="notas" name="media_por_1" type="text" id="media_por_1" onkeypress="javascript:return Onlynumber(event);" value="" size="5" maxlength="5" alt="Média de Portugu&ecirc;s 1&deg;" />
+						<span class="textoSobrescrito">*</span>
+						&emsp;2&deg; Ano: <input class="notas" name="media_por_2" type="text" id="media_por_2" onkeypress="javascript:return Onlynumber(event);" value="" size="5" maxlength="5" alt="Média de Portugu&ecirc;s 2&deg;" />
+						<span class="textoSobrescrito">*</span>
+						&emsp;3&deg; Ano: <input class="notas" name="media_por_3" type="text" id="media_por_3" onkeypress="javascript:return Onlynumber(event);" value="" size="5" maxlength="5" alt="Média de Portugu&ecirc;s 3&deg;" />
+						<span class="textoSobrescrito">*</span>
+					</td>
+				</tr>
+
                 <tr>
-                    <td align='right' width="200px">M&eacute;dias de Matem&aacute;tica:</td>
+                    <td align='right' width="200px">Matem&aacute;tica:</td>
                     <td>
-                    	&emsp;1&deg; Ano:<input class="notas" name="media_mat_1" type="text" id="media_mat_1" onkeypress="javascript:return Onlynumber(event);" value="" size="5" maxlength="5" alt="Média de Matem&aacute;tica 1&deg;" />
+                    	&emsp;1&deg; Ano: <input class="notas" name="media_mat_1" type="text" id="media_mat_1" onkeypress="javascript:return Onlynumber(event);" value="" size="5" maxlength="5" alt="Média de Matem&aacute;tica 1&deg;" />
                     	<span class="textoSobrescrito">*</span>
-                    	&emsp;2&deg; Ano:<input class="notas" name="media_mat_2" type="text" id="media_mat_2" onkeypress="javascript:return Onlynumber(event);" value="" size="5" maxlength="5" alt="Média de Matem&aacute;tica 2&deg;" />
+                    	&emsp;2&deg; Ano: <input class="notas" name="media_mat_2" type="text" id="media_mat_2" onkeypress="javascript:return Onlynumber(event);" value="" size="5" maxlength="5" alt="Média de Matem&aacute;tica 2&deg;" />
                     	<span class="textoSobrescrito">*</span>
-                    	&emsp;3&deg; Ano:<input class="notas" name="media_mat_3" type="text" id="media_mat_3" onkeypress="javascript:return Onlynumber(event);" value="" size="5" maxlength="5" alt="Média de Matem&aacute;tica 3&deg;" />
+                    	&emsp;3&deg; Ano: <input class="notas" name="media_mat_3" type="text" id="media_mat_3" onkeypress="javascript:return Onlynumber(event);" value="" size="5" maxlength="5" alt="Média de Matem&aacute;tica 3&deg;" />
                     	<span class="textoSobrescrito">*</span>
                     </td>
                 </tr>

@@ -129,7 +129,7 @@
 				estado.focus();
 				resultado = false;
 			} else if (telefone.value == "") {
-				alert('Informe o email!');
+				alert('Informe o telefone!');
 				telefone.focus();
 				resultado = false;
 			} else if (email.value == "") {
@@ -526,6 +526,7 @@ if (count($objinscrito) == 0){
                     <td align='right'><label for=telefone>Telefone:</label></td>
                     <td>
                         <input name="telefone" id="telefone" type="text" tabindex=17 size="20" maxlength="14" alt="Telefone" onkeypress="Mascara('TEL',this,event); return Onlynumber(event);" value="<?echo($objinscrito[0]->gettelefone()); ?>" />
+		<span class="textoSobrescrito">*</span>
                     </td>
                 </tr>
 
@@ -825,7 +826,7 @@ if (count($objinscrito) == 0){
                 </tr>
 
 				<tr>
-					<td height="28" align='right'><label for="curso_superior">Curso Superior:</label></td>
+					<td height="28" align='right'><label for="curso_superior">Possui Curso Superior?:</label></td>
 					<td>
 						<select name="curso_superior" id="curso_superior" tabindex=33>
 							<?php

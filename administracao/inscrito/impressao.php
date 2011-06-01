@@ -189,7 +189,7 @@ if (count($objinscrito) == 0) {
         </tr>
 
         <tr>
-            <td height="28" align='right'><label for=campus>Campus:</label></td>
+            <td height="28" align='right'><label for=campus>Polo:</label></td>
             <td>
                <?
                     $campus = new Campus(null, null);
@@ -277,7 +277,7 @@ if (count($objinscrito) == 0) {
         </tr>
 
        	<tr>
-			<td height="28" align='right'><label for="curso_superior">Curso Superior:</label></td>
+			<td height="28" align='right'><label for="curso_superior">Possui Curso Superior?:</label></td>
 			<td>
 				<input style="text-transform:uppercase" name="curso_superior" id="curso_superior" disabled="disabled" tabindex=30 size="3" value="<?php echo($objinscrito[0]->getcursosuperior()); ?>" />
 			</td>

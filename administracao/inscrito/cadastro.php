@@ -132,7 +132,7 @@
 			estado.focus();
 			resultado = false;
 		} else if (telefone.value == "") {
-			alert('Informe o email!');
+			alert('Informe o telefone!');
 			telefone.focus();
 			resultado = false;
 		} else if (email.value == "") {
@@ -148,7 +148,7 @@
 			especial.focus();
 			resultado = false;
 		} else if (campus.value <= 0) {
-			alert('Favor preencher o Campus!');
+			alert('Favor preencher o Polo!');
 			campus.focus();
 			resultado = false;
 		} else if (mediaPor1.value == "" || mediaPor2.value == "" || mediaPor3.value == "" ||
@@ -811,4 +811,3 @@
 	</div>
 </body>
 </html>
-

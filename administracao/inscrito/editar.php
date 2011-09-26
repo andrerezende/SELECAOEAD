@@ -1,3 +1,13 @@
+<?php session_start("SELECAO"); ?>
+<?php session_start();?>
+
+<?php	
+	//Trecho que automatiza o encerramento do Período de Isenção
+	$data_fim_isencao  	= $_SESSION["Gdataterminoisencao"];
+	$data_atual   	= strtotime(date("d/m/Y")); 
+
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -320,12 +330,12 @@
 </head>
 <body>
 <?php
-include ("../classes/DB.php");
-include ("../classes/Inscrito.php");
-include ("../classes/Inscrito_Curso.php");
-include ("../classes/Curso.php");
-include ("../classes/Campus.php");
-include ("../classes/Localprova.php");
+include_once ("../classes/DB.php");
+include_once ("../classes/Inscrito.php");
+include_once ("../classes/Curso.php");
+include_once ("../classes/Campus.php");
+include_once ("../classes/Localprova.php");
+
 
 $id = $_POST['id'];
 
@@ -353,6 +363,9 @@ if (count($objinscrito) == 0){
 ?>
 <div align="center">
 	<img src="../../imgs/topo2/topo_formulario.png" alt="Instituto Federal Baiano" />
+	<div id="topoFormTexto">
+		<?php echo ($_SESSION["Gnomeprocessoseletivo"]);?>
+	</div>
 	<h2>Ficha de Inscri&ccedil;&atilde;o</h2>
 </div>
 <div id="formularioInscricao">
@@ -418,7 +431,7 @@ if (count($objinscrito) == 0){
 					&nbsp;&nbsp;UF:&nbsp;&nbsp;
 					<select name="uf" id="uf" tabindex=7>
 						<?php
-						$uf = array("BA","SE","RJ","MA","MT","ES","MG","SP","AC","RR","RS","AL","PE","MS","PI","CE","CE","PR","DF");
+						$uf = array("BA","SE","RJ","MA","MT","ES","MG","SP","AC","RR","RS","AL","PE","MS","PI","CE","CE","PR","DF","TO");
 						$total = count($uf);
 						$i = 0;
 						while ($total > $i) {
@@ -505,7 +518,7 @@ if (count($objinscrito) == 0){
 					&nbsp;&nbsp;Estado:&nbsp;&nbsp;
 					<select name="estado" id="estado" tabindex=16>
 						<?php
-						$estado = array("BA","SE","RJ","MA","MT","ES","MG","SP","AC","RR","RS","AL","PE","MS","PI","CE","CE","PR","DF");
+						$estado = array("BA","SE","RJ","MA","MT","ES","MG","SP","AC","RR","RS","AL","PE","MS","PI","CE","CE","PR","DF", "TO");
 						$total = count($estado);
 						$i = 0;
 						while ($total > $i) {
@@ -574,22 +587,22 @@ if (count($objinscrito) == 0){
                 <tr>
                     <td height="28" align='right'><label for=especial>Necessidade Especial:</label></td>
                     <td>
-                        <select name="especial" id="especial" tabindex=23 >
-                            <?php
-                                $especial = array("NAO","VISUAL - CEGUEIRA","VISUAL - BAIXA VIS&Atilde;O","MOTORA","AUDITIVA","M&Uacute;LTIPLAS","OUTRA");
-                                $total = count($especial);
-                                $i =0;
-                                while ($total > $i){
-                                    if($especial[$i] != $objinscrito[0]->getespecial() ){
-                                            echo("	<option value=".$especial[$i].">".$especial[$i]."</option>\n");
-                                    }else{
-                                            echo("	<option selected value=".$especial[$i].">".$especial[$i]."</option>\n");
-                                    }
-                                    $i= $i + 1;
-                                }
-                            ?>
-                        </select>
-                        <span class="textoSobrescrito">*</span>
+					<select name="especial" id="especial" tabindex=23 >
+						<?php
+						$especial = array("NAO","VISUAL - CEGUEIRA","VISUAL - BAIXA VISAO","MOTORA","AUDITIVA","MULTIPLAS","OUTRA");
+						$total = count($especial);
+						$i = 0;
+						while ($total > $i) {
+							if ($especial[$i] != $objinscrito[0]->getespecial()) {
+								echo("	<option value=".$especial[$i].">".$especial[$i]."</option>\n");
+							} else {
+								echo("	<option selected value=".$especial[$i].">".$especial[$i]."</option>\n");
+							}
+							$i = $i + 1;
+						}
+						?>
+ 					</select>
+					<span class="textoSobrescrito">*</span>
 
                         <label for=especial_descricao>Outra: </label>
                         <input style="text-transform:uppercase" name="especial_descricao" type="text" id="especial_descricao" tabindex=24 size='40' maxlength="40" alt="Qual deficiência?" value="<?echo($objinscrito[0]->getespecial_descricao()); ?>" />
@@ -621,7 +634,7 @@ if (count($objinscrito) == 0){
 				</tr>
 
                 <tr>
-                    <td align='right' width="200px"><label for=campus>Polo:</label></td>
+                    <td align='right' width="200px"><label for=campus>Pólo:</label></td>
                     <td colspan='2'>
                         <select id="campus" name="campus" tabindex="25">
                            <option value="0" selected="selected">Escolha um Polo</option>
@@ -723,15 +736,20 @@ if (count($objinscrito) == 0){
 				<tr style="display: none;">
 					<td height="28" align='right'><label for=isencao>Isen&ccedil;&atilde;o de Taxa?</label></td>
 					<td>
-						<select name="isencao" id="isencao" tabindex=28>
-							<?php
+						<?php	
+							//Verifica o término do período de isenção					
+							if ($data_fim_isencao >= $data_atual){
+								echo("<select name='isencao' id='isencao' tabindex=28>");
+							}else{
+								echo("<select name='isencao' id='isencao' tabindex=28 disabled>");
+							}
 							$isencao = array("NAO","SIM");
 							$total = count($isencao);
 							$i = 0;
 							while ($total > $i) {
 								$string = 'SIM';
 								if ($isencao[$i] == 'NAO') {
-									$string = 'N&Atilde;O';
+									$string = 'NAO';
 								}
 								if ($isencao[$i] != $objinscrito[0]->getisencao()) {
 									echo("	<option value=".$isencao[$i].">".$string."</option>\n");
@@ -740,7 +758,7 @@ if (count($objinscrito) == 0){
 								}
 								$i = $i + 1;
 							}
-							?>
+						?>					
 						</select>
 						<span class="textoSobrescrito">* Caso positivo, veja as condi&ccedil;&otilde;es de atendimento no Edital<br /></span>
 					</td>

@@ -2,7 +2,7 @@
 //Vari�veis de sess�o para parametriza��o - Ser�o extra�das do Banco de Dados
 
 session_start("SELECAO");
-$_SESSION["Gnomeprocessoseletivo"]    = "Processo Seletivo para Curso de Especialização";
+$_SESSION["Gnomeprocessoseletivo"]    = "Processo Seletivo para Cursos Técnicos a Distância";
 $_SESSION["Gdatainicio"]  			  = mktime(0, 0, 0, 9, 23, 2011);
 $_SESSION["Gdatatermino"]			  = mktime(0, 0, 0, 10, 05, 2011);
 $_SESSION["Gdataterminoisencao"]	  = mktime(0, 0, 0, 10, 27, 2011);
@@ -19,9 +19,9 @@ $_SESSION["Gpwdmail"] = "temp";
 $_SESSION["Gcaminhoupload"]= "E:/home/ifbaiano/Web/concursos/aplicacoes/20112_docente/pagamento/retorno/";
 
 //Atribui��o da p�gina parametrizada respons�vel pelo cadastro,edi��o e impress�o do candidato 
-$_SESSION["Gpaginaeditar"]			="esp-editar.php";		   
-$_SESSION["Gpaginaimpressao"]		="esp-impressao.php";
-$_SESSION["Gpaginacadastro"]		="esp-cadastro.php";
+$_SESSION["Gpaginaeditar"]			="editar.php";		   
+$_SESSION["Gpaginaimpressao"]		="impressao.php";
+$_SESSION["Gpaginacadastro"]		="cadastro.php";
 
 
 ?>

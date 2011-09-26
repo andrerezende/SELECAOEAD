@@ -1,9 +1,10 @@
+<?php session_start("SELECAO"); ?>
 <?php
-include("../classes/DB.php");
-include("../classes/Inscrito.php");
-include("../classes/Inscrito_Curso.php");
-include("../classes/Campus.php");
-include("../classes/Localprova.php");
+include_once ("../classes/DB.php");
+include_once ("../classes/Inscrito.php");
+include_once ("../classes/Campus.php");
+include_once ("../classes/Curso.php");
+include_once ("../classes/Localprova.php");
 
 $cpf = addslashes($_POST['cpf']);
 $id = $_POST['id'];
@@ -21,7 +22,7 @@ if ($id) {
 <!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Processo Seletivo para Cursos T&eacute;cnicos &agrave; Dist&acirc;ncia - 2011.2</title>
+		<title> <?php echo ($_SESSION["Gnomeprocessoseletivo"]);?> </title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 </head>
@@ -37,15 +38,14 @@ if (count($objinscrito) == 0) {
 ?>
 
 <body class="formImpressao">
+	<div align='center'>
+		<p><img src="../../imgs/logo.gif" width="178" height="100" alt="logotipo do IFBaiano"></p>
+		<h2><?php echo ($_SESSION["Gnomeprocessoseletivo"]);?></h2>
+		<h3>Ficha de Inscri&ccedil;&atilde;o</h3>
+	</div>
 
-<div align='center'>
-	<p><img src="../../imgs/logo.gif" width="178" height="100" alt="logotipo do Ifbaiano"></p>
-        <p><h2>Processo Seletivo para Cursos T&eacute;cnicos &agrave; Dist&acirc;ncia - 2011.2</h2>
-	<p><h3>Ficha de Inscri&ccedil;&atilde;o</h3>
-</div>
-
-<form id='frmficha' name='frmficha' action='ficha_excel.php' method='post' onsubmit='' >
-<!--    <input type="hidden" name="cpf" id="cpf" value="<?php //echo($cpf);?>">-->
+	<form id='frmficha' name='frmficha' action='ficha_excel.php' method='post' onsubmit='' >
+	<!--    <input type="hidden" name="cpf" id="cpf" value="<?php //echo($cpf);?>">-->
 
     <table width="760px" border="0" align="center">
         <tr>
@@ -207,25 +207,13 @@ if (count($objinscrito) == 0) {
             </td>
             <td colspan='2'>
 				<?php
-				$inscrito_curso       = new Inscrito_Curso(null,null,null);
-				$vetor_inscrito_curso = $inscrito_curso->ListarCurso($conexao, $objinscrito[0]->getid());
-
-				/* Varaveis auxiliares */
-				$i =0;
-				$total = count($vetor_inscrito_curso);
-
-				while ($total > $i) {
-					$curso    = $vetor_inscrito_curso[$i]->getnome();
-					$codigoSelecionado  = $vetor_inscrito_curso[$i]->getcodcurso();
-					//echo("	<option selected value=".$codigoSelecionado.">".$nome."</option>\n");
-					$i= $i + 1;
-				}
-				//$banco->DesconectarDB($conexao);
+				$curso = new Curso();
+				$curso = $curso->SelectByPrimaryKey($conexao, $objinscrito[0]->getcurso());
 				?>
-				<input name="curso" disabled="disabled" id="curso" tabindex=25 size="80" value="<?php echo($curso)?>" />
+				<input name="curso" disabled="disabled" id="curso" tabindex=25 size="80" value="<?php echo ($curso[0]->getnome())?>" />
             </td>
         </tr>
-
+		
 		<tr style="display: none;">
 			<td height="28" align='right'><label for=localprova>Local de realiza&ccedil;&atilde;o da prova:</label></td>
 			<td>

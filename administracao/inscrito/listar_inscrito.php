@@ -1,3 +1,10 @@
+<?php session_start("SELECAO"); 
+
+//Atribuição da página parametrizada responsável pelo edição e impressão do cadastro do candidato 
+$pagina_editar	= $_SESSION["Gpaginaeditar"];	
+
+?>
+
 <?php
 session_start();
 include("../classes/DB.php");
@@ -10,7 +17,7 @@ else :
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Processo Seletivo para Cursos T&eacute;cnicos &agrave; Dist&acirc;ncia - 2011.2</title>
+<title> <?php echo ($_SESSION["Gnomeprocessoseletivo"]);?> </title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 </head>
@@ -35,7 +42,11 @@ else :
 			</div>
 			<div id="topo2" align="left">
 				<img src="../../imgs/topo2/topo2.png" alt="Instituto Federal Baiano" />
-			</div>
+					<div id="topo2Texto">
+						<?php echo ($_SESSION["Gnomeprocessoseletivo"]);?>
+					</div>
+					
+			</div>	
 			<div align="right" class="admin_logout"><p><a href="../login/logout.php" target="_self">Logout</a></p></div>
 			<div align='center'><h2>&Aacute;rea Administrativa - Inscritos</h2></div>
 			<?php
@@ -75,7 +86,7 @@ else :
 				echo('       <td>' . $cpf. '</td>');
 				echo('       <td>' . $rg. '</td>');
 				echo("       <td>
-				<form id=\"frmeditar$id\" name=\"frmeditar$id\" action=\"editar.php\" method=\"post\">
+				<form id=\"frmeditar$id\" name=\"frmeditar$id\" action=\"$pagina_editar\" method=\"post\">
 				<input type=\"hidden\" name=\"id\" value=\"$id\"/>
 				<a href=\"#\" onclick=\"document.forms['frmeditar$id'].submit();\">Editar</a>
 				</form>

@@ -4,10 +4,10 @@ class Curso {
 	protected $nome;
 	protected $id_campus;
 
-	public function Curso($a, $b, $c) {
-		$this->cod_curso = $a;
-		$this->nome = $b;
-		$this->id_campus = $c;
+	public function Curso($pcod_curso = null, $pnome = null, $pid_campus = null) {
+		$this->cod_curso = $pcod_curso;
+		$this->nome = $pnome;
+		$this->id_campus = $pid_campus;
 	}
 
 	public function getcodcurso() {
@@ -112,8 +112,8 @@ class Curso {
 	}
 
 	public function SelectByPrimaryKey($sock,$codigo) {
-		$ssql = "SELECT cod_curso, nome FROM curso A " ;
-		$ssql .= " WHERE cod_curso  =" .$codigo;
+		$ssql = "SELECT cod_curso, nome, campus FROM curso A " ;
+		$ssql .= " WHERE cod_curso = " . $codigo;
 		$ssql .= " ORDER BY cod_curso ASC";
 
 		$rs = mysql_query($ssql, $sock);
@@ -121,7 +121,7 @@ class Curso {
 		unset($ar);
 
 		while ($linha = mysql_fetch_row($rs)) {
-			$obj = new Curso($linha[0], $linha[1]);
+			$obj = new Curso($linha[0], $linha[1], $linha[2]);
 			$ar[] = $obj;
 		}
 		return ($ar);

@@ -37,6 +37,7 @@ SELECT
 	campus.id AS campus_id,
 	campus.nome AS campus_nome,
 	curso.nome AS curso_nome,
+	localprova.nome AS localprova,
 	inscrito.nome AS inscrito_nome,
 	inscrito.numinscricao AS inscrito_numinscricao,
 	inscrito.cpf AS inscrito_cpf,
@@ -69,83 +70,57 @@ if ($_POST['tipo'] == 'candidatos_por_necessidade') {
 		, inscrito.especial
 		FROM
 			inscrito
+				LEFT JOIN localprova ON inscrito.localprova = localprova.id
 				INNER JOIN campus ON campus.id = inscrito.campus
-				INNER JOIN inscrito_curso ON inscrito_curso.id_inscrito = inscrito.id
-				INNER JOIN curso ON curso.cod_curso = inscrito_curso.cod_curso
-		WHERE especial not REGEXP 'N(A|Ã|&Atilde;)O'
+				LEFT JOIN curso ON curso.cod_curso = inscrito.curso
+		WHERE inscrito.especial != 'NAO'
 SQL;
 	} else {
 		$sql .= <<<SQL
 		 FROM
 			inscrito
+				LEFT JOIN localprova ON inscrito.localprova = localprova.id
 				INNER JOIN campus ON campus.id = inscrito.campus
-				INNER JOIN inscrito_curso ON inscrito_curso.id_inscrito = inscrito.id
-				INNER JOIN curso ON curso.cod_curso = inscrito_curso.cod_curso
-		WHERE especial REGEXP 'N(A|Ã|&Atilde;)O'
+				LEFT JOIN curso ON curso.cod_curso = inscrito.curso
+		WHERE inscrito.especial = 'NAO'
 SQL;
 	}
 } elseif ($_POST['tipo'] == 'relacao_cadidatos2') {
-	if ($_POST['filtro_pagamento']) {
+	if ($_POST['filtro_pagamento'] === '1') {
 		$sql .= <<<SQL
 		, pagamentos.datapagamento
 		FROM
 			inscrito
+				LEFT JOIN localprova ON inscrito.localprova = localprova.id
 				INNER JOIN campus ON campus.id = inscrito.campus
-				INNER JOIN inscrito_curso ON inscrito_curso.id_inscrito = inscrito.id
-				INNER JOIN curso ON curso.cod_curso = inscrito_curso.cod_curso
-				INNER JOIN pagamentos ON pagamentos.id_inscrito = inscrito.id
+				LEFT JOIN curso ON curso.cod_curso = inscrito.curso
+				INNER JOIN pagamentos ON ABS(pagamentos.id_inscrito) = ABS(inscrito.numinscricao)
 SQL;
-	} elseif ($_POST['filtro_pagamento'] === 0) {
+	} elseif ($_POST['filtro_pagamento'] === '0') {
 		$sql .= <<<SQL
 		 FROM
 			inscrito
+				LEFT JOIN localprova ON inscrito.localprova = localprova.id
 				INNER JOIN campus ON campus.id = inscrito.campus
-				INNER JOIN inscrito_curso ON inscrito_curso.id_inscrito = inscrito.id
-				INNER JOIN curso ON curso.cod_curso = inscrito_curso.cod_curso
-				LEFT JOIN pagamentos ON pagamentos.id_inscrito = inscrito.id
-		WHERE pagamentos.id IS NULL
+				LEFT JOIN curso ON curso.cod_curso = inscrito.curso
+		WHERE ABS(inscrito.numinscricao) NOT IN (SELECT ABS(id_inscrito) FROM pagamentos)
 SQL;
 	} else {
 		$sql .= <<<SQL
 		 FROM
 			inscrito
-				INNER JOIN campus ON campus.id = inscrito.campus
-				INNER JOIN inscrito_curso ON inscrito_curso.id_inscrito = inscrito.id
-				INNER JOIN curso ON curso.cod_curso = inscrito_curso.cod_curso
+				LEFT JOIN localprova ON inscrito.localprova = localprova.id
+				LEFT JOIN campus ON campus.id = inscrito.campus
+				LEFT JOIN curso ON curso.cod_curso = inscrito.curso
 SQL;
 	}
 }
 $sql .= <<<SQL
- GROUP BY
-	campus.id,
-	campus.nome,
-	curso.nome,
-	inscrito.nome,
-	inscrito.numinscricao,
-	inscrito.cpf,
-	inscrito.rg,
-	inscrito.orgaoexpedidor,
-	inscrito.uf,
-	inscrito.dataexpedicao,
-	inscrito.nacionalidade,
-	inscrito.datanascimento,
-	inscrito.sexo,
-	inscrito.endereco,
-	inscrito.cep,
-	inscrito.cidade,
-	inscrito.estado,
-	inscrito.telefone,
-	inscrito.celular,
-	inscrito.email,
-	inscrito.estadocivil,
-	inscrito.especial,
-	inscrito.especial_descricao,
-	inscrito.isencao,
-	inscrito.especial_prova,
-	inscrito.especial_prova_descricao,
-	inscrito.vaga_especial
-ORDER BY campus.id, inscrito.id
+ ORDER BY campus.id, inscrito.id
+LIMIT 2000
 SQL;
+//var_dump($sql);
+//exit;
 
 $objPHPExcel = new PHPExcel();
 
@@ -161,30 +136,30 @@ $colunas = array(
 	'A' => 'CAMPUS',
 	'B' => 'CURSO',
 	'C' => 'LOCAL DE PROVA',
-	'C' => 'INSCRITO',
-	'D' => 'N. INSCRICAO',
-	'E' => 'CPF',
-	'F' => 'RG',
-	'G' => 'ORGAO EXPEDIDOR',
-	'H' => 'UF',
-	'I' => 'DATA DE EXPEDICAO',
-	'J' => 'NACIONALIDADE',
-	'K' => 'DATA DE NASCIMENTO',
-	'L' => 'SEXO',
-	'M' => 'ENDERECO',
-	'N' => 'CEP',
-	'O' => 'CIDADE',
-	'P' => 'ESTADO',
-	'Q' => 'TELEFONE',
-	'R' => 'CELULAR',
-	'S' => 'EMAIL',
-	'T' => 'ESTADO CIVIL',
-	'U' => 'NECESSIDADE ESPECIAL',
+	'D' => 'INSCRITO',
+	'E' => 'N. INSCRICAO',
+	'F' => 'CPF',
+	'G' => 'RG',
+	'H' => 'ORGAO EXPEDIDOR',
+	'I' => 'UF',
+	'J' => 'DATA DE EXPEDICAO',
+	'K' => 'NACIONALIDADE',
+	'L' => 'DATA DE NASCIMENTO',
+	'M' => 'SEXO',
+	'N' => 'ENDERECO',
+	'O' => 'CEP',
+	'P' => 'CIDADE',
+	'Q' => 'ESTADO',
+	'R' => 'TELEFONE',
+	'S' => 'CELULAR',
+	'T' => 'EMAIL',
+	'U' => 'ESTADO CIVIL',
+	'V' => 'NECESSIDADE ESPECIAL',
 	'W' => 'DESCRICAO NECESSIDADE ESPECIAL',
-	'V' => 'ISENCAO DE TAXA',
-	'X' => 'CONDICOES ESPECIAIS PARA REALIZACAO DA PROVA',
-	'Y' => 'DESCRICAO CONDICOES ESPECIAIS PARA REALIZACAO DA PROVA',
-	'Z' => 'CONCORRE AS VAGAS DESTINADAS A CANDIDATOS COM NECESSIDADES ESPECIAIS',
+	'X' => 'ISENCAO DE TAXA',
+	'Y' => 'CONDICOES ESPECIAIS PARA REALIZACAO DA PROVA',
+	'Z' => 'DESCRICAO CONDICOES ESPECIAIS PARA REALIZACAO DA PROVA',
+	'AA' => 'CONCORRE AS VAGAS DESTINADAS A CANDIDATOS COM NECESSIDADES ESPECIAIS',
 );
 
 $query = $banco->ExecutaQueryGenerica($sql);
@@ -193,7 +168,6 @@ $linha = 2;
 $campus_id = null;
 while ($row = mysql_fetch_assoc($query)) {
 	$val = array_values($row);
-//	var_dump($val);exit;
 	if ($campus_id != $val[0]) {
 		$campus_id = $val[0];
 		if ($campus_id > 1 && $numResults > 1) {

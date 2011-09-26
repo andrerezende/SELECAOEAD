@@ -1,3 +1,14 @@
+<?php session_start("SELECAO"); ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title> <?php echo ($_SESSION["Gnomeprocessoseletivo"]);?> </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<link href="estilo_selecao.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
 <?php
 //ob_start();
 session_start();
@@ -60,22 +71,23 @@ if (empty($objinscrito)) {
 // ------------------------- DADOS DINÂMICOS DO SEU CLIENTE PARA A GERAÇÃO DO BOLETO (FIXO OU VIA GET) -------------------- //
 // Os valores abaixo podem ser colocados manualmente ou ajustados p/ formulário c/ POST, GET ou de BD (MySql,Postgre,etc)	//
 
-
 // DADOS DO BOLETO PARA O SEU CLIENTE
+//Variav�is da session
+$data_venc     = date('d/m/Y', $_SESSION["Gdatatermino"]); // Prazo de X dias OU informe data: "13/04/2006";
+$valor_cobrado = $_SESSION["Gvalorboleto"];  // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
+$nome_selecao  = $_SESSION["Gnomeprocessoseletivo"];
+
 $dias_de_prazo_para_pagamento = 1;
 $taxa_boleto = 0.0;
-$data_venc = '30/05/2011';  // Prazo de X dias OU informe data: "13/04/2006";
-$valor_cobrado = "10,00"; // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
 $valor_cobrado = str_replace(",", ".",$valor_cobrado);
 $valor_boleto=number_format($valor_cobrado+$taxa_boleto, 2, ',', '');
 
-$dadosboleto["nosso_numero"] = $objinscrito[0]->getnuminscricao(); //getid();
-$dadosboleto["numero_documento"] = $objinscrito[0]->getnuminscricao(); //"27.030195.10";	// Num do pedido ou do documento
-//$dadosboleto["data_vencimento"] = $data_venc; // Data de Vencimento do Boleto - REGRA: Formato DD/MM/AAAA
-$dadosboleto["data_vencimento"] = '30/05/2011'; // Data de Vencimento do Boleto - REGRA: Formato DD/MM/AAAA
-$dadosboleto["data_documento"] = date("d/m/Y"); // Data de emissão do Boleto
+$dadosboleto["nosso_numero"]       = $objinscrito[0]->getnuminscricao(); //getid();
+$dadosboleto["numero_documento"]   = $objinscrito[0]->getnuminscricao(); //"27.030195.10";	// Num do pedido ou do documento
+$dadosboleto["data_vencimento"]    = $data_venc;    // Data de Vencimento do Boleto - REGRA: Formato DD/MM/AAAA
+$dadosboleto["data_documento"]     = date("d/m/Y"); // Data de emiss�o do Boleto
 $dadosboleto["data_processamento"] = date("d/m/Y"); // Data de processamento do boleto (opcional)
-$dadosboleto["valor_boleto"] = $valor_boleto; 	// Valor do Boleto - REGRA: Com vírgula e sempre com duas casas depois da virgula
+$dadosboleto["valor_boleto"]       = $valor_boleto; // Valor do Boleto - REGRA: Com vírgula e sempre com duas casas depois da virgula
 
 // DADOS DO SEU CLIENTE
 //$dadosboleto["sacado"] = "Nome do seu Cliente";
@@ -85,9 +97,9 @@ $dadosboleto["endereco2"] = $objinscrito[0]->getcidade()." - ".$objinscrito[0]->
 
 // INFORMACOES PARA O CLIENTE
 $local_prova = $local_prova->SelectByPrimaryKey($conexao, $objinscrito[0]->getlocalprova());
-$dadosboleto["demonstrativo1"] = "Pagamento de Taxa de Inscri&ccedil;&atilde;o - Processo Seletivo para Cursos T&eacute;cnicos &agrave; Dist&acirc;ncia - 2011.2 - IF Baiano";
+$dadosboleto["demonstrativo1"] = "Pagamento de Taxa de Inscri&ccedil;&atilde;o - " .$nome_selecao;
 $dadosboleto["demonstrativo2"] = " CPF do Candidato: ".$objinscrito[0]->getcpf();
-$dadosboleto["demonstrativo3"] = " Local de prova: " . $local_prova[0]->getnome();
+//$dadosboleto["demonstrativo3"] = " Local de prova: " . $local_prova[0]->getnome();
 //$dadosboleto["demonstrativo2"] = "Taxa bancária - R$ ".number_format($taxa_boleto, 2, ',', '');
 $dadosboleto["demonstrativo4"] = "N&uacute;mero de Inscri&ccedil;&atilde;o: ".$objinscrito[0]->getnuminscricao();
 
@@ -105,7 +117,7 @@ $dadosboleto["especie"] = "R$";
 $dadosboleto["especie_doc"] = "RC";
 
 
-// ---------------------- DADOS FIXOS DE CONFIGURAÇÃO DO SEU BOLETO --------------- //
+// ---------------------- DADOS FIXOS DE CONFIGURA��O DO SEU BOLETO --------------- //
 
 
 // DADOS DA SUA CONTA - BANCO DO BRASIL
@@ -140,7 +152,6 @@ DESENVOLVIDO PARA CARTEIRA 18
 #################################################
 */
 
-
 // SEUS DADOS
 $dadosboleto["identificacao"] = "Instituto Federal Baiano";
 $dadosboleto["cpf_cnpj"] = "10.724.903/0001-79";
@@ -148,7 +159,11 @@ $dadosboleto["endereco"] = "Rua do Rouxinol, 115 - Imbu&iacute; - CEP: 41.720-05
 $dadosboleto["cidade_uf"] = "Salvador / Bahia";
 $dadosboleto["cedente"] = "Instituto Federal de Educa&ccedil;&atilde;o, Ci&ecirc;ncia e Tecnologia Baiano";
 
-
-// NÃO ALTERAR!
+// N�O ALTERAR!
 include("include/funcoes_bb.php");
 include("include/layout_bb.php");
+?>
+</body>
+</html>
+
+

@@ -36,11 +36,11 @@ function removeAcentos($str, $enc = "ISO-8859-1") {
 }
 
 $sql = <<<SQL
+
 SELECT
 	campus.id AS campus_id,
 	campus.nome AS campus_nome,
 	curso.nome AS curso_nome,
-	localprova.nome AS localprova,
 	inscrito.nome AS inscrito_nome,
 	inscrito.numinscricao AS inscrito_numinscricao,
 	inscrito.cpf AS inscrito_cpf,
@@ -62,49 +62,20 @@ SELECT
 	inscrito.especial AS inscrito_especial,
 	inscrito.especial_descricao AS inscrito_descricao_especial,
 	inscrito.isencao AS inscrito_isencao,
+	inscrito.nis AS isencao_numero,
 	inscrito.especial_prova AS inscrito_especial_prova,
 	inscrito.especial_prova_descricao AS inscrito_especial_prova_descricao,
-	inscrito.vaga_especial AS inscrito_vaga_especial,
-	inscrito.especial
-		FROM
-			inscrito
-				INNER JOIN localprova ON inscrito.localprova = localprova.id
-				INNER JOIN campus ON campus.id = inscrito.campus
-				INNER JOIN inscrito_curso ON inscrito_curso.id_inscrito = inscrito.id
-				INNER JOIN curso ON curso.cod_curso = inscrito_curso.cod_curso
-		WHERE cast(ultima_alteracao as DATE) <= cast('{$data}' as DATE)
-				AND isencao = 'SIM'
- GROUP BY
-	campus.id,
-	campus.nome,
-	curso.nome,
-	localprova.nome,
-	inscrito.nome,
-	inscrito.numinscricao,
-	inscrito.cpf,
-	inscrito.rg,
-	inscrito.orgaoexpedidor,
-	inscrito.uf,
-	inscrito.dataexpedicao,
-	inscrito.nacionalidade,
-	inscrito.datanascimento,
-	inscrito.sexo,
-	inscrito.endereco,
-	inscrito.cep,
-	inscrito.cidade,
-	inscrito.estado,
-	inscrito.telefone,
-	inscrito.celular,
-	inscrito.email,
-	inscrito.estadocivil,
-	inscrito.especial,
-	inscrito.especial_descricao,
-	inscrito.isencao,
-	inscrito.especial_prova,
-	inscrito.especial_prova_descricao,
-	inscrito.vaga_especial
+	inscrito.vaga_especial AS inscrito_vaga_especial
+FROM inscrito
+		INNER JOIN campus ON campus.id = inscrito.campus
+		INNER JOIN curso ON curso.cod_curso = inscrito.curso
+WHERE cast(ultima_alteracao as DATE) <= cast('{$data}' as DATE)
+		AND isencao = 'SIM'
 ORDER BY campus.id, inscrito.id
 SQL;
+
+//var_dump($sql);
+//exit;
 
 $objPHPExcel = new PHPExcel();
 
@@ -119,31 +90,31 @@ function setCabecalho($objPHPExcel, $colunas) {
 $colunas = array(
 	'A' => 'CAMPUS',
 	'B' => 'CURSO',
-	'C' => 'LOCAL DE PROVA',
-	'D' => 'INSCRITO',
-	'E' => 'N. INSCRICAO',
-	'F' => 'CPF',
-	'G' => 'RG',
-	'H' => 'ORGAO EXPEDIDOR',
-	'I' => 'UF',
-	'J' => 'DATA DE EXPEDICAO',
-	'K' => 'NACIONALIDADE',
-	'L' => 'DATA DE NASCIMENTO',
-	'M' => 'SEXO',
-	'N' => 'ENDERECO',
-	'O' => 'CEP',
-	'P' => 'CIDADE',
-	'Q' => 'ESTADO',
-	'R' => 'TELEFONE',
-	'S' => 'CELULAR',
-	'T' => 'EMAIL',
-	'U' => 'ESTADO CIVIL',
-	'V' => 'NECESSIDADE ESPECIAL',
-	'W' => 'DESCRICAO NECESSIDADE ESPECIAL',
-	'X' => 'ISENCAO DE TAXA',
+	'C' => 'INSCRITO',
+	'D' => 'N. INSCRICAO',
+	'E' => 'CPF',
+	'F' => 'RG',
+	'G' => 'ORGAO EXPEDIDOR',
+	'H' => 'UF',
+	'I' => 'DATA DE EXPEDICAO',
+	'J' => 'NACIONALIDADE',
+	'K' => 'DATA DE NASCIMENTO',
+	'L' => 'SEXO',
+	'M' => 'ENDERECO',
+	'N' => 'CEP',
+	'O' => 'CIDADE',
+	'P' => 'ESTADO',
+	'Q' => 'TELEFONE',
+	'R' => 'CELULAR',
+	'S' => 'EMAIL',
+	'T' => 'ESTADO CIVIL',
+	'U' => 'NECESSIDADE ESPECIAL',
+	'V' => 'DESCRICAO NECESSIDADE ESPECIAL',
+	'W' => 'ISENCAO DE TAXA',
+	'X' => 'NUMERO DE ISENCAO',
 	'Y' => 'CONDICOES ESPECIAIS PARA REALIZACAO DA PROVA',
 	'Z' => 'DESCRICAO CONDICOES ESPECIAIS PARA REALIZACAO DA PROVA',
-	'AA' => 'CONCORRE AS VAGAS DESTINADAS A CANDIDATOS COM NECESSIDADES ESPECIAIS',
+	'AA' => 'CONCORRE AS VAGAS DE PNE',
 );
 
 $query = $banco->ExecutaQueryGenerica($sql);

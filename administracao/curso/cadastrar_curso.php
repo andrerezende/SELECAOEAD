@@ -1,3 +1,4 @@
+<?php session_start("SELECAO"); ?>
 <?php
 ob_start();
 session_start();
@@ -5,7 +6,7 @@ session_start();
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Processo Seletivo para Cursos T&eacute;cnicos &agrave; Dist&acirc;ncia - 2011.2</title>
+<title> <?php echo ($_SESSION["Gnomeprocessoseletivo"]);?> </title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
@@ -57,7 +58,11 @@ else :
 			</div>
 			<div id="topo2" align="left">
 				<img src="../../imgs/topo2/topo2.png" alt="Instituto Federal Baiano" />
-			</div>
+					<div id="topo2Texto">
+						<?php echo ($_SESSION["Gnomeprocessoseletivo"]);?>
+					</div>
+					
+			</div>	
 			<div align="right" class="admin_logout">
 				<p><a href="../login/logout.php" target="_self">Logout</a></p>
 			</div>
@@ -93,9 +98,9 @@ else :
 								$total = count($vetorcampus);
 
 								while ($total > $i) {
-									$nome = $vetorcampus[$i]->getNome();
+									$nomecampus = $vetorcampus[$i]->getNome();
 									$codigo = $vetorcampus[$i]->getIdCampus();
-									echo("	<option value=".$codigo.">".$nome."</option>\n");
+									echo("	<option value=".$codigo.">".$nomecampus."</option>\n");
 									$i = $i + 1;
 								}
 								?>

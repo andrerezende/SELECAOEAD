@@ -1,59 +1,24 @@
+<?php session_start("SELECAO"); 
+
+//Atribuição da página parametrizada responsável pelo cadastro do candidato 
+$pagina_cadastro = $_SESSION["Gpaginacadastro"];
+
+?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Processo Seletivo para Cursos T&eacute;cnicos &agrave; Dist&acirc;ncia - 2011.2</title>
+	<title> <?php echo ($_SESSION["Gnomeprocessoseletivo"]);?> </title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="estilo_selecao.css" rel="stylesheet" type="text/css" />
-	<script language="JavaScript" type="text/JavaScript">
-
-	function Onlynumber(e){
-
-		var tecla=new Number();
-
-		if(window.event) {
-			tecla = e.keyCode;
-		}
-		else if(e.which) {
-			tecla = e.which;
-		}
-		else {
-			return true;
-		}
-
-		if(((tecla < 48) || (tecla > 57)) && (tecla!=8)){
-			return false;
-		}
-	}
-
-	function validar() {
-
-		var cpf = document.getElementById("cpf");
-		var pwd = document.getElementById("pwd");
-
-
-		resultado = true;
-		if (cpf.value == ""){
-
-		  alert('Informe o CPF.');
-		  cpf.focus();
-		  resultado = false;
-		}
-		else if (pwd.value == ""){
-
-		  alert('Informe a Senha.');
-		  pwd .focus();
-		  resultado = false;
-		}
-			return resultado;
-	}
-	</script>
 
 </head>
 
 <body>
-<form id='frminscricao' name='frminscricao' action='administracao/inscrito/mostrar.php' method='post' onsubmit='return validar()' >
+<form id='frminscricao' name='frminscricao'>
 
-    <p><a href="administracao/inscrito/cadastro.php"><span class="textoDestaque2"> Requerimento de Inscri&ccedil;&atilde;o - Clique aqui!</span></a></p>
+    <p><a href="administracao/inscrito/<?php echo($pagina_cadastro)?>"><span class="textoDestaque2"> Inscri&ccedil;&otilde;es abertas - Clique aqui!</span></a></p>
    
 </form>
 </body>

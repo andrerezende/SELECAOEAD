@@ -4,52 +4,52 @@ class Localprova {
 	protected $nome;
 	protected $campus;
 
-	public function Localprova($a, $b, $c) {
-		$this->id        = $a;
-		$this->nome      = $b;
-		$this->campus    = $c;
+	public function Localprova($pid = null, $pnome = null, $pcampus = null) {
+		$this->id        = $pid;
+		$this->nome      = $pnome;
+		$this->campus    = $pcampus;
 	}
 
 	public function getcodlocalprova() {
 		return $this->id;
 	}
 
-	public function setCodlocalprova($a){
+	public function setCodlocalprova($a) {
 		$this->id = $a;
 	}
 
-	public function getnome(){
+	public function getnome() {
 		return $this->nome;
 	}
 
-	public function setnome($a){
+	public function setnome($a) {
 		$this->nome = $a;
 	}
 
-	public function getcampus(){
+	public function getcampus() {
 		return $this->campus;
 	}
 
-	public function setcampus($a){
+	public function setcampus($a) {
 		$this->campus = $a;
 	}
 
-	public function Inserir ($sock){
-		$ssql = "insert into localprova (nome) values ";
-		$ssql .= " ('".$this->nome."')";
+	public function Inserir($sock) {
+		$ssql = "INSERT INTO localprova (nome, campus) VALUES ";
+		$ssql .= " ('" . $this->nome . "'," . $this->campus . ")";
 
-		$rs = mysql_query($ssql, $sock);
+		return mysql_query($ssql, $sock);
 
 		$linha = mysql_affected_rows();
 
-		if ($linha >0) {
+		if ($linha > 0) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public function SelectByAll($sock){
+	public function SelectByAll($sock) {
 		$ssql = "SELECT id, nome, campus FROM localprova A " ;
 		$ssql .= " WHERE ativo is null";
 		$ssql .= " ORDER BY nome ASC";
@@ -64,7 +64,7 @@ class Localprova {
 		return ($ar);
 	}
 
-	public function SelectLocalPorCampus($sock, $pcampus){
+	public function SelectLocalPorCampus($sock, $pcampus) {
 		$ssql = "SELECT id, nome, campus FROM localprova A " ;
 		$ssql .= " WHERE ativo is null";
 		$ssql .= " AND campus = '$pcampus' ";
@@ -80,7 +80,7 @@ class Localprova {
 		return ($ar);
 	}
 
-	public function SelectByPrimaryKey($sock,$codigo){
+	public function SelectByPrimaryKey($sock, $codigo) {
 		$ssql = "SELECT id, nome, campus FROM localprova A " ;
 		$ssql .= " WHERE id  =" .$codigo;
 
@@ -95,7 +95,7 @@ class Localprova {
 		return ($ar);
 	}
 
-	public function apagar ($sock,$id){
+	public function apagar($sock, $id) {
 		$ssql = "delete from localprova";
 		$ssql .= " WHERE id = ".$id;
 
@@ -103,30 +103,30 @@ class Localprova {
 
 		$linha = mysql_affected_rows();
 
-		if ($linha >0) {
+		if ($linha > 0) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public function existeLocalAssociadoAcandidato ($sock,$id){
-		$ssql = "select * from inscrito";
+	public function existeLocalAssociadoAcandidato($sock, $id){
+		$ssql = "SELECT * FROM inscrito";
 		$ssql .= " WHERE localprova = ".$id;
 
 		$rs = mysql_query($ssql, $sock);
 
 		$linha = mysql_affected_rows();
 
-		if ($linha >0) {
+		if ($linha > 0) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public function inativar ($sock,$id){
-		$ssql = "update localprova set";
+	public function inativar($sock, $id) {
+		$ssql = "UPDATE localprova SET";
 		$ssql .= " ativo = 'N'";
 		$ssql .= " WHERE id = ".$id;
 
@@ -134,7 +134,7 @@ class Localprova {
 
 		$linha = mysql_affected_rows();
 
-		if ($linha >0) {
+		if ($linha > 0) {
 			return true;
 		} else {
 			return false;

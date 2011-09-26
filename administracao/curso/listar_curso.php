@@ -1,7 +1,6 @@
+<?php session_start("SELECAO"); ?>
 <?php
-ini_set('display_errors', 1);
 session_start();
-
 include("../classes/DB.php");
 include("../classes/Curso.php");
 
@@ -12,7 +11,7 @@ if (!$_SESSION['validacao']) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Processo Seletivo para Cursos T&eacute;cnicos &agrave; Dist&acirc;ncia - 2011.2</title>
+	<title> <?php echo ($_SESSION["Gnomeprocessoseletivo"]);?> </title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 </head>
@@ -36,8 +35,12 @@ if (!$_SESSION['validacao']) {
 			</div>
         </div>
         <div id="topo2" align="left">
-			<img src="../../imgs/topo2/topo2.png" alt="Instituto Federal Baiano" />
-     	</div>
+		<img src="../../imgs/topo2/topo2.png" alt="Instituto Federal Baiano" />
+		<div id="topo2Texto">
+			<?php echo ($_SESSION["Gnomeprocessoseletivo"]);?>
+		</div>
+	</div>	
+
 	<div align="right" class="admin_logout">
 		<p><a href="../login/logout.php" target="_self">Logout</a> </p>
 	</div>
@@ -47,7 +50,7 @@ if (!$_SESSION['validacao']) {
 $banco = DB::getInstance();
 $conexao = $banco->ConectarDB();
 
-$curso = new Curso(null, null, null);
+$curso = new Curso();
 $vetorcurso = $curso->SelectByAll($conexao);
 
 echo("<form id='excluircurso' name='excluircurso' action='' method='post'>");

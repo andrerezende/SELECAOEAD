@@ -1,8 +1,8 @@
+<?php session_start("SELECAO"); ?>
 <?php
 session_start();
 include("../classes/DB.php");
 include("../classes/Curso.php");
-include("../classes/Inscrito_Curso.php");
 
 $id = addslashes($_GET['id']);
 
@@ -11,7 +11,6 @@ $banco    = DB::getInstance();
 $conexao  = $banco->ConectarDB();
 
 $curso = new Curso(null,null,null);
-$inscrito_curso = new Inscrito_Curso(null,null,null);
 
 $existeCandidatoAssociado = $curso->existeCursoAssociadoAcandidato($conexao, $id);
 $curso_eliminado = false;
@@ -36,7 +35,7 @@ exit;
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Processo Seletivo para Cursos T&eacute;cnicos &agrave; Dist&acirc;ncia - 2011.2</title>
+	<title> <?php echo ($_SESSION["Gnomeprocessoseletivo"]);?> </title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 </head>

@@ -1,11 +1,12 @@
+<?php session_start("SELECAO"); ?>
 <?php
 ob_start();
 session_start();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dtd/xhtml1-transitional.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Processo Seletivo para Cursos T&eacute;cnicos &agrave; Dist&acirc;ncia - 2011.2</title>
+	<title> <?php echo ($_SESSION["nome"]);?> </title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="../../estilo_selecao.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript">
@@ -98,7 +99,11 @@ else :
 		</div>
 		<div id="topo2" align="left">
 			<img src="../../imgs/topo2/topo2.png" alt="Instituto Federal Baiano" />
-		</div>
+				<div id="topo2Texto">
+					<?php echo ($_SESSION["Gnomeprocessoseletivo"]);?>
+				</div>
+					
+		</div>	
 	<div align="right" class="admin_logout">
 		<p><a href="../login/logout.php" target="_self">Logout</a></p>
 	</div>
@@ -114,18 +119,17 @@ else :
 		</tr>
 		<tr><th>&nbsp;</th></tr>
 		<tr>
-			<form id='cotasform' name='cotasform' action='relatorio_cotas.php' method='post'>
-				<input type='hidden' value='candidatos_por_cotas' name="tipo" />
-				<td><b>Candidatos por Cotas</b></td>
+			<form id='necessidadeform' name='necessidadeform' action='relatorio_geral.php' method='post'>
+				<input type='hidden' value='candidatos_por_necessidade' name="tipo" />
+				<td><b>Candidatos que possuem necessidades especiais</b></td>
 				<td>&nbsp;</td>
 				<td>
-					<select name="cotas_filtro" id="cotas_filtro">
-						<option value="todos">Todos</option>
-						<option value="necessidade_especial">Necessidade Especial</option>
-						<option value="escola_publica">Escola P&uacute;blica</option>
+					<select name="necessidade_filtro" id="necessidade_filtro" alt="Filtro de Necessidades Especiais" >
+						<option value="1">Sim</option>
+						<option value="0">Nao</option>
 					</select>
 				</td>
-				<td><input name="visualizar_cotistas" type="submit" id="visualizar_cotistas" value="Visualizar"></td>
+				<td><input name="visualizar_portadores" type="submit" id="visualizar_portadores" value="Visualizar"></td>
 			</form>
 		</tr>
 		<tr>
@@ -133,9 +137,10 @@ else :
 			<th colspan="2">Filtro de Pagamento</th>
 			<th>&nbsp;</th>
 		</tr>
-			<form id='campusform' name='campusform' action='total_de_inscritos.php' method='post'>
+		<tr>
+			<form id='campusform' name='campusform' action='relatorio_total_inscritos.php' method='post'>
 				<input type='hidden' value='inscritos_por_campus' name="tipo" />
-				<td><b>Total de Inscritos por Campus</b></td>
+				<td><b>Total de inscritos por campus</b></td>
 				<td>&nbsp;</td>
 				<td>
 					<select name="filtro_pagamento" id="filtro_pagamento" alt="Filtro de Pagamento" >
@@ -148,9 +153,9 @@ else :
 			</form>
 		</tr>
 		<tr>
-			<form id='cursoform' name='cursoform' action='total_de_inscritos.php' method='post'>
+			<form id='cursoform' name='cursoform' action='relatorio_total_inscritos.php' method='post'>
 				<input type='hidden' value='inscritos_por_curso' name="tipo" />
-				<td><b>Total de Inscritos por Curso</b></td>
+				<td><b>Total de inscritos por curso</b></td>
 				<td>&nbsp;</td>
 				<td>
 					<select name="filtro_pagamento" id="filtro_pagamento" alt="Filtro de Pagamento" >
@@ -165,7 +170,7 @@ else :
 		<tr>
 			<form id='geralform' name='geralform' action='relatorio_geral.php' method='post'>
 				<input type='hidden' value='relacao_cadidatos2' name="tipo" />
-				<td><b>Rela&ccedil;&atilde;o Completa de Candidatos</b></td>
+				<td><b>Rela&ccedil;&atilde;o completa de candidatos</b></td>
 				<td>&nbsp;</td>
 				<td>
 					<select name="filtro_pagamento" id="filtro_pagamento" alt="Filtro de Pagamento" >
@@ -173,6 +178,40 @@ else :
 						<option value="0">N&atilde;o Pagos</option>
 						<option value="1">Pagos</option>
 					</select>
+				</td>
+				<td><input name="visualizar_relatorio" type="submit" id="visualizar_relatorio" value="Visualizar"></td>
+			</form>
+		</tr>
+		<tr>
+			<form id='relatorioisentos' name='relatorioisentos' action='relatorio_isentos.php' method='post' onsubmit='return validar()'>
+				<input type='hidden' value='relacao_isentos' name="tipo" />
+				<td><b>Relat&oacute;rio de isenções solicitadas</b></td>
+				<td>&nbsp;</td>
+				<td>
+					<input type="text" name="data_final_isencao" size="11" maxlength="10" onkeypress="Mascara('DATA',this,event); return Onlynumber(event);" id="data_final_isencao" />
+				</td>
+				<td><input name="visualizar_relatorio" type="submit" id="visualizar_relatorio" value="Visualizar"></td>
+			</form>
+		</tr>
+		<tr>
+			<form id='relatorioisencaoconfirmada' name='relatorioisencaoconfirmada' action='relatorio_isentos_confirmados.php' method='post'>
+				<input type='hidden' value='relatorioisencaoconfirmada' name="tipo" />
+				<td><b>Relat&oacute;rio de isenções confirmadas</b></td>
+				<td>&nbsp;</td>
+				<td>
+					&nbsp;
+				</td>
+				<td><input name="visualizar_relatorio" type="submit" id="visualizar_relatorio" value="Visualizar"></td>
+			</form>
+		</tr>
+
+		<tr>
+			<form id='relatorionotas' name='relatorionotas' action='relatorio_notas.php' method='post'>
+				<input type='hidden' value='relatorionotas' name="tipo" />
+				<td><b>Relat&oacute;rio de ordenado por notas</b></td>
+				<td>&nbsp;</td>
+				<td>
+					&nbsp;
 				</td>
 				<td><input name="visualizar_relatorio" type="submit" id="visualizar_relatorio" value="Visualizar"></td>
 			</form>
